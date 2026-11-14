@@ -288,6 +288,12 @@ h1 span {
   font-size: 9.5px; letter-spacing: 0.07em; color: var(--text-faint);
 }
 .detail-row b { color: var(--text-dim); font-weight: 600; font-size: 12px; }
+.detail-row b i { color: var(--text-faint); font-style: normal; }
+.detail-note {
+  margin-top: 6px; padding-top: 6px; border-top: 1px dotted var(--line);
+  font-size: 10.5px; line-height: 1.4; color: var(--text-faint); font-style: italic;
+  max-width: 440px;
+}
 .detail-links { display: flex; gap: 16px; margin-top: 10px; align-items: center; }
 .detail-links a, .map-toggle {
   font-size: 11px; font-weight: 700; letter-spacing: 0.03em;
@@ -437,6 +443,78 @@ const DATA = {
   }
 };
 
+// Circuit length / corner count / race-distance laps, verified against
+// formula1.com and motogp.com's own circuit pages (cross-checked against
+// Wikipedia where sources disagreed). A few circuits are genuinely
+// unresolved as of Nov 2026 (not yet homologated) — those carry a `note`
+// and leave the unknown fields null rather than guessing.
+const CIRCUIT_SPECS = {
+  "Las Vegas Strip Circuit": { "lengthKm": 6.201, "turns": 17, "laps": { "f1": 50 } },
+  "Lusail International Circuit": { "lengthKm": 5.419, "turns": 16, "laps": { "f1": 57, "motogp": 22 } },
+  "Yas Marina Circuit": { "lengthKm": 5.281, "turns": 16, "laps": { "f1": 58 } },
+  "Bahrain International Circuit": { "lengthKm": 5.412, "turns": 15, "laps": { "f1": 57 } },
+  "Jeddah Corniche Circuit": { "lengthKm": 6.174, "turns": 27, "laps": { "f1": 50 } },
+  "Albert Park Circuit": { "lengthKm": 5.278, "turns": 14, "laps": { "f1": 58 } },
+  "Suzuka International Racing Course": { "lengthKm": 5.807, "turns": 18, "laps": { "f1": 53 } },
+  "Shanghai International Circuit": { "lengthKm": 5.451, "turns": 16, "laps": { "f1": 56 } },
+  "Miami International Autodrome": { "lengthKm": 5.412, "turns": 19, "laps": { "f1": 57 } },
+  "Circuit Gilles Villeneuve": { "lengthKm": 4.361, "turns": 14, "laps": { "f1": 70 } },
+  "Circuit de Monaco": { "lengthKm": 3.337, "turns": 19, "laps": { "f1": 78 } },
+  "Algarve International Circuit": { "lengthKm": 4.653, "turns": 15, "laps": { "f1": 66, "motogp": 25 } },
+  "Silverstone Circuit": { "lengthKm": 5.891, "turns": 18, "laps": { "f1": 52, "motogp": 20 } },
+  "Red Bull Ring": { "lengthKm": 4.318, "turns": 10, "laps": { "f1": 71, "motogp": 28 } },
+  "Circuit de Spa-Francorchamps": { "lengthKm": 7.004, "turns": 19, "laps": { "f1": 44 } },
+  "Hungaroring": { "lengthKm": 4.381, "turns": 14, "laps": { "f1": 70 } },
+  "Autodromo Nazionale Monza": { "lengthKm": 5.793, "turns": 11, "laps": { "f1": 53 } },
+  "Circuito de Madrid (Madring)": { "lengthKm": 5.414, "turns": 22, "laps": { "f1": 57 } },
+  "Baku City Circuit": { "lengthKm": 6.003, "turns": 20, "laps": { "f1": 51 } },
+  "Istanbul Park": { "lengthKm": 5.338, "turns": 14, "laps": { "f1": 58 } },
+  "Marina Bay Street Circuit": {
+    "lengthKm": 4.927, "turns": 19, "laps": { "f1": 62 },
+    "note": "2023+ revised layout — shorter and fewer corners than the original 23-turn street circuit."
+  },
+  "Circuit of the Americas": { "lengthKm": 5.513, "turns": 20, "laps": { "f1": 56, "motogp": 19 } },
+  "Autódromo Hermanos Rodríguez": { "lengthKm": 4.304, "turns": 17, "laps": { "f1": 71 } },
+  "Autódromo José Carlos Pace (Interlagos)": { "lengthKm": 4.309, "turns": 15, "laps": { "f1": 71 } },
+  "Circuit Ricardo Tormo": { "lengthKm": 4.005, "turns": 14, "laps": { "motogp": 27 } },
+  "Chang International Circuit": { "lengthKm": 4.554, "turns": 12, "laps": { "motogp": 26 } },
+  "Autódromo Internacional Ayrton Senna": {
+    "lengthKm": 3.835, "turns": 14, "laps": { "motogp": 23 },
+    "note": "First hosted MotoGP in March 2026 — turn count sourced from the official corner-by-corner breakdown."
+  },
+  "Autódromo Oscar y Juan Gálvez": {
+    "lengthKm": 4.3, "turns": 14, "laps": null,
+    "note": "MotoGP returns here from 2027 on a renovated layout still under construction as of late 2026 — figures are provisional target specs, and no official lap count has been announced yet."
+  },
+  "Circuito de Jerez-Ángel Nieto": { "lengthKm": 4.423, "turns": 13, "laps": { "motogp": 25 } },
+  "Le Mans (Circuit Bugatti)": { "lengthKm": 4.185, "turns": 14, "laps": { "motogp": 27 } },
+  "Autodromo Internazionale del Mugello": { "lengthKm": 5.245, "turns": 15, "laps": { "motogp": 23 } },
+  "Circuit de Barcelona-Catalunya": { "lengthKm": 4.657, "turns": 14, "laps": { "motogp": 24 } },
+  "TT Circuit Assen": { "lengthKm": 4.542, "turns": 18, "laps": { "motogp": 26 } },
+  "Sachsenring": { "lengthKm": 3.671, "turns": 13, "laps": { "motogp": 30 } },
+  "CREDITAS Autodrom Brno": { "lengthKm": 5.403, "turns": 14, "laps": { "motogp": 21 } },
+  "Misano World Circuit Marco Simoncelli": { "lengthKm": 4.226, "turns": 16, "laps": { "motogp": 27 } },
+  "MotorLand Aragón": { "lengthKm": 5.077, "turns": 17, "laps": { "motogp": 23 } },
+  "Mobility Resort Motegi": { "lengthKm": 4.801, "turns": 14, "laps": { "motogp": 24 } },
+  "Petronas Sepang International Circuit": { "lengthKm": 5.543, "turns": 15, "laps": { "motogp": 20 } },
+  "Pertamina Mandalika International Circuit": { "lengthKm": 4.301, "turns": 17, "laps": { "motogp": 27 } },
+  "Adelaide Street Circuit": {
+    "lengthKm": null, "turns": null, "laps": null,
+    "note": "Provisional 2027 MotoGP addition — organisers have said the published layout isn't final, so nothing here is confirmed yet."
+  }
+};
+
+// Two circuits are listed under slightly different official names by F1 vs MotoGP.
+const CIRCUIT_ALIASES = {
+  "Autódromo Internacional do Algarve": "Algarve International Circuit",
+  "Le Mans": "Le Mans (Circuit Bugatti)"
+};
+const SERIES_SPEC_KEY = { f1: "f1", moto: "motogp" };
+
+function getSpecs(circuitName) {
+  return CIRCUIT_SPECS[CIRCUIT_ALIASES[circuitName] || circuitName] || null;
+}
+
 const MONTHS = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
 
 function parseDate(iso) {
@@ -488,8 +566,10 @@ function renderRows(container, list, seriesKey) {
     wrap.className = "race";
     wrap.id = raceId(seriesKey, r);
     const ledClass = r.sprint ? "sprint" : r.provisional ? "prov" : "none";
-    const circuitQuery = encodeURIComponent(r.circuit + " circuit");
     const mapQuery = encodeURIComponent(r.circuit + ", " + r.location);
+    const specs = getSpecs(r.circuit);
+    const laps = specs && specs.laps ? specs.laps[SERIES_SPEC_KEY[seriesKey]] : null;
+    const na = '<i>TBD</i>';
     wrap.innerHTML =
       '<div class="row" role="button" tabindex="0" aria-expanded="false">' +
         '<span class="led ' + ledClass + '"></span>' +
@@ -503,12 +583,15 @@ function renderRows(container, list, seriesKey) {
         '<div class="detail-name">' + r.name + '</div>' +
         '<div class="detail-row"><span>CIRCUIT</span><b>' + r.circuit + '</b></div>' +
         '<div class="detail-row"><span>LOCATION</span><b>' + r.location + '</b></div>' +
+        '<div class="detail-row"><span>LENGTH</span><b>' + (specs && specs.lengthKm != null ? specs.lengthKm.toFixed(3) + ' km' : na) + '</b></div>' +
+        '<div class="detail-row"><span>TURNS</span><b>' + (specs && specs.turns != null ? specs.turns : na) + '</b></div>' +
+        '<div class="detail-row"><span>LAPS</span><b>' + (laps != null ? laps : na) + '</b></div>' +
         '<div class="detail-row"><span>DATE</span><b>' + fmtRange(r.start, r.end) + ', ' + r.year + '</b></div>' +
         '<div class="detail-row"><span>ROUND</span><b>' + r.round + ' · ' + r.year + ' season</b></div>' +
         (r.sprint ? '<div class="detail-row"><span>FORMAT</span><b>Sprint weekend</b></div>' : '') +
         (r.provisional ? '<div class="detail-row"><span>STATUS</span><b>Provisional date — not yet homologated</b></div>' : '') +
+        (specs && specs.note ? '<div class="detail-note">' + specs.note + '</div>' : '') +
         '<div class="detail-links">' +
-          '<a href="https://en.wikipedia.org/w/index.php?search=' + circuitQuery + '" target="_blank" rel="noopener">Circuit info ↗</a>' +
           '<button class="map-toggle" type="button" data-q="' + mapQuery + '">Show track location ▾</button>' +
         '</div>' +
         '<div class="map-embed" hidden></div>' +
