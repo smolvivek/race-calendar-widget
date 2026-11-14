@@ -288,12 +288,17 @@ h1 span {
   font-size: 9.5px; letter-spacing: 0.07em; color: var(--text-faint);
 }
 .detail-row b { color: var(--text-dim); font-weight: 600; font-size: 12px; }
-.detail-links { display: flex; gap: 16px; margin-top: 10px; }
-.detail-links a {
+.detail-links { display: flex; gap: 16px; margin-top: 10px; align-items: center; }
+.detail-links a, .map-toggle {
   font-size: 11px; font-weight: 700; letter-spacing: 0.03em;
   color: var(--accent); text-decoration: none;
 }
-.detail-links a:hover { text-decoration: underline; }
+.detail-links a:hover, .map-toggle:hover { text-decoration: underline; }
+.map-toggle {
+  font-family: inherit; background: none; border: none; padding: 0; cursor: pointer;
+}
+.map-embed { margin-top: 10px; border-radius: 4px; overflow: hidden; border: 1px solid var(--line); max-width: 480px; }
+.map-embed iframe { width: 100%; height: 200px; border: 0; display: block; }
 
 @keyframes detail-in {
   from { opacity: 0; transform: translateY(-4px); }
@@ -504,8 +509,9 @@ function renderRows(container, list, seriesKey) {
         (r.provisional ? '<div class="detail-row"><span>STATUS</span><b>Provisional date — not yet homologated</b></div>' : '') +
         '<div class="detail-links">' +
           '<a href="https://en.wikipedia.org/w/index.php?search=' + circuitQuery + '" target="_blank" rel="noopener">Circuit info ↗</a>' +
-          '<a href="https://www.google.com/maps/search/' + mapQuery + '" target="_blank" rel="noopener">Map ↗</a>' +
+          '<button class="map-toggle" type="button" data-q="' + mapQuery + '">Show track location ▾</button>' +
         '</div>' +
+        '<div class="map-embed" hidden></div>' +
       '</div>';
     container.appendChild(wrap);
   });
@@ -520,14 +526,28 @@ function toggleRace(wrap, forceOpen) {
   row.setAttribute("aria-expanded", String(willOpen));
 }
 
+function toggleMap(btn) {
+  const embed = btn.closest(".detail").querySelector(".map-embed");
+  const willOpen = embed.hidden;
+  embed.hidden = !willOpen;
+  if (willOpen && !embed.dataset.loaded) {
+    embed.innerHTML = '<iframe src="https://www.google.com/maps?q=' + btn.dataset.q + '&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>';
+    embed.dataset.loaded = "1";
+  }
+  btn.textContent = willOpen ? "Hide track location ▴" : "Show track location ▾";
+}
+
 function wireRowClicks(container) {
   container.addEventListener("click", (e) => {
+    const mapBtn = e.target.closest(".map-toggle");
+    if (mapBtn) { toggleMap(mapBtn); return; }
     const row = e.target.closest(".row");
     if (!row) return;
     toggleRace(row.parentElement);
   });
   container.addEventListener("keydown", (e) => {
     if (e.key !== "Enter" && e.key !== " ") return;
+    if (e.target.closest(".map-toggle")) return; // native button handles its own Enter/Space
     const row = e.target.closest(".row");
     if (!row) return;
     e.preventDefault();
