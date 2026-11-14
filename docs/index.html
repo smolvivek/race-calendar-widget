@@ -1,0 +1,492 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Race Deck — F1 &amp; MotoGP Calendar</title>
+<style>
+/* Layout concept: a steering-wheel HUD — a central tachometer-style countdown
+   dial flanked by angular carbon-panel telemetry readouts for each series. */
+:root {
+  --bg: #0a0b0d;
+  --bg-panel: #15171a;
+  --bg-panel-raised: #1c1f23;
+  --line: rgba(255,255,255,0.09);
+  --line-bright: rgba(255,255,255,0.18);
+  --f1: #ff1a1a;
+  --f1-dim: #7a1210;
+  --moto: #ff7a1a;
+  --moto-dim: #7a4012;
+  --text: #f3f4f6;
+  --text-dim: #9199a3;
+  --text-faint: #565c64;
+  --warn: #ffcf33;
+  color-scheme: dark;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(ellipse 900px 500px at 50% -10%, rgba(255,26,26,0.07), transparent 60%),
+    var(--bg);
+  color: var(--text);
+  font-family: "Titillium Web", "Barlow Semi Condensed", -apple-system, sans-serif;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+
+.wrap {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding-block: 28px 48px;
+}
+
+/* ---------- header ---------- */
+
+.flagbar {
+  height: 6px;
+  background-image: linear-gradient(135deg, var(--text) 25%, transparent 25%, transparent 50%, var(--text) 50%, var(--text) 75%, transparent 75%, transparent);
+  background-size: 16px 16px;
+  opacity: 0.85;
+  margin-bottom: 22px;
+  border-radius: 2px;
+}
+
+header.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 26px;
+}
+
+.eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  color: var(--text-faint);
+  text-transform: uppercase;
+}
+
+h1 {
+  font-family: "Orbitron", "Titillium Web", sans-serif;
+  font-size: clamp(28px, 5vw, 42px);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  margin: 2px 0 0;
+  text-wrap: balance;
+}
+
+h1 span { color: var(--f1); }
+
+.clock {
+  font-family: "Orbitron", monospace;
+  font-variant-numeric: tabular-nums;
+  font-size: 13px;
+  color: var(--text-dim);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 6px 12px;
+  background: var(--bg-panel);
+  white-space: nowrap;
+}
+
+/* ---------- next-race HUD panel ---------- */
+
+.hud {
+  position: relative;
+  background:
+    repeating-linear-gradient(135deg, rgba(255,255,255,0.025) 0 2px, transparent 2px 7px),
+    linear-gradient(180deg, var(--bg-panel-raised), var(--bg-panel));
+  border: 1px solid var(--line-bright);
+  clip-path: polygon(0 18px, 18px 0, 100% 0, 100% calc(100% - 18px), calc(100% - 18px) 100%, 0 100%);
+  padding: clamp(20px, 4vw, 36px);
+  display: flex;
+  gap: clamp(20px, 4vw, 48px);
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+  overflow: hidden;
+}
+
+.hud::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, var(--accent, var(--f1)), transparent 40%);
+  opacity: 0.08;
+  pointer-events: none;
+}
+
+.dial-box {
+  position: relative;
+  width: 168px;
+  height: 168px;
+  flex: none;
+}
+
+.dial-box svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+
+.dial-track { fill: none; stroke: var(--line); stroke-width: 7; }
+.dial-fill { fill: none; stroke: var(--accent, var(--f1)); stroke-width: 7; stroke-linecap: round;
+  filter: drop-shadow(0 0 6px var(--accent, var(--f1))); transition: stroke-dashoffset 0.6s ease; }
+
+.dial-center {
+  position: absolute; inset: 0; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; text-align: center;
+}
+
+.dial-num { font-family: "Orbitron", monospace; font-size: 30px; font-weight: 700; line-height: 1;
+  font-variant-numeric: tabular-nums; }
+.dial-unit { font-size: 10px; letter-spacing: 0.18em; color: var(--text-dim); margin-top: 4px; }
+.dial-live { font-family: "Orbitron", monospace; font-size: 17px; font-weight: 700; color: var(--accent, var(--f1));
+  letter-spacing: 0.08em; }
+
+.hud-info { flex: 1; min-width: 220px; }
+
+.hud-label { font-size: 11px; font-weight: 700; letter-spacing: 0.28em; color: var(--text-faint); margin-bottom: 8px; }
+
+.series-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: "Orbitron", monospace;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+  padding: 3px 9px; border-radius: 2px; color: #0a0b0d;
+  background: var(--accent, var(--f1));
+  margin-bottom: 10px;
+}
+
+.hud-race { font-size: clamp(20px, 3vw, 28px); font-weight: 700; margin: 0 0 4px; text-wrap: balance; }
+.hud-venue { color: var(--text-dim); font-size: 14.5px; margin-bottom: 10px; }
+.hud-meta { display: flex; gap: 14px; flex-wrap: wrap; font-family: "Orbitron", monospace;
+  font-size: 12px; color: var(--text-dim); letter-spacing: 0.04em; }
+.hud-meta b { color: var(--text); }
+
+.tag {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 10.5px; font-weight: 700; letter-spacing: 0.1em;
+  border: 1px solid currentColor; border-radius: 2px; padding: 2px 7px;
+}
+.tag.sprint { color: var(--warn); }
+.tag.prov { color: var(--text-dim); }
+.tag::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+
+/* ---------- telemetry panels (series lists) ---------- */
+
+.panels {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+@media (max-width: 680px) {
+  .panels { grid-template-columns: 1fr; }
+}
+
+.panel {
+  background: var(--bg-panel);
+  border: 1px solid var(--line);
+  clip-path: polygon(14px 0, 100% 0, 100% 100%, 0 100%, 0 14px);
+  min-width: 0;
+}
+
+.panel-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg-panel-raised);
+}
+
+.panel-head .name {
+  font-family: "Orbitron", monospace;
+  font-weight: 700; font-size: 13px; letter-spacing: 0.1em;
+}
+.panel.f1 .panel-head .name { color: var(--f1); }
+.panel.moto .panel-head .name { color: var(--moto); }
+
+.panel-head .count { font-size: 11px; color: var(--text-faint); font-family: "Orbitron", monospace; }
+
+.rows { max-height: 420px; overflow-y: auto; }
+
+.row {
+  display: flex; align-items: center; gap: 10px;
+  padding: 9px 16px;
+  border-bottom: 1px solid var(--line);
+  font-size: 13px;
+}
+.row:last-child { border-bottom: none; }
+.row:nth-child(even) { background: rgba(255,255,255,0.015); }
+
+.row .rnd {
+  font-family: "Orbitron", monospace; font-size: 10.5px; color: var(--text-faint);
+  width: 28px; flex: none;
+}
+.row .date {
+  font-family: "Orbitron", monospace; font-size: 11.5px; color: var(--text-dim);
+  width: 56px; flex: none; font-variant-numeric: tabular-nums;
+}
+.row .gp { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.row .yr { font-size: 10.5px; color: var(--text-faint); flex: none; }
+.row .led { width: 6px; height: 6px; border-radius: 50%; flex: none; }
+.row .led.sprint { background: var(--warn); box-shadow: 0 0 5px var(--warn); }
+.row .led.prov { background: var(--text-faint); }
+.row .led.none { background: transparent; }
+
+/* ---------- footer ---------- */
+
+footer {
+  margin-top: 28px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--line);
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+  font-size: 11px; color: var(--text-faint); font-family: "Orbitron", monospace;
+  letter-spacing: 0.03em;
+}
+footer a { color: var(--text-dim); }
+
+/* scrollbars */
+.rows::-webkit-scrollbar { width: 8px; }
+.rows::-webkit-scrollbar-track { background: transparent; }
+.rows::-webkit-scrollbar-thumb { background: var(--line-bright); border-radius: 4px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .dial-fill { transition: none; }
+}
+</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&family=Titillium+Web:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="wrap">
+  <div class="flagbar"></div>
+  <header class="top">
+    <div>
+      <div class="eyebrow">Trackside Telemetry</div>
+      <h1>RACE <span>DECK</span></h1>
+    </div>
+    <div class="clock" id="clock">--:--:--</div>
+  </header>
+
+  <div class="hud" id="hud"></div>
+
+  <div class="panels">
+    <div class="panel f1">
+      <div class="panel-head"><span class="name">FORMULA 1</span><span class="count" id="f1-count"></span></div>
+      <div class="rows" id="f1-rows"></div>
+    </div>
+    <div class="panel moto">
+      <div class="panel-head"><span class="name">MOTOGP</span><span class="count" id="moto-count"></span></div>
+      <div class="rows" id="moto-rows"></div>
+    </div>
+  </div>
+
+  <footer>
+    <span id="updated"></span>
+    <span><a href="https://github.com/smolvivek/race-calendar-widget" target="_blank" rel="noopener">github.com/smolvivek/race-calendar-widget</a> · MIT</span>
+  </footer>
+</div>
+
+<script>
+// ---- embedded calendar data (same content as calendar-data.json) ----
+const DATA = {
+  "meta": {
+    "lastUpdated": "2026-11-15",
+    "sources": ["https://www.formula1.com","https://www.motogp.com","https://www.formulaonehistory.com","https://www.fia.com"],
+    "notes": "Dates reflect official calendars as published. 2027 rounds for venues pending FIA/FIM homologation (MotoGP Argentina, MotoGP Australia/Adelaide) are flagged provisional. Always double-check close to race week — calendars shift."
+  },
+  "f1": {
+    "2026": [
+      { "round": 21, "name": "Las Vegas Grand Prix",  "location": "Las Vegas, USA",   "circuit": "Las Vegas Strip Circuit",         "start": "2026-11-20", "end": "2026-11-22", "sprint": false },
+      { "round": 22, "name": "Qatar Grand Prix",        "location": "Lusail, Qatar",    "circuit": "Lusail International Circuit",    "start": "2026-11-27", "end": "2026-11-29", "sprint": false },
+      { "round": 23, "name": "Abu Dhabi Grand Prix",    "location": "Abu Dhabi, UAE",   "circuit": "Yas Marina Circuit",              "start": "2026-12-04", "end": "2026-12-06", "sprint": false }
+    ],
+    "2027": [
+      { "round": 1,  "name": "Bahrain Grand Prix",         "location": "Sakhir, Bahrain",          "circuit": "Bahrain International Circuit",         "start": "2027-03-12", "end": "2027-03-14", "sprint": true  },
+      { "round": 2,  "name": "Saudi Arabian Grand Prix",   "location": "Jeddah, Saudi Arabia",     "circuit": "Jeddah Corniche Circuit",               "start": "2027-03-19", "end": "2027-03-21", "sprint": false },
+      { "round": 3,  "name": "Australian Grand Prix",      "location": "Melbourne, Australia",     "circuit": "Albert Park Circuit",                   "start": "2027-04-02", "end": "2027-04-04", "sprint": true  },
+      { "round": 4,  "name": "Japanese Grand Prix",        "location": "Suzuka, Japan",             "circuit": "Suzuka International Racing Course",    "start": "2027-04-09", "end": "2027-04-11", "sprint": true  },
+      { "round": 5,  "name": "Chinese Grand Prix",         "location": "Shanghai, China",           "circuit": "Shanghai International Circuit",         "start": "2027-04-16", "end": "2027-04-18", "sprint": false },
+      { "round": 6,  "name": "Miami Grand Prix",           "location": "Miami, USA",                "circuit": "Miami International Autodrome",          "start": "2027-04-30", "end": "2027-05-02", "sprint": false },
+      { "round": 7,  "name": "Canadian Grand Prix",        "location": "Montreal, Canada",          "circuit": "Circuit Gilles Villeneuve",              "start": "2027-05-21", "end": "2027-05-23", "sprint": true  },
+      { "round": 8,  "name": "Monaco Grand Prix",          "location": "Monte Carlo, Monaco",       "circuit": "Circuit de Monaco",                      "start": "2027-06-04", "end": "2027-06-06", "sprint": true  },
+      { "round": 9,  "name": "Portuguese Grand Prix",      "location": "Portimão, Portugal",        "circuit": "Algarve International Circuit",          "start": "2027-06-18", "end": "2027-06-20", "sprint": false },
+      { "round": 10, "name": "British Grand Prix",         "location": "Silverstone, UK",           "circuit": "Silverstone Circuit",                    "start": "2027-07-02", "end": "2027-07-04", "sprint": true  },
+      { "round": 11, "name": "Austrian Grand Prix",        "location": "Spielberg, Austria",        "circuit": "Red Bull Ring",                          "start": "2027-07-09", "end": "2027-07-11", "sprint": false },
+      { "round": 12, "name": "Belgian Grand Prix",         "location": "Spa, Belgium",              "circuit": "Circuit de Spa-Francorchamps",           "start": "2027-07-23", "end": "2027-07-25", "sprint": false },
+      { "round": 13, "name": "Hungarian Grand Prix",       "location": "Budapest, Hungary",         "circuit": "Hungaroring",                            "start": "2027-07-30", "end": "2027-08-01", "sprint": false },
+      { "round": 14, "name": "Italian Grand Prix",         "location": "Monza, Italy",              "circuit": "Autodromo Nazionale Monza",              "start": "2027-09-03", "end": "2027-09-05", "sprint": true  },
+      { "round": 15, "name": "Spanish Grand Prix",         "location": "Madrid, Spain",             "circuit": "Circuito de Madrid (Madring)",           "start": "2027-09-10", "end": "2027-09-12", "sprint": false },
+      { "round": 16, "name": "Azerbaijan Grand Prix",      "location": "Baku, Azerbaijan",          "circuit": "Baku City Circuit",                      "start": "2027-09-24", "end": "2027-09-26", "sprint": false },
+      { "round": 17, "name": "Turkish Grand Prix",         "location": "Istanbul, Turkey",          "circuit": "Istanbul Park",                          "start": "2027-10-01", "end": "2027-10-03", "sprint": false },
+      { "round": 18, "name": "Singapore Grand Prix",       "location": "Singapore",                 "circuit": "Marina Bay Street Circuit",              "start": "2027-10-08", "end": "2027-10-10", "sprint": false },
+      { "round": 19, "name": "United States Grand Prix",   "location": "Austin, USA",               "circuit": "Circuit of the Americas",                "start": "2027-10-22", "end": "2027-10-24", "sprint": false },
+      { "round": 20, "name": "Mexico City Grand Prix",     "location": "Mexico City, Mexico",       "circuit": "Autódromo Hermanos Rodríguez",           "start": "2027-10-29", "end": "2027-10-31", "sprint": false },
+      { "round": 21, "name": "Brazilian Grand Prix",       "location": "São Paulo, Brazil",         "circuit": "Autódromo José Carlos Pace (Interlagos)","start": "2027-11-05", "end": "2027-11-07", "sprint": true  },
+      { "round": 22, "name": "Las Vegas Grand Prix",       "location": "Las Vegas, USA",            "circuit": "Las Vegas Strip Circuit",                "start": "2027-11-19", "end": "2027-11-21", "sprint": false },
+      { "round": 23, "name": "Qatar Grand Prix",           "location": "Lusail, Qatar",             "circuit": "Lusail International Circuit",           "start": "2027-12-03", "end": "2027-12-05", "sprint": true  },
+      { "round": 24, "name": "Abu Dhabi Grand Prix",       "location": "Abu Dhabi, UAE",            "circuit": "Yas Marina Circuit",                     "start": "2027-12-10", "end": "2027-12-12", "sprint": true  }
+    ]
+  },
+  "motogp": {
+    "2026": [
+      { "round": 21, "name": "Portuguese Grand Prix",       "location": "Portimão, Portugal",      "circuit": "Autódromo Internacional do Algarve", "start": "2026-11-20", "end": "2026-11-22", "provisional": false },
+      { "round": 22, "name": "Comunitat Valenciana Grand Prix", "location": "Cheste, Spain",       "circuit": "Circuit Ricardo Tormo",              "start": "2026-11-27", "end": "2026-11-29", "provisional": false }
+    ],
+    "2027": [
+      { "round": 1,  "name": "Thailand Grand Prix",            "location": "Buriram, Thailand",         "circuit": "Chang International Circuit",                  "start": "2027-03-05", "end": "2027-03-07", "provisional": false },
+      { "round": 2,  "name": "Qatar Grand Prix",                "location": "Lusail, Qatar",             "circuit": "Lusail International Circuit",                 "start": "2027-03-12", "end": "2027-03-14", "provisional": false },
+      { "round": 3,  "name": "Grande Prêmio do Brasil",          "location": "Goiânia, Brazil",           "circuit": "Autódromo Internacional Ayrton Senna",         "start": "2027-04-02", "end": "2027-04-04", "provisional": false },
+      { "round": 4,  "name": "Gran Premio de la República Argentina", "location": "Buenos Aires, Argentina", "circuit": "Autódromo Oscar y Juan Gálvez",         "start": "2027-04-09", "end": "2027-04-11", "provisional": true  },
+      { "round": 5,  "name": "Grand Prix of the Americas",      "location": "Austin, USA",               "circuit": "Circuit of the Americas",                      "start": "2027-04-23", "end": "2027-04-25", "provisional": false },
+      { "round": 6,  "name": "Gran Premio de España",           "location": "Jerez, Spain",              "circuit": "Circuito de Jerez-Ángel Nieto",                "start": "2027-05-07", "end": "2027-05-09", "provisional": false },
+      { "round": 7,  "name": "Grand Prix de France",            "location": "Le Mans, France",           "circuit": "Le Mans",                                      "start": "2027-05-14", "end": "2027-05-16", "provisional": false },
+      { "round": 8,  "name": "Gran Premio d'Italia",            "location": "Mugello, Italy",            "circuit": "Autodromo Internazionale del Mugello",         "start": "2027-05-28", "end": "2027-05-30", "provisional": false },
+      { "round": 9,  "name": "Gran Premi de Catalunya",         "location": "Barcelona, Spain",          "circuit": "Circuit de Barcelona-Catalunya",               "start": "2027-06-11", "end": "2027-06-13", "provisional": false },
+      { "round": 10, "name": "TT Assen",                        "location": "Assen, Netherlands",        "circuit": "TT Circuit Assen",                             "start": "2027-06-25", "end": "2027-06-27", "provisional": false },
+      { "round": 11, "name": "Grosser Preis von Deutschland",   "location": "Sachsenring, Germany",      "circuit": "Sachsenring",                                  "start": "2027-07-09", "end": "2027-07-11", "provisional": false },
+      { "round": 12, "name": "Grand Prix České republiky",      "location": "Brno, Czechia",             "circuit": "CREDITAS Autodrom Brno",                       "start": "2027-07-16", "end": "2027-07-18", "provisional": false },
+      { "round": 13, "name": "British Grand Prix",              "location": "Silverstone, UK",           "circuit": "Silverstone Circuit",                          "start": "2027-08-13", "end": "2027-08-15", "provisional": false },
+      { "round": 14, "name": "Austrian Grand Prix",              "location": "Spielberg, Austria",        "circuit": "Red Bull Ring",                                "start": "2027-08-27", "end": "2027-08-29", "provisional": false },
+      { "round": 15, "name": "Gran Premio di San Marino",       "location": "Misano, Italy",             "circuit": "Misano World Circuit Marco Simoncelli",        "start": "2027-09-10", "end": "2027-09-12", "provisional": false },
+      { "round": 16, "name": "Gran Premio de Aragón",           "location": "Alcañiz, Spain",            "circuit": "MotorLand Aragón",                             "start": "2027-09-17", "end": "2027-09-19", "provisional": false },
+      { "round": 17, "name": "Grande Prémio de Portugal",       "location": "Portimão, Portugal",        "circuit": "Autódromo Internacional do Algarve",           "start": "2027-10-01", "end": "2027-10-03", "provisional": false },
+      { "round": 18, "name": "Japanese Grand Prix",              "location": "Motegi, Japan",             "circuit": "Mobility Resort Motegi",                       "start": "2027-10-15", "end": "2027-10-17", "provisional": false },
+      { "round": 19, "name": "Malaysian Grand Prix",             "location": "Sepang, Malaysia",          "circuit": "Petronas Sepang International Circuit",       "start": "2027-10-22", "end": "2027-10-24", "provisional": false },
+      { "round": 20, "name": "Pertamina Grand Prix of Indonesia", "location": "Mandalika, Indonesia",     "circuit": "Pertamina Mandalika International Circuit",   "start": "2027-10-29", "end": "2027-10-31", "provisional": false },
+      { "round": 21, "name": "Australian Grand Prix",            "location": "Adelaide, Australia",      "circuit": "Adelaide Street Circuit",                      "start": "2027-11-12", "end": "2027-11-14", "provisional": true  },
+      { "round": 22, "name": "Comunitat Valenciana Grand Prix",  "location": "Cheste, Spain",             "circuit": "Circuit Ricardo Tormo",                        "start": "2027-11-26", "end": "2027-11-28", "provisional": false }
+    ]
+  }
+};
+
+const MONTHS = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
+
+function parseDate(iso) {
+  const [y, m, d] = iso.split("-").map(Number);
+  return new Date(y, m - 1, d, 0, 0, 0);
+}
+function fmtDate(iso) {
+  const d = parseDate(iso);
+  return MONTHS[d.getMonth()] + " " + String(d.getDate()).padStart(2, "0");
+}
+function fmtRange(startIso, endIso) {
+  const s = parseDate(startIso), e = parseDate(endIso);
+  if (s.getMonth() === e.getMonth()) return MONTHS[s.getMonth()] + " " + s.getDate() + "–" + e.getDate();
+  return MONTHS[s.getMonth()] + " " + s.getDate() + " – " + MONTHS[e.getMonth()] + " " + e.getDate();
+}
+function shortName(name) { return name.replace(/ Grand Prix$/, ""); }
+
+function flatten(seriesData) {
+  const out = [];
+  Object.keys(seriesData).forEach((year) => {
+    seriesData[year].forEach((race) => out.push({ ...race, year: Number(year) }));
+  });
+  return out.sort((a, b) => parseDate(a.start) - parseDate(b.start));
+}
+
+function upcomingOf(list, now) {
+  return list.filter((r) => parseDate(r.end) >= now);
+}
+
+function countdownParts(race, now) {
+  const start = parseDate(race.start);
+  const end = parseDate(race.end);
+  const endOfDay = new Date(end.getFullYear(), end.getMonth(), end.getDate(), 23, 59, 59);
+  if (now >= start && now <= endOfDay) return { live: true };
+  const totalMinutes = Math.max(0, Math.floor((start - now) / 60000));
+  return { live: false, days: Math.floor(totalMinutes / 1440), hours: Math.floor((totalMinutes % 1440) / 60) };
+}
+
+function renderRows(container, list, kind) {
+  container.innerHTML = "";
+  list.forEach((r) => {
+    const row = document.createElement("div");
+    row.className = "row";
+    const ledClass = r.sprint ? "sprint" : r.provisional ? "prov" : "none";
+    row.innerHTML =
+      '<span class="led ' + ledClass + '"></span>' +
+      '<span class="rnd">R' + String(r.round).padStart(2, "0") + '</span>' +
+      '<span class="date">' + fmtDate(r.start) + '</span>' +
+      '<span class="gp">' + shortName(r.name) + '</span>' +
+      '<span class="yr">' + r.year + '</span>';
+    container.appendChild(row);
+  });
+}
+
+function render() {
+  const now = new Date();
+
+  const f1All = flatten(DATA.f1);
+  const motoAll = flatten(DATA.motogp);
+  const f1Up = upcomingOf(f1All, now);
+  const motoUp = upcomingOf(motoAll, now);
+
+  const combined = [...f1Up.map((r) => ({ ...r, series: "f1" })), ...motoUp.map((r) => ({ ...r, series: "moto" }))]
+    .sort((a, b) => parseDate(a.start) - parseDate(b.start));
+  const next = combined[0];
+
+  // HUD
+  const hud = document.getElementById("hud");
+  if (!next) {
+    hud.innerHTML = '<div class="hud-info"><div class="hud-label">NEXT SESSION</div><div class="hud-race">No upcoming races in the data file.</div></div>';
+  } else {
+    const accent = next.series === "f1" ? "var(--f1)" : "var(--moto)";
+    hud.style.setProperty("--accent", accent);
+    const cd = countdownParts(next, now);
+
+    // decorative arc: fraction of a 14-day runway, clamped, just for visual motion
+    const R = 74, C = 2 * Math.PI * R;
+    let frac = 1;
+    if (!cd.live) {
+      const totalMin = cd.days * 1440 + cd.hours * 60;
+      frac = Math.max(0, Math.min(1, 1 - totalMin / (14 * 1440)));
+    }
+    const dialCenter = cd.live
+      ? '<div class="dial-live">LIVE<br>NOW</div>'
+      : '<div class="dial-num">' + cd.days + 'd</div><div class="dial-unit">' + cd.hours + ' HRS</div>';
+
+    hud.innerHTML =
+      '<div class="dial-box">' +
+        '<svg viewBox="0 0 168 168">' +
+          '<circle class="dial-track" cx="84" cy="84" r="' + R + '"/>' +
+          '<circle class="dial-fill" cx="84" cy="84" r="' + R + '" stroke-dasharray="' + C + '" stroke-dashoffset="' + (C * (1 - frac)) + '"/>' +
+        '</svg>' +
+        '<div class="dial-center">' + dialCenter + '</div>' +
+      '</div>' +
+      '<div class="hud-info">' +
+        '<div class="hud-label">NEXT SESSION</div>' +
+        '<div class="series-chip">' + (next.series === "f1" ? "FORMULA 1" : "MOTOGP") + '</div>' +
+        '<div class="hud-race">' + next.name + '</div>' +
+        '<div class="hud-venue">' + next.circuit + ' — ' + next.location + '</div>' +
+        '<div class="hud-meta">' +
+          '<span>ROUND <b>' + next.round + '</b></span>' +
+          '<span>' + fmtRange(next.start, next.end).replace(/–/, '–') + ', ' + next.year + '</span>' +
+          (next.sprint ? '<span class="tag sprint">SPRINT</span>' : '') +
+          (next.provisional ? '<span class="tag prov">PROVISIONAL</span>' : '') +
+        '</div>' +
+      '</div>';
+  }
+
+  renderRows(document.getElementById("f1-rows"), f1Up, "f1");
+  renderRows(document.getElementById("moto-rows"), motoUp, "moto");
+  document.getElementById("f1-count").textContent = f1Up.length + " ROUNDS LEFT";
+  document.getElementById("moto-count").textContent = motoUp.length + " ROUNDS LEFT";
+  document.getElementById("updated").textContent = "DATA UPDATED " + DATA.meta.lastUpdated.toUpperCase();
+
+  const clock = document.getElementById("clock");
+  const hh = String(now.getHours()).padStart(2, "0");
+  const mm = String(now.getMinutes()).padStart(2, "0");
+  const ss = String(now.getSeconds()).padStart(2, "0");
+  clock.textContent = hh + ":" + mm + ":" + ss + " LOCAL";
+}
+
+render();
+setInterval(render, 1000);
+</script>
+</body>
+</html>

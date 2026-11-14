@@ -1,46 +1,40 @@
-# Race Calendar Widget
+# Race Deck — F1 + MotoGP Race Calendar
 
-A free, open-source macOS desktop widget showing the **F1** and **MotoGP**
-race calendars for 2026–2027 — a live countdown to the next race, and the
-full remaining schedule for both series, right on your desktop.
+A free, open-source, **dependency-free** race calendar for **F1** and
+**MotoGP**, 2026–2027. A live cockpit-style countdown to the next race, plus
+the full remaining schedule for both series. No app to install — it's a
+single HTML file.
 
-![platform](https://img.shields.io/badge/platform-macOS-black) ![license](https://img.shields.io/badge/license-MIT-blue)
+![platform](https://img.shields.io/badge/platform-any%20browser-black) ![license](https://img.shields.io/badge/license-MIT-blue)
+
+## Use it (0 seconds, no install)
+
+**→ [Open the live page](https://smolvivek.github.io/race-calendar-widget/)**
+
+That's it. It's a static page — works on desktop, phone, tablet, anything
+with a browser. Nothing to download, no third-party app, no build step.
+
+Want it on your own machine instead? Download
+[`docs/index.html`](docs/index.html) and double-click it — it works fully
+offline except for loading its Google Fonts.
 
 ## What it looks like
 
-- **Next up**: a countdown (days / hours) to the next race, with the circuit,
-  location, and whether it's a sprint weekend.
-- **Full schedule**: every remaining F1 and MotoGP round through the end of
-  the 2027 season, color-coded by series (red for F1, orange for MotoGP),
-  with sprint and provisional-calendar flags.
+A steering-wheel-style HUD: a central countdown dial (days/hours to the next
+session, or a live "RACE WEEK" indicator) flanked by two telemetry panels —
+one for F1, one for MotoGP — listing every remaining round, color-coded red
+and orange, with sprint-weekend and provisional-calendar flags shown as LED
+indicators.
 
-The widget refreshes once a minute, so the countdown stays accurate without
-hammering your machine.
-
-## Install (2 minutes)
-
-1. **Install [Übersicht](http://tracesof.net/uebersicht/)** — a free, tiny
-   macOS app that renders widgets on your desktop background. (This is the
-   same engine behind most of the "desktop widget" setups you've seen on
-   r/unixporn or macOS customization blogs.)
-2. Open Übersicht once so it creates `~/Library/Application Support/Übersicht/widgets`.
-3. Copy the `race-calendar.widget` folder from this repo into that
-   `widgets` folder, e.g.:
-   ```
-   cp -R race-calendar.widget ~/Library/Application\ Support/Übersicht/widgets/
-   ```
-4. In the menu bar, click the Übersicht icon → **Refresh**. The widget
-   appears in the top-left of your screen.
-5. To reposition it, hold the key Übersicht uses for repositioning
-   (shown in its menu bar menu) and drag it anywhere you like.
-
-That's it — no build step, no Xcode, no Apple Developer account. It's a
-folder of HTML/JS that Übersicht renders for you.
+The whole page re-renders every second, so the countdown and clock stay
+live with the tab just sitting open — no page reloads needed.
 
 ## Updating the calendar data
 
-All race data lives in one file: `race-calendar.widget/calendar-data.json`.
-Each race is a plain object:
+All race data lives in one place inside [`docs/index.html`](docs/index.html),
+in a `DATA` object near the top of the `<script>` block (mirrored in
+[`race-calendar.widget/calendar-data.json`](race-calendar.widget/calendar-data.json)
+for reference). Each race is a plain object:
 
 ```json
 { "round": 9, "name": "Portuguese Grand Prix", "location": "Portimão, Portugal",
@@ -48,8 +42,8 @@ Each race is a plain object:
   "end": "2027-06-20", "sprint": false }
 ```
 
-If a date shifts (calendars do move — see Notes below), edit this file and
-hit Refresh in Übersicht. No code changes needed.
+If a date shifts (calendars do move — see Notes below), edit the `DATA`
+object and refresh the page. No build step, no dependencies.
 
 ## Notes on accuracy
 
@@ -59,7 +53,7 @@ hit Refresh in Übersicht. No code changes needed.
 - Two 2027 MotoGP rounds — **Argentina** and **Australia (Adelaide)** — are
   marked `"provisional": true` because those venues' homologation wasn't
   finalized as of the official calendar release. They're flagged `PROV` in
-  the widget.
+  the page.
 - Race calendars shift for political, logistical, and commercial reasons
   more often than fans would like. Treat this as a reliable snapshot, not
   a live feed — pull requests with corrected dates are very welcome.
@@ -67,13 +61,25 @@ hit Refresh in Übersicht. No code changes needed.
 ## Why this exists
 
 Built because checking two different apps for F1 and MotoGP race dates was
-annoying enough to fix once, properly, for anyone else who wants it too.
+annoying enough to fix once, properly, for anyone else who wants it too —
+without asking anyone to install a third-party desktop-widget engine just
+to see a race schedule.
+
+## Legacy: Übersicht desktop widget
+
+An early version of this project shipped as a widget for
+[Übersicht](http://tracesof.net/uebersicht/), a free macOS desktop-widget
+engine, so it could live pinned to the desktop background. That approach
+is kept in [`race-calendar.widget/`](race-calendar.widget/) for anyone who
+already uses Übersicht and wants it, but it is **not** required and not the
+recommended way to use this project — the page above needs nothing but a
+browser.
 
 ## Contributing
 
 Found a date that's wrong, or a race that's been moved? Open a PR against
-`calendar-data.json` — that's the only file that should ever need touching
-for a calendar update.
+the `DATA` object in `docs/index.html` — that's the only place that should
+ever need touching for a calendar update.
 
 ## License
 
