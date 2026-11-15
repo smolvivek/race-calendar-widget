@@ -106,6 +106,29 @@ h1 span {
   white-space: nowrap;
 }
 
+.header-right { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+
+/* Series preference — lets a viewer who only follows one series hide the
+   other everywhere (hero, calendar, standings) instead of always seeing
+   both. Persisted per-browser via localStorage; "both" is the default. */
+.series-toggle {
+  display: flex; border: 1px solid var(--line); border-radius: 3px; overflow: hidden;
+}
+.series-toggle button {
+  font-family: "Orbitron", monospace; font-size: 10.5px; font-weight: 700; letter-spacing: 0.06em;
+  color: var(--text-dim); background: var(--bg-panel); border: none; cursor: pointer;
+  padding: 7px 12px; border-right: 1px solid var(--line); transition: background 0.15s ease, color 0.15s ease;
+}
+.series-toggle button:last-child { border-right: none; }
+.series-toggle button:hover { background: var(--bg-panel-raised); color: var(--text); }
+.series-toggle button.active { color: #0a0b0d; background: var(--text-dim); }
+.series-toggle button[data-pref="f1"].active { background: var(--f1); }
+.series-toggle button[data-pref="moto"].active { background: var(--moto); }
+
+body.hide-f1 .f1-only, body.hide-moto .moto-only { display: none !important; }
+body.hide-f1 .hero, body.hide-moto .hero,
+body.hide-f1 .panels, body.hide-moto .panels { grid-template-columns: 1fr; }
+
 /* ---------- next-race HUD panels (one per series, equal weight) ---------- */
 
 .hero {
@@ -468,34 +491,57 @@ footer a { color: var(--text-dim); }
       <div class="eyebrow">2026 Season</div>
       <h1>RACE <span>DECK</span></h1>
     </div>
-    <div class="clock" id="clock">--:--:--</div>
+    <div class="header-right">
+      <div class="series-toggle" id="seriesToggle" role="group" aria-label="Show series">
+        <button type="button" data-pref="f1">F1</button>
+        <button type="button" data-pref="moto">MOTOGP</button>
+        <button type="button" data-pref="both">BOTH</button>
+      </div>
+      <div class="clock" id="clock">--:--:--</div>
+    </div>
   </header>
 
   <div class="hero">
-    <div class="hud f1" id="hud-f1"></div>
-    <div class="hud moto" id="hud-moto"></div>
+    <div class="hud f1 f1-only" id="hud-f1"></div>
+    <div class="hud moto moto-only" id="hud-moto"></div>
   </div>
 
   <div class="panels">
-    <div class="panel f1">
+    <div class="panel f1 f1-only">
       <div class="panel-head"><span class="name">FORMULA 1</span><span class="count" id="f1-count"></span></div>
       <div class="rows" id="f1-rows"></div>
     </div>
-    <div class="panel moto">
+    <div class="panel moto moto-only">
       <div class="panel-head"><span class="name">MOTOGP</span><span class="count" id="moto-count"></span></div>
       <div class="rows" id="moto-rows"></div>
     </div>
   </div>
 
-  <div class="section-head"><span class="eyebrow">2026 F1 Championship</span><span class="rule"></span></div>
-  <div class="panels">
-    <div class="panel f1">
-      <div class="panel-head"><span class="name">DRIVERS</span><span class="count" id="drivers-count"></span></div>
-      <div class="rows standings" id="drivers-standings"></div>
+  <div class="f1-only">
+    <div class="section-head"><span class="eyebrow">2026 F1 Championship</span><span class="rule"></span></div>
+    <div class="panels">
+      <div class="panel f1">
+        <div class="panel-head"><span class="name">DRIVERS</span><span class="count" id="drivers-count"></span></div>
+        <div class="rows standings" id="drivers-standings"></div>
+      </div>
+      <div class="panel f1">
+        <div class="panel-head"><span class="name">CONSTRUCTORS</span><span class="count" id="constructors-count"></span></div>
+        <div class="rows standings" id="constructors-standings"></div>
+      </div>
     </div>
-    <div class="panel f1">
-      <div class="panel-head"><span class="name">CONSTRUCTORS</span><span class="count" id="constructors-count"></span></div>
-      <div class="rows standings" id="constructors-standings"></div>
+  </div>
+
+  <div class="moto-only">
+    <div class="section-head"><span class="eyebrow">2026 MotoGP Championship</span><span class="rule"></span></div>
+    <div class="panels">
+      <div class="panel moto">
+        <div class="panel-head"><span class="name">RIDERS</span><span class="count" id="moto-riders-count"></span></div>
+        <div class="rows standings" id="moto-riders-standings"></div>
+      </div>
+      <div class="panel moto">
+        <div class="panel-head"><span class="name">CONSTRUCTORS</span><span class="count" id="moto-constructors-count"></span></div>
+        <div class="rows standings" id="moto-constructors-standings"></div>
+      </div>
     </div>
   </div>
 
@@ -662,6 +708,52 @@ const STANDINGS_2026 = {
     { "pos": 9, "name": "Williams", "team": "", "points": 12 },
     { "pos": 10, "name": "Aston Martin", "team": "", "points": 7 },
     { "pos": 11, "name": "Cadillac", "team": "", "points": 0 }
+  ]
+};
+
+// 2026 MotoGP standings, sourced from crash.net / motorsport.com (riders,
+// through round 20 — Qatar) and Wikipedia (constructors, through round 18 —
+// the most recent manufacturer breakdown available; MotoGP's constructor
+// championship isn't a simple sum of rider points, so this isn't recomputed
+// here). Neither title is clinched yet with two rounds left, hence no
+// `champion` flags.
+const STANDINGS_MOTOGP_2026 = {
+  "riders": [
+    { "pos": 1, "name": "Marc Márquez", "team": "Ducati", "points": 431 },
+    { "pos": 2, "name": "Jorge Martín", "team": "Aprilia", "points": 371 },
+    { "pos": 3, "name": "Marco Bezzecchi", "team": "Aprilia", "points": 357 },
+    { "pos": 4, "name": "Pedro Acosta", "team": "KTM", "points": 309 },
+    { "pos": 5, "name": "Ai Ogura", "team": "Aprilia", "points": 294 },
+    { "pos": 6, "name": "Fabio Di Giannantonio", "team": "Ducati", "points": 282 },
+    { "pos": 7, "name": "Raúl Fernández", "team": "Aprilia", "points": 258 },
+    { "pos": 8, "name": "Álex Márquez", "team": "Ducati", "points": 197 },
+    { "pos": 9, "name": "Francesco Bagnaia", "team": "Ducati", "points": 173 },
+    { "pos": 10, "name": "Enea Bastianini", "team": "KTM", "points": 147 },
+    { "pos": 11, "name": "Fermín Aldeguer", "team": "Ducati", "points": 129 },
+    { "pos": 12, "name": "Brad Binder", "team": "KTM", "points": 118 },
+    { "pos": 13, "name": "Luca Marini", "team": "Honda", "points": 117 },
+    { "pos": 14, "name": "Fabio Quartararo", "team": "Yamaha", "points": 79 },
+    { "pos": 15, "name": "Diogo Moreira", "team": "Honda", "points": 78 },
+    { "pos": 16, "name": "Franco Morbidelli", "team": "Ducati", "points": 70 },
+    { "pos": 17, "name": "Johann Zarco", "team": "Honda", "points": 63 },
+    { "pos": 18, "name": "Joan Mir", "team": "Honda", "points": 33 },
+    { "pos": 19, "name": "Jack Miller", "team": "Yamaha", "points": 31 },
+    { "pos": 20, "name": "Álex Rins", "team": "Yamaha", "points": 29 },
+    { "pos": 21, "name": "Iker Lecuona", "team": "Ducati", "points": 18 },
+    { "pos": 22, "name": "Toprak Razgatlıoğlu", "team": "Yamaha", "points": 18 },
+    { "pos": 23, "name": "Maverick Viñales", "team": "KTM", "points": 17 },
+    { "pos": 24, "name": "Augusto Fernández", "team": "Yamaha", "points": 6 },
+    { "pos": 25, "name": "Pol Espargaró", "team": "KTM", "points": 5 },
+    { "pos": 26, "name": "Somkiat Chantra", "team": "Honda", "points": 3 },
+    { "pos": 27, "name": "Takaaki Nakagami", "team": "Honda", "points": 3 },
+    { "pos": 28, "name": "Jake Dixon", "team": "Honda", "points": 2 }
+  ],
+  "constructors": [
+    { "pos": 1, "name": "Aprilia", "team": "", "points": 509 },
+    { "pos": 2, "name": "Ducati", "team": "", "points": 503 },
+    { "pos": 3, "name": "KTM", "team": "", "points": 316 },
+    { "pos": 4, "name": "Honda", "team": "", "points": 167 },
+    { "pos": 5, "name": "Yamaha", "team": "", "points": 100 }
   ]
 };
 
@@ -1200,12 +1292,54 @@ function init() {
   document.getElementById("moto-count").textContent = motoDone + " OF " + motoSeason.length + " RACED";
   document.getElementById("updated").textContent = "DATA UPDATED " + DATA.meta.lastUpdated.toUpperCase();
 
-  renderStandings(document.getElementById("drivers-standings"), document.getElementById("drivers-count"), STANDINGS_2026.drivers, "2026 SEASON");
-  renderStandings(document.getElementById("constructors-standings"), document.getElementById("constructors-count"), STANDINGS_2026.constructors, "2026 SEASON");
+  renderStandings(document.getElementById("drivers-standings"), document.getElementById("drivers-count"), STANDINGS_2026.drivers, "THROUGH ROUND 20");
+  renderStandings(document.getElementById("constructors-standings"), document.getElementById("constructors-count"), STANDINGS_2026.constructors, "THROUGH ROUND 20");
+  renderStandings(document.getElementById("moto-riders-standings"), document.getElementById("moto-riders-count"), STANDINGS_MOTOGP_2026.riders, "THROUGH ROUND 20");
+  renderStandings(document.getElementById("moto-constructors-standings"), document.getElementById("moto-constructors-count"), STANDINGS_MOTOGP_2026.constructors, "THROUGH ROUND 18");
+
+  initSeriesToggle();
 
   tick();
   setInterval(tick, 1000);
   playStartLights();
+}
+
+// Series preference — show F1 only, MotoGP only, or both. Persisted in
+// localStorage per browser/device; falls back to "both" when storage is
+// unavailable (private windows, blocked site data) rather than breaking.
+const SERIES_PREF_KEY = "raceDeckSeriesPref";
+
+function getSeriesPref() {
+  try {
+    const v = localStorage.getItem(SERIES_PREF_KEY);
+    if (v === "f1" || v === "moto" || v === "both") return v;
+  } catch (e) {}
+  return "both";
+}
+
+function applySeriesPref(pref) {
+  document.body.classList.toggle("hide-f1", pref === "moto");
+  document.body.classList.toggle("hide-moto", pref === "f1");
+  const toggle = document.getElementById("seriesToggle");
+  if (toggle) {
+    toggle.querySelectorAll("button").forEach((b) => {
+      b.classList.toggle("active", b.dataset.pref === pref);
+    });
+  }
+}
+
+function initSeriesToggle() {
+  const pref = getSeriesPref();
+  applySeriesPref(pref);
+  const toggle = document.getElementById("seriesToggle");
+  if (!toggle) return;
+  toggle.addEventListener("click", (e) => {
+    const btn = e.target.closest("button[data-pref]");
+    if (!btn) return;
+    const next = btn.dataset.pref;
+    applySeriesPref(next);
+    try { localStorage.setItem(SERIES_PREF_KEY, next); } catch (e) {}
+  });
 }
 
 init();
