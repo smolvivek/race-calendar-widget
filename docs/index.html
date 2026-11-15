@@ -206,12 +206,9 @@ body.hide-f1 .panels, body.hide-moto .panels { grid-template-columns: 1fr; }
 
 .hero {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
   gap: 16px;
   margin-bottom: 30px;
-}
-@media (max-width: 720px) {
-  .hero { grid-template-columns: 1fr; }
 }
 
 .hud.f1 { --accent: var(--f1); }
@@ -259,8 +256,8 @@ body.hide-f1 .panels, body.hide-moto .panels { grid-template-columns: 1fr; }
 
 .dial-box {
   position: relative;
-  width: 118px;
-  height: 118px;
+  width: clamp(80px, 20vw, 118px);
+  height: clamp(80px, 20vw, 118px);
   flex: none;
 }
 
@@ -275,15 +272,15 @@ body.hide-f1 .panels, body.hide-moto .panels { grid-template-columns: 1fr; }
   align-items: center; justify-content: center; text-align: center;
 }
 
-.dial-num { font-family: "Orbitron", monospace; font-size: 22px; font-weight: 700; line-height: 1;
+.dial-num { font-family: "Orbitron", monospace; font-size: clamp(16px, 4vw, 22px); font-weight: 700; line-height: 1;
   font-variant-numeric: tabular-nums; }
-.dial-unit { font-size: 9px; letter-spacing: 0.14em; color: var(--text-dim); margin-top: 3px; }
-.dial-live { font-family: "Orbitron", monospace; font-size: 13px; font-weight: 700; color: var(--accent, var(--f1));
+.dial-unit { font-size: clamp(8px, 2vw, 9px); letter-spacing: 0.14em; color: var(--text-dim); margin-top: 3px; }
+.dial-live { font-family: "Orbitron", monospace; font-size: clamp(10px, 3vw, 13px); font-weight: 700; color: var(--accent, var(--f1));
   letter-spacing: 0.06em; }
 
 .hud-info { flex: 1; min-width: 150px; }
 
-.hud-label { font-size: 11px; font-weight: 700; letter-spacing: 0.28em; color: var(--text-faint); margin-bottom: 8px; }
+.hud-label { font-size: clamp(9.5px, 2vw, 11px); font-weight: 700; letter-spacing: clamp(0.14em, 2vw, 0.28em); color: var(--text-faint); margin-bottom: 8px; }
 
 .series-chip {
   display: inline-flex; align-items: center; gap: 6px;
@@ -332,11 +329,8 @@ body.hide-f1 .panels, body.hide-moto .panels { grid-template-columns: 1fr; }
 
 .panels {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
   gap: 18px;
-}
-@media (max-width: 680px) {
-  .panels { grid-template-columns: 1fr; }
 }
 
 .panel {
