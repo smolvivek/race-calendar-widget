@@ -11,7 +11,7 @@
   },
   "f1": {
     "2026": [
-      { "round": 21, "name": "Las Vegas Grand Prix",  "location": "Las Vegas, USA",   "circuit": "Las Vegas Strip Circuit",         "start": "2026-11-20", "end": "2026-11-22", "sprint": false },
+      { "round": 21, "name": "Las Vegas Grand Prix",  "location": "Las Vegas, USA",   "circuit": "Las Vegas Strip Circuit",         "start": "2026-11-19", "end": "2026-11-21", "sprint": false },
       { "round": 22, "name": "Qatar Grand Prix",        "location": "Lusail, Qatar",    "circuit": "Lusail International Circuit",    "start": "2026-11-27", "end": "2026-11-29", "sprint": false },
       { "round": 23, "name": "Abu Dhabi Grand Prix",    "location": "Abu Dhabi, UAE",   "circuit": "Yas Marina Circuit",              "start": "2026-12-04", "end": "2026-12-06", "sprint": false }
     ],
