@@ -1,0 +1,317 @@
+{
+  "f1": {
+    "1": {
+      "name": "Australian Grand Prix",
+      "date": "2026-03-08",
+      "winner": "George Russell",
+      "team": "Mercedes",
+      "podium": ["George Russell", "Kimi Antonelli", "Charles Leclerc"],
+      "sprintWinner": null
+    },
+    "2": {
+      "name": "Chinese Grand Prix",
+      "date": "2026-03-15",
+      "winner": "Kimi Antonelli",
+      "team": "Mercedes",
+      "podium": ["Kimi Antonelli", "George Russell", "Lewis Hamilton"],
+      "sprintWinner": "George Russell"
+    },
+    "3": {
+      "name": "Japanese Grand Prix",
+      "date": "2026-03-29",
+      "winner": "Kimi Antonelli",
+      "team": "Mercedes",
+      "podium": ["Kimi Antonelli", "Oscar Piastri", "Charles Leclerc"],
+      "sprintWinner": null
+    },
+    "4": {
+      "name": "Miami Grand Prix",
+      "date": "2026-05-03",
+      "winner": "Kimi Antonelli",
+      "team": "Mercedes",
+      "podium": ["Kimi Antonelli", "Lando Norris", "Oscar Piastri"],
+      "sprintWinner": "Lando Norris"
+    },
+    "5": {
+      "name": "Canadian Grand Prix",
+      "date": "2026-05-24",
+      "winner": "Kimi Antonelli",
+      "team": "Mercedes",
+      "podium": ["Kimi Antonelli", "Lewis Hamilton", "Max Verstappen"],
+      "sprintWinner": "George Russell"
+    },
+    "6": {
+      "name": "Monaco Grand Prix",
+      "date": "2026-06-07",
+      "winner": "Kimi Antonelli",
+      "team": "Mercedes",
+      "podium": ["Kimi Antonelli", "Lewis Hamilton", "Isack Hadjar"],
+      "sprintWinner": null,
+      "note": "Pierre Gasly (Alpine-Mercedes) originally finished 3rd on track but was hit with two 5s pit-lane speeding penalties; after appeals (first overturned, then reinstated), Isack Hadjar was classified P3."
+    },
+    "7": {
+      "name": "Barcelona-Catalunya Grand Prix",
+      "date": "2026-06-14",
+      "winner": "Lewis Hamilton",
+      "team": "Ferrari",
+      "podium": ["Lewis Hamilton", "George Russell", "Lando Norris"],
+      "sprintWinner": null
+    },
+    "8": {
+      "name": "Austrian Grand Prix",
+      "date": "2026-06-28",
+      "winner": "George Russell",
+      "team": "Mercedes",
+      "podium": ["George Russell", "Max Verstappen", "Kimi Antonelli"],
+      "sprintWinner": null
+    },
+    "9": {
+      "name": "British Grand Prix",
+      "date": "2026-07-05",
+      "winner": "Charles Leclerc",
+      "team": "Ferrari",
+      "podium": ["Charles Leclerc", "George Russell", "Lewis Hamilton"],
+      "sprintWinner": "Kimi Antonelli"
+    },
+    "10": {
+      "name": "Belgian Grand Prix",
+      "date": "2026-07-19",
+      "winner": "Kimi Antonelli",
+      "team": "Mercedes",
+      "podium": ["Kimi Antonelli", "Charles Leclerc", "Max Verstappen"],
+      "sprintWinner": null
+    },
+    "11": {
+      "name": "Hungarian Grand Prix",
+      "date": "2026-07-26",
+      "winner": "Lando Norris",
+      "team": "McLaren-Mercedes",
+      "podium": ["Lando Norris", "Max Verstappen", "Kimi Antonelli"],
+      "sprintWinner": null
+    },
+    "12": {
+      "name": "Dutch Grand Prix",
+      "date": "2026-08-23",
+      "winner": "Lando Norris",
+      "team": "McLaren-Mercedes",
+      "podium": ["Lando Norris", "Kimi Antonelli", "George Russell"],
+      "sprintWinner": "George Russell"
+    },
+    "13": {
+      "name": "Italian Grand Prix",
+      "date": "2026-09-06",
+      "winner": "Kimi Antonelli",
+      "team": "Mercedes",
+      "podium": ["Kimi Antonelli", "George Russell", "Max Verstappen"],
+      "sprintWinner": null
+    },
+    "14": {
+      "name": "Spanish Grand Prix",
+      "date": "2026-09-13",
+      "winner": "Kimi Antonelli",
+      "team": "Mercedes",
+      "podium": ["Kimi Antonelli", "Max Verstappen", "Lando Norris"],
+      "sprintWinner": null,
+      "note": "First Spanish GP held at the new Madrid street circuit (Madring); separate from round 7's Barcelona-Catalunya race."
+    },
+    "15": {
+      "name": "Azerbaijan Grand Prix",
+      "date": "2026-09-26",
+      "winner": "George Russell",
+      "team": "Mercedes",
+      "podium": ["George Russell", "Max Verstappen", "Isack Hadjar"],
+      "sprintWinner": null
+    },
+    "16": {
+      "name": "Bahrain Grand Prix in Malaysia",
+      "date": "2026-10-04",
+      "winner": "Max Verstappen",
+      "team": "Red Bull Racing-Red Bull Ford",
+      "podium": ["Max Verstappen", "Kimi Antonelli", "Lewis Hamilton"],
+      "sprintWinner": null,
+      "note": "Originally the Bahrain GP; relocated to Sepang International Circuit in Malaysia but kept the Bahrain GP name/branding."
+    },
+    "17": {
+      "name": "Singapore Grand Prix",
+      "date": "2026-10-11",
+      "winner": "Max Verstappen",
+      "team": "Red Bull Racing-Red Bull Ford",
+      "podium": ["Max Verstappen", "Charles Leclerc", "Kimi Antonelli"],
+      "sprintWinner": "Max Verstappen"
+    },
+    "18": {
+      "name": "United States Grand Prix",
+      "date": "2026-10-25",
+      "winner": "Kimi Antonelli",
+      "team": "Mercedes",
+      "podium": ["Kimi Antonelli", "Charles Leclerc", "Max Verstappen"],
+      "sprintWinner": null
+    },
+    "19": {
+      "name": "Mexico City Grand Prix",
+      "date": "2026-11-01",
+      "winner": "Max Verstappen",
+      "team": "Red Bull Racing-Red Bull Ford",
+      "podium": ["Max Verstappen", "Lewis Hamilton", "Kimi Antonelli"],
+      "sprintWinner": null,
+      "note": "Kimi Antonelli clinched the 2026 F1 Drivers' Championship at this race (title secured via points, not a race win)."
+    },
+    "20": {
+      "name": "São Paulo Grand Prix",
+      "date": "2026-11-08",
+      "winner": "Lando Norris",
+      "team": "McLaren-Mercedes",
+      "podium": ["Lando Norris", "Max Verstappen", "Isack Hadjar"],
+      "sprintWinner": null
+    }
+  },
+  "motogp": {
+    "1": {
+      "name": "PT Grand Prix of Thailand",
+      "date": "2026-03-01",
+      "winner": "Marco Bezzecchi",
+      "team": "Aprilia",
+      "podium": ["Marco Bezzecchi", "Pedro Acosta", "Raul Fernandez"]
+    },
+    "2": {
+      "name": "Estrella Galicia 0,0 Grand Prix of Brazil",
+      "date": "2026-03-22",
+      "winner": "Marco Bezzecchi",
+      "team": "Aprilia",
+      "podium": ["Marco Bezzecchi", "Jorge Martin", "Fabio Di Giannantonio"]
+    },
+    "3": {
+      "name": "Red Bull Grand Prix of the United States",
+      "date": "2026-03-29",
+      "winner": "Marco Bezzecchi",
+      "team": "Aprilia",
+      "podium": ["Marco Bezzecchi", "Jorge Martin", "Pedro Acosta"]
+    },
+    "4": {
+      "name": "Estrella Galicia 0,0 Grand Prix of Spain",
+      "date": "2026-04-26",
+      "winner": "Alex Marquez",
+      "team": "Ducati",
+      "podium": ["Alex Marquez", "Marco Bezzecchi", "Fabio Di Giannantonio"]
+    },
+    "5": {
+      "name": "Michelin Grand Prix of France",
+      "date": "2026-05-10",
+      "winner": "Jorge Martin",
+      "team": "Aprilia",
+      "podium": ["Jorge Martin", "Marco Bezzecchi", "Ai Ogura"]
+    },
+    "6": {
+      "name": "Monster Energy Grand Prix of Catalunya",
+      "date": "2026-05-17",
+      "winner": "Fabio Di Giannantonio",
+      "team": "Ducati",
+      "podium": ["Fabio Di Giannantonio", "Fermin Aldeguer", "Francesco Bagnaia"],
+      "note": "Joan Mir originally crossed the line 2nd but was demoted to 13th after a post-race tyre-pressure penalty."
+    },
+    "7": {
+      "name": "Brembo Grand Prix of Italy",
+      "date": "2026-05-31",
+      "winner": "Marco Bezzecchi",
+      "team": "Aprilia",
+      "podium": ["Marco Bezzecchi", "Jorge Martin", "Francesco Bagnaia"]
+    },
+    "8": {
+      "name": "Grand Prix of Hungary",
+      "date": "2026-06-07",
+      "winner": "Marc Marquez",
+      "team": "Ducati",
+      "podium": ["Marc Marquez", "Pedro Acosta", "Francesco Bagnaia"],
+      "note": "Marquez's 100th premier-class/MotoGP win."
+    },
+    "9": {
+      "name": "Monster Energy Grand Prix of Czechia",
+      "date": "2026-06-21",
+      "winner": "Marc Marquez",
+      "team": "Ducati",
+      "podium": ["Marc Marquez", "Ai Ogura", "Francesco Bagnaia"]
+    },
+    "10": {
+      "name": "Tissot Grand Prix of the Netherlands",
+      "date": "2026-06-28",
+      "winner": "Ai Ogura",
+      "team": "Aprilia",
+      "podium": ["Ai Ogura", "Raul Fernandez", "Jorge Martin"],
+      "note": "Ogura's maiden MotoGP victory; all-Aprilia podium."
+    },
+    "11": {
+      "name": "Liqui Moly Grand Prix of Germany",
+      "date": "2026-07-12",
+      "winner": "Marc Marquez",
+      "team": "Ducati",
+      "podium": ["Marc Marquez", "Ai Ogura", "Raul Fernandez"]
+    },
+    "12": {
+      "name": "Qatar Airways Grand Prix of Great Britain",
+      "date": "2026-08-09",
+      "winner": "Raul Fernandez",
+      "team": "Aprilia",
+      "podium": ["Raul Fernandez", "Jorge Martin", "Marco Bezzecchi"],
+      "note": "All-Aprilia podium."
+    },
+    "13": {
+      "name": "Michelin Grand Prix of Aragon",
+      "date": "2026-08-30",
+      "winner": "Marc Marquez",
+      "team": "Ducati",
+      "podium": ["Marc Marquez", "Pedro Acosta", "Marco Bezzecchi"]
+    },
+    "14": {
+      "name": "Red Bull Grand Prix of San Marino and the Rimini Riviera",
+      "date": "2026-09-13",
+      "winner": "Marc Marquez",
+      "team": "Ducati",
+      "podium": ["Marc Marquez", "Alex Marquez", "Pedro Acosta"]
+    },
+    "15": {
+      "name": "Qatar Airways Grand Prix of Austria",
+      "date": "2026-09-20",
+      "winner": "Pedro Acosta",
+      "team": "KTM",
+      "podium": ["Pedro Acosta", "Jorge Martin", "Marco Bezzecchi"],
+      "note": "Acosta's maiden MotoGP victory."
+    },
+    "16": {
+      "name": "Motul Grand Prix of Japan",
+      "date": "2026-10-04",
+      "winner": "Marc Marquez",
+      "team": "Ducati",
+      "podium": ["Marc Marquez", "Jorge Martin", "Marco Bezzecchi"]
+    },
+    "17": {
+      "name": "Pertamina Grand Prix of Indonesia",
+      "date": "2026-10-11",
+      "winner": "Marco Bezzecchi",
+      "team": "Aprilia",
+      "podium": ["Marco Bezzecchi", "Raul Fernandez", "Jorge Martin"]
+    },
+    "18": {
+      "name": "Red Bull Grand Prix of Australia",
+      "date": "2026-10-25",
+      "winner": null,
+      "team": null,
+      "podium": [],
+      "note": "Race cancelled due to inclement weather/low visibility at Phillip Island. No result."
+    },
+    "19": {
+      "name": "Petronas Grand Prix of Malaysia",
+      "date": "2026-11-01",
+      "winner": "Marc Marquez",
+      "team": "Ducati",
+      "podium": ["Marc Marquez", "Pedro Acosta", "Alex Marquez"]
+    },
+    "20": {
+      "name": "Qatar Airways Grand Prix of Qatar",
+      "date": "2026-11-08",
+      "winner": "Marco Bezzecchi",
+      "team": "Aprilia",
+      "podium": ["Marco Bezzecchi", "Marc Marquez", "Raul Fernandez"],
+      "note": "Marquez finished 2nd; his MotoGP title decision was delayed to a later round (not yet clinched as of this race)."
+    }
+  }
+}
