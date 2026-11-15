@@ -1086,7 +1086,7 @@ function jumpToRace(seriesKey, r) {
 function renderHero(elId, next, now, seriesLabel, seriesKey) {
   const el = document.getElementById(elId);
   if (!next) {
-    el.innerHTML = '<div class="hud-info"><div class="hud-label">NEXT ' + seriesLabel.toUpperCase() + '</div><div class="hud-race">No upcoming races in the data file.</div></div>';
+    el.innerHTML = '<div class="hud-info"><div class="hud-label">NEXT ' + seriesLabel.toUpperCase() + ' RACE</div><div class="hud-race">No upcoming races in the data file.</div></div>';
     el.onclick = null;
     return;
   }
@@ -1122,7 +1122,7 @@ function renderHero(elId, next, now, seriesLabel, seriesKey) {
       '<div class="dial-center">' + dialCenter + '</div>' +
     '</div>' +
     '<div class="hud-info">' +
-      '<div class="hud-label">NEXT ' + seriesLabel.toUpperCase() + '</div>' +
+      '<div class="hud-label">NEXT ' + seriesLabel.toUpperCase() + ' RACE</div>' +
       '<div class="hud-race">' + next.name + '</div>' +
       '<div class="hud-venue">' + next.circuit + ' — ' + next.location + '</div>' +
       '<div class="hud-meta">' +
