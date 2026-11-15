@@ -1,7 +1,7 @@
 {
   "name": "Race Deck — F1 & MotoGP Calendar",
   "short_name": "Race Deck",
-  "description": "Cockpit-style live countdown and full race calendar for F1 and MotoGP, 2026-2027.",
+  "description": "Live countdown, full race calendar, results, and championship standings for F1 and MotoGP.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",

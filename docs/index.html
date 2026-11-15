@@ -135,6 +135,52 @@ h1 span {
 .gh-link:hover { color: var(--text); border-color: var(--line-bright); background: var(--bg-panel-raised); }
 .gh-link svg { width: 16px; height: 16px; fill: currentColor; }
 
+.install-btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-family: "Orbitron", monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.05em; color: var(--bg); background: var(--text);
+  border: 1px solid var(--text); border-radius: 3px; padding: 0 12px;
+  height: 34px; cursor: pointer; white-space: nowrap; flex: none;
+}
+.install-btn:hover { background: var(--text-dim); border-color: var(--text-dim); }
+.install-btn svg { width: 13px; height: 13px; fill: currentColor; flex: none; }
+
+/* Install-instructions modal */
+.install-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.7);
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px; z-index: 50;
+}
+.install-overlay[hidden] { display: none; }
+.install-modal {
+  width: 100%; max-width: 440px; max-height: 85vh; overflow-y: auto;
+  background: var(--bg-panel); border: 1px solid var(--line-bright);
+  border-radius: 6px; padding: 22px;
+}
+.install-modal-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; }
+.install-modal h2 {
+  font-family: "Orbitron", "Titillium Web", sans-serif; font-size: 18px; margin: 0;
+}
+.install-close {
+  background: none; border: none; color: var(--text-dim); font-size: 20px;
+  line-height: 1; cursor: pointer; padding: 4px; margin: -4px;
+}
+.install-close:hover { color: var(--text); }
+.install-modal p.lede { color: var(--text-dim); font-size: 13px; margin: 6px 0 18px; }
+.install-platform { border-top: 1px solid var(--line); padding: 14px 0; }
+.install-platform:first-of-type { border-top: none; padding-top: 0; }
+.install-platform h3 {
+  font-family: "Orbitron", monospace; font-size: 11px; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--moto); margin: 0 0 8px;
+}
+.install-platform ol { margin: 0; padding-left: 18px; font-size: 13.5px; color: var(--text); line-height: 1.6; }
+.install-platform ol li::marker { color: var(--text-faint); }
+.install-download {
+  margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--line);
+  font-size: 13px; color: var(--text-dim);
+}
+.install-download a { color: var(--moto); }
+
 /* Series preference — lets a viewer who only follows one series hide the
    other everywhere (hero, calendar, standings) instead of always seeing
    both. Persisted per-browser via localStorage; "both" is the default. */
@@ -527,12 +573,59 @@ footer a { color: var(--text-dim); }
         <button type="button" data-pref="moto">MOTOGP</button>
         <button type="button" data-pref="both">BOTH</button>
       </div>
+      <button class="install-btn" id="installBtn" type="button" title="Install or download Race Deck">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1a1 1 0 0 1 1 1v6.59l1.8-1.8a1 1 0 1 1 1.4 1.42l-3.5 3.5a1 1 0 0 1-1.4 0l-3.5-3.5a1 1 0 1 1 1.4-1.42L7 8.59V2a1 1 0 0 1 1-1Zm-6 11a1 1 0 0 1 1 1v1h10v-1a1 1 0 1 1 2 0v1a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1a1 1 0 0 1 1-1Z"/></svg>
+        Get the app
+      </button>
       <a class="gh-link" href="https://github.com/smolvivek/race-calendar-widget" target="_blank" rel="noopener" aria-label="View source on GitHub" title="View source on GitHub">
         <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.5 7.5 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
       </a>
       <div class="clock" id="clock">--:--:--</div>
     </div>
   </header>
+
+  <div class="install-overlay" id="installOverlay" hidden>
+    <div class="install-modal" role="dialog" aria-modal="true" aria-labelledby="installTitle">
+      <div class="install-modal-head">
+        <h2 id="installTitle">Get Race Deck</h2>
+        <button class="install-close" id="installClose" type="button" aria-label="Close">&times;</button>
+      </div>
+      <p class="lede">It's a website, not an app-store download — install it straight from your browser for one-tap, full-screen access.</p>
+
+      <div id="installDirect" hidden style="margin-bottom:18px;">
+        <button class="install-btn" id="installDirectBtn" type="button" style="width:100%; justify-content:center;">Install now</button>
+      </div>
+
+      <div class="install-platform">
+        <h3>iPhone &amp; iPad — Safari</h3>
+        <ol>
+          <li>Tap the <b>Share</b> icon (square with an arrow)</li>
+          <li>Scroll down and tap <b>Add to Home Screen</b></li>
+          <li>Tap <b>Add</b> — it now opens full-screen like an app</li>
+        </ol>
+      </div>
+      <div class="install-platform">
+        <h3>Android — Chrome</h3>
+        <ol>
+          <li>Tap the <b>⋮</b> menu, top right</li>
+          <li>Tap <b>Install app</b> (or <b>Add to Home screen</b>)</li>
+          <li>Confirm — it installs like a regular app</li>
+        </ol>
+      </div>
+      <div class="install-platform">
+        <h3>Mac &amp; PC — Chrome / Edge</h3>
+        <ol>
+          <li>Click the install icon in the address bar</li>
+          <li>Or open the browser menu and choose <b>Install Race Deck…</b></li>
+          <li>It opens in its own window, no tab or address bar</li>
+        </ol>
+      </div>
+
+      <div class="install-download">
+        Just want the file? <a href="https://raw.githubusercontent.com/smolvivek/race-calendar-widget/main/docs/index.html" download="race-deck.html">Download index.html</a> and open it directly — works fully offline.
+      </div>
+    </div>
+  </div>
 
   <div class="hero">
     <div class="hud f1 f1-only" id="hud-f1"></div>
@@ -1398,6 +1491,48 @@ function initCloneCmd() {
 }
 
 initCloneCmd();
+
+// Capture the browser's native "install this app" prompt (Chrome/Edge/
+// Android) so the "Get the app" button can trigger it directly; browsers
+// that don't fire this event (Safari, Firefox) just see the manual
+// per-platform steps in the modal instead.
+let deferredInstallPrompt = null;
+window.addEventListener("beforeinstallprompt", (e) => {
+  e.preventDefault();
+  deferredInstallPrompt = e;
+});
+
+function initInstall() {
+  const btn = document.getElementById("installBtn");
+  const overlay = document.getElementById("installOverlay");
+  const closeBtn = document.getElementById("installClose");
+  const directWrap = document.getElementById("installDirect");
+  const directBtn = document.getElementById("installDirectBtn");
+  if (!btn || !overlay) return;
+
+  function openModal() {
+    if (directWrap) directWrap.hidden = !deferredInstallPrompt;
+    overlay.hidden = false;
+  }
+  function closeModal() { overlay.hidden = true; }
+
+  btn.addEventListener("click", openModal);
+  if (closeBtn) closeBtn.addEventListener("click", closeModal);
+  overlay.addEventListener("click", (e) => { if (e.target === overlay) closeModal(); });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !overlay.hidden) closeModal(); });
+
+  if (directBtn) {
+    directBtn.addEventListener("click", async () => {
+      if (!deferredInstallPrompt) return;
+      deferredInstallPrompt.prompt();
+      try { await deferredInstallPrompt.userChoice; } catch (e) {}
+      deferredInstallPrompt = null;
+      closeModal();
+    });
+  }
+}
+
+initInstall();
 init();
 </script>
 </body>
