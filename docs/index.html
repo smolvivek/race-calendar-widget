@@ -108,6 +108,33 @@ h1 span {
 
 .header-right { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 
+.title-block { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+
+/* Clone command + GitHub link — a developer-facing footnote under the
+   wordmark (left) and an icon link beside the clock (right), same idea
+   as the repo-link/terminal-snippet pairing on project landing pages. */
+.clone-cmd {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: "Orbitron", monospace; font-size: 11px;
+  color: var(--text-dim); background: var(--bg-panel);
+  border: 1px solid var(--line); border-radius: 3px;
+  padding: 5px 10px; max-width: 100%; cursor: pointer;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.clone-cmd:hover { color: var(--text); border-color: var(--line-bright); background: var(--bg-panel-raised); }
+.clone-cmd .clone-prompt { color: var(--moto); flex: none; }
+.clone-cmd .clone-text { overflow: hidden; text-overflow: ellipsis; }
+.clone-cmd .clone-copy { flex: none; color: var(--text-faint); font-size: 10px; letter-spacing: 0.05em; }
+.clone-cmd.copied .clone-copy { color: var(--moto); }
+
+.gh-link {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 34px; height: 34px; border: 1px solid var(--line); border-radius: 3px;
+  background: var(--bg-panel); color: var(--text-dim); flex: none;
+}
+.gh-link:hover { color: var(--text); border-color: var(--line-bright); background: var(--bg-panel-raised); }
+.gh-link svg { width: 16px; height: 16px; fill: currentColor; }
+
 /* Series preference — lets a viewer who only follows one series hide the
    other everywhere (hero, calendar, standings) instead of always seeing
    both. Persisted per-browser via localStorage; "both" is the default. */
@@ -487,9 +514,12 @@ footer a { color: var(--text-dim); }
 <div class="wrap">
   <div class="flagbar"></div>
   <header class="top">
-    <div>
+    <div class="title-block">
       <div class="eyebrow">2026 Season</div>
       <h1>RACE <span>DECK</span></h1>
+      <button class="clone-cmd" id="cloneCmd" type="button" title="Copy git clone command">
+        <span class="clone-prompt">$</span><span class="clone-text">git clone github.com/smolvivek/race-calendar-widget.git</span><span class="clone-copy">COPY</span>
+      </button>
     </div>
     <div class="header-right">
       <div class="series-toggle" id="seriesToggle" role="group" aria-label="Show series">
@@ -497,6 +527,9 @@ footer a { color: var(--text-dim); }
         <button type="button" data-pref="moto">MOTOGP</button>
         <button type="button" data-pref="both">BOTH</button>
       </div>
+      <a class="gh-link" href="https://github.com/smolvivek/race-calendar-widget" target="_blank" rel="noopener" aria-label="View source on GitHub" title="View source on GitHub">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.5 7.5 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+      </a>
       <div class="clock" id="clock">--:--:--</div>
     </div>
   </header>
@@ -1342,6 +1375,29 @@ function initSeriesToggle() {
   });
 }
 
+function initCloneCmd() {
+  const btn = document.getElementById("cloneCmd");
+  if (!btn) return;
+  const copyLabel = btn.querySelector(".clone-copy");
+  const fullCommand = "git clone https://github.com/smolvivek/race-calendar-widget.git";
+  btn.addEventListener("click", () => {
+    const done = () => {
+      btn.classList.add("copied");
+      if (copyLabel) copyLabel.textContent = "COPIED";
+      setTimeout(() => {
+        btn.classList.remove("copied");
+        if (copyLabel) copyLabel.textContent = "COPY";
+      }, 1500);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(fullCommand).then(done, done);
+    } else {
+      done();
+    }
+  });
+}
+
+initCloneCmd();
 init();
 </script>
 </body>
