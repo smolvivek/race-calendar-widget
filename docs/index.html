@@ -590,7 +590,25 @@ footer a { color: var(--text-dim); }
         <h2 id="installTitle">Get Race Deck</h2>
         <button class="install-close" id="installClose" type="button" aria-label="Close">&times;</button>
       </div>
-      <p class="lede">It's a website, not an app-store download — install it straight from your browser for one-tap, full-screen access.</p>
+      <p class="lede">It's a website, not an app-store download — two ways to keep it handy.</p>
+
+      <div class="install-platform" style="border-top: none; padding-top: 0;">
+        <h3>Sticky floating widget — Chrome / Edge</h3>
+        <p style="margin: 0 0 10px; font-size: 13px; color: var(--text-dim); line-height: 1.5;">
+          A small window that floats above every other app on your screen — switch tabs, switch apps, it stays put. This is the closest thing to a real desktop widget.
+        </p>
+        <button class="install-btn" id="widgetBtn" type="button" style="width:100%; justify-content:center;">Open floating widget</button>
+        <p id="widgetUnsupported" hidden style="margin: 10px 0 0; font-size: 12.5px; color: var(--text-faint); line-height: 1.5;">
+          Your browser doesn't support this yet — it needs Chrome or Edge (desktop). On a Mac, the <a href="https://github.com/smolvivek/race-calendar-widget/tree/main/race-calendar.widget" style="color: var(--moto);">Übersicht version</a> pins it to your desktop background instead, which works everywhere.
+        </p>
+      </div>
+
+      <div class="install-platform">
+        <h3>Or install it as an app</h3>
+        <p style="margin: 0 0 4px; font-size: 13px; color: var(--text-dim); line-height: 1.5;">
+          A regular app window (no browser tabs or address bar) that you open like any other app. Not always-on-top — just a cleaner way to use the full dashboard.
+        </p>
+      </div>
 
       <div id="installDirect" hidden style="margin-bottom:18px;">
         <button class="install-btn" id="installDirectBtn" type="button" style="width:100%; justify-content:center;">Install now</button>
@@ -1301,12 +1319,12 @@ function jumpToRace(seriesKey, r) {
   toggleRace(wrap, true);
 }
 
-function renderHero(elId, next, now, seriesLabel, seriesKey) {
-  const el = document.getElementById(elId);
+// Pure HTML-builder for one "next race" HUD card — no DOM lookups, so it
+// can target any element in any document (the main page, or a popped-out
+// Picture-in-Picture widget window; see initWidgetMode below).
+function buildHeroHtml(next, now, seriesLabel, seriesKey) {
   if (!next) {
-    el.innerHTML = '<div class="hud-info"><div class="hud-label">NEXT ' + seriesLabel.toUpperCase() + ' RACE</div><div class="hud-race">No upcoming races in the data file.</div></div>';
-    el.onclick = null;
-    return;
+    return '<div class="hud-info"><div class="hud-label">NEXT ' + seriesLabel.toUpperCase() + ' RACE</div><div class="hud-race">No upcoming races in the data file.</div></div>';
   }
   const cd = countdownParts(next, now);
 
@@ -1331,7 +1349,7 @@ function renderHero(elId, next, now, seriesLabel, seriesKey) {
       '</div>'
     : '';
 
-  el.innerHTML =
+  return (
     '<div class="dial-box">' +
       '<svg viewBox="0 0 168 168">' +
         '<circle class="dial-track" cx="84" cy="84" r="' + R + '"/>' +
@@ -1350,9 +1368,16 @@ function renderHero(elId, next, now, seriesLabel, seriesKey) {
         (next.provisional ? '<span class="tag prov">PROVISIONAL</span>' : '') +
       '</div>' +
       sessionHtml +
-    '</div>';
-  el.classList.toggle("urgent", cd.live || cd.days === 0);
-  el.onclick = () => jumpToRace(seriesKey, next);
+    '</div>'
+  );
+}
+
+function renderHero(elId, next, now, seriesLabel, seriesKey) {
+  const el = document.getElementById(elId);
+  el.innerHTML = buildHeroHtml(next, now, seriesLabel, seriesKey);
+  const cd = next ? countdownParts(next, now) : null;
+  el.classList.toggle("urgent", !!cd && (cd.live || cd.days === 0));
+  el.onclick = next ? () => jumpToRace(seriesKey, next) : null;
 }
 
 function updateTabTitle(next) {
@@ -1362,6 +1387,92 @@ function updateTabTitle(next) {
   document.title = when + " — " + shortName(next.name) + " · Race Deck";
 }
 
+// ---------- sticky floating widget (Document Picture-in-Picture) ----------
+// A genuine always-on-top window — floats above every other app, not just
+// browser tabs — using the Document Picture-in-Picture API (Chrome/Edge
+// desktop only; no equivalent exists in Safari or Firefox yet). This is
+// the actual "desktop widget" behavior; the installed PWA app window
+// (below) is a different, more ordinary thing and is never always-on-top.
+let pipWindow = null;
+
+function supportsPip() {
+  return typeof window !== "undefined" && "documentPictureInPicture" in window;
+}
+
+function widgetCardHtml(next, now, label, accent) {
+  if (!next) {
+    return '<div class="w-card" style="--w-accent:' + accent + ';"><div class="w-label">' + label + '</div><div class="w-race">No upcoming races</div></div>';
+  }
+  const cd = countdownParts(next, now);
+  const cdText = cd.live ? "LIVE NOW" : cd.days + "d " + cd.hours + "h";
+  return (
+    '<div class="w-card' + (cd.live ? " w-live" : "") + '" style="--w-accent:' + accent + ';">' +
+      '<div class="w-label">' + label + '</div>' +
+      '<div class="w-cd">' + cdText + '</div>' +
+      '<div class="w-race">' + shortName(next.name) + '</div>' +
+      '<div class="w-venue">' + fmtRange(next.start, next.end) + '</div>' +
+    '</div>'
+  );
+}
+
+function renderWidget() {
+  if (!pipWindow || pipWindow.closed) return;
+  const root = pipWindow.document.getElementById("widgetRoot");
+  if (!root) return;
+  const now = new Date();
+  const pref = getSeriesPref();
+  const f1Up = upcomingOf(flatten(DATA.f1), now)[0];
+  const motoUp = upcomingOf(flatten(DATA.motogp), now)[0];
+  let html = "";
+  if (pref !== "moto") html += widgetCardHtml(f1Up, now, "FORMULA 1", "#ff1a1a");
+  if (pref !== "f1") html += widgetCardHtml(motoUp, now, "MOTOGP", "#ff7a1a");
+  root.innerHTML = html;
+  const soonest = [f1Up, motoUp].filter(Boolean).sort((a, b) => parseDate(a.start) - parseDate(b.start))[0];
+  pipWindow.document.title = soonest ? shortName(soonest.name) + " — Race Deck" : "Race Deck";
+}
+
+async function openWidget() {
+  if (!supportsPip()) {
+    const note = document.getElementById("widgetUnsupported");
+    if (note) note.hidden = false;
+    return;
+  }
+  if (pipWindow && !pipWindow.closed) {
+    pipWindow.focus();
+    return;
+  }
+  pipWindow = await documentPictureInPicture.requestWindow({ width: 300, height: 190 });
+  const doc = pipWindow.document;
+  doc.title = "Race Deck";
+  const style = doc.createElement("style");
+  style.textContent =
+    ':root { color-scheme: dark; }' +
+    '* { box-sizing: border-box; }' +
+    'body { margin: 0; background: #0a0b0d; color: #f3f4f6; font-family: -apple-system, "Segoe UI", Roboto, sans-serif;' +
+    ' padding: 8px; height: 100vh; overflow: hidden; }' +
+    '#widgetRoot { display: flex; flex-direction: column; gap: 8px; height: 100%; }' +
+    '.w-card { flex: 1; min-height: 0; border: 1px solid rgba(255,255,255,0.12); border-left: 3px solid var(--w-accent, #ff1a1a);' +
+    ' border-radius: 4px; background: #15171a; padding: 8px 10px; display: flex; flex-direction: column; justify-content: center;' +
+    ' gap: 2px; overflow: hidden; }' +
+    '.w-label { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; color: #9199a3; }' +
+    '.w-cd { font-size: clamp(16px, 9vh, 28px); font-weight: 800; font-variant-numeric: tabular-nums; line-height: 1.15; color: var(--w-accent, #ff1a1a); }' +
+    '.w-race { font-size: 13px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }' +
+    '.w-venue { font-size: 11px; color: #9199a3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }' +
+    '.w-card.w-live .w-cd { color: #ffcf33; }';
+  doc.head.appendChild(style);
+  const root = doc.createElement("div");
+  root.id = "widgetRoot";
+  doc.body.appendChild(root);
+  pipWindow.addEventListener("pagehide", () => { pipWindow = null; });
+  renderWidget();
+}
+
+function initWidgetMode() {
+  const btn = document.getElementById("widgetBtn");
+  if (!btn) return;
+  btn.addEventListener("click", openWidget);
+}
+
 function tick() {
   const now = new Date();
   const f1Up = upcomingOf(flatten(DATA.f1), now);
@@ -1369,6 +1480,7 @@ function tick() {
 
   renderHero("hud-f1", f1Up[0], now, "Formula 1", "f1");
   renderHero("hud-moto", motoUp[0], now, "MotoGP", "moto");
+  renderWidget();
 
   const soonest = [f1Up[0], motoUp[0]]
     .filter(Boolean)
@@ -1533,6 +1645,7 @@ function initInstall() {
 }
 
 initInstall();
+initWidgetMode();
 init();
 </script>
 </body>
