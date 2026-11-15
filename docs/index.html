@@ -305,6 +305,24 @@ h1 span {
 }
 .row.open .chev { transform: rotate(90deg); color: var(--accent); }
 
+/* Championship standings rows — flat, no accordion */
+.standing-row {
+  display: flex; align-items: center; gap: 10px;
+  padding: 7px 16px; border-bottom: 1px solid var(--line); font-size: 12.5px;
+}
+.standing-row:nth-child(even) { background: rgba(255,255,255,0.015); }
+.standing-row:last-child { border-bottom: none; }
+.st-pos {
+  font-family: "Orbitron", monospace; font-size: 10.5px; color: var(--text-faint);
+  width: 20px; flex: none;
+}
+.st-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 600; color: var(--text); }
+.st-team { color: var(--text-faint); font-size: 11px; flex: none; max-width: 38%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.st-pts { font-family: "Orbitron", monospace; font-weight: 700; color: var(--text); width: 36px; flex: none; text-align: right; }
+.tag.champ {
+  margin-left: 8px; padding: 1px 6px; font-size: 8.5px; background: var(--f1); color: #0a0b0d;
+}
+
 .detail {
   padding: 4px 16px 14px 44px;
   background: rgba(255,255,255,0.025);
@@ -361,7 +379,7 @@ h1 span {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* ---------- results archive ---------- */
+/* ---------- section headers (standings, etc.) ---------- */
 
 .section-head {
   display: flex; align-items: baseline; gap: 10px; margin: 30px 0 14px;
@@ -372,13 +390,18 @@ h1 span {
 }
 .section-head .rule { flex: 1; height: 1px; background: var(--line); }
 
-.row .winner { font-weight: 700; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.row .winner.dnf { color: var(--text-faint); font-weight: 400; font-style: italic; }
-.row .team { font-size: 10.5px; color: var(--text-faint); margin-left: 6px; }
+/* ---------- race result, shown inside a completed race's own detail panel ---------- */
 
+.detail-result {
+  margin-top: 10px; padding-top: 10px; border-top: 1px dotted var(--line);
+}
+.detail-result .result-label {
+  font-family: "Orbitron", monospace; font-size: 9.5px; letter-spacing: 0.07em;
+  color: var(--text-faint); margin-bottom: 4px;
+}
 .podium { list-style: none; margin: 2px 0 0; padding: 0; }
 .podium li {
-  display: flex; gap: 10px; align-items: baseline; padding: 2px 0; font-size: 12px;
+  display: flex; gap: 10px; align-items: baseline; padding: 2px 0; font-size: 12.5px;
 }
 .podium .pos {
   font-family: "Orbitron", monospace; font-size: 9.5px; color: var(--text-faint);
@@ -386,8 +409,10 @@ h1 span {
 }
 .podium li:nth-child(1) .pos { color: var(--accent); }
 .podium b { color: var(--text-dim); font-weight: 600; }
+.podium .team { color: var(--text-faint); font-size: 10.5px; margin-left: 6px; font-weight: 400; }
 .sprint-winner { margin-top: 6px; font-size: 11.5px; color: var(--text-faint); }
 .sprint-winner b { color: var(--text-dim); }
+.cancel-note { margin-top: 10px; padding-top: 10px; border-top: 1px dotted var(--line); font-size: 11.5px; color: var(--text-faint); font-style: italic; }
 
 /* ---------- footer ---------- */
 
@@ -462,15 +487,15 @@ footer a { color: var(--text-dim); }
     </div>
   </div>
 
-  <div class="section-head"><span class="eyebrow">2026 Results Archive</span><span class="rule"></span></div>
+  <div class="section-head"><span class="eyebrow">2026 F1 Championship</span><span class="rule"></span></div>
   <div class="panels">
     <div class="panel f1">
-      <div class="panel-head"><span class="name">FORMULA 1</span><span class="count" id="f1-res-count"></span></div>
-      <div class="rows" id="f1-res-rows"></div>
+      <div class="panel-head"><span class="name">DRIVERS</span><span class="count" id="drivers-count"></span></div>
+      <div class="rows standings" id="drivers-standings"></div>
     </div>
-    <div class="panel moto">
-      <div class="panel-head"><span class="name">MOTOGP</span><span class="count" id="moto-res-count"></span></div>
-      <div class="rows" id="moto-res-rows"></div>
+    <div class="panel f1">
+      <div class="panel-head"><span class="name">CONSTRUCTORS</span><span class="count" id="constructors-count"></span></div>
+      <div class="rows standings" id="constructors-standings"></div>
     </div>
   </div>
 
@@ -490,6 +515,26 @@ const DATA = {
   },
   "f1": {
     "2026": [
+      { "round": 1,  "name": "Australian Grand Prix", "location": "Melbourne, Australia", "circuit": "Albert Park Circuit", "start": "2026-03-06", "end": "2026-03-08", "sprint": false, "result": { "winner": "George Russell", "team": "Mercedes", "podium": ["George Russell", "Kimi Antonelli", "Charles Leclerc"] } },
+      { "round": 2,  "name": "Chinese Grand Prix", "location": "Shanghai, China", "circuit": "Shanghai International Circuit", "start": "2026-03-13", "end": "2026-03-15", "sprint": true, "result": { "winner": "Kimi Antonelli", "team": "Mercedes", "podium": ["Kimi Antonelli", "George Russell", "Lewis Hamilton"], "sprintWinner": "George Russell" } },
+      { "round": 3,  "name": "Japanese Grand Prix", "location": "Suzuka, Japan", "circuit": "Suzuka International Racing Course", "start": "2026-03-27", "end": "2026-03-29", "sprint": false, "result": { "winner": "Kimi Antonelli", "team": "Mercedes", "podium": ["Kimi Antonelli", "Oscar Piastri", "Charles Leclerc"] } },
+      { "round": 4,  "name": "Miami Grand Prix", "location": "Miami, USA", "circuit": "Miami International Autodrome", "start": "2026-05-01", "end": "2026-05-03", "sprint": true, "result": { "winner": "Kimi Antonelli", "team": "Mercedes", "podium": ["Kimi Antonelli", "Lando Norris", "Oscar Piastri"], "sprintWinner": "Lando Norris" } },
+      { "round": 5,  "name": "Canadian Grand Prix", "location": "Montreal, Canada", "circuit": "Circuit Gilles Villeneuve", "start": "2026-05-22", "end": "2026-05-24", "sprint": true, "result": { "winner": "Kimi Antonelli", "team": "Mercedes", "podium": ["Kimi Antonelli", "Lewis Hamilton", "Max Verstappen"], "sprintWinner": "George Russell" } },
+      { "round": 6,  "name": "Monaco Grand Prix", "location": "Monte Carlo, Monaco", "circuit": "Circuit de Monaco", "start": "2026-06-05", "end": "2026-06-07", "sprint": false, "result": { "winner": "Kimi Antonelli", "team": "Mercedes", "podium": ["Kimi Antonelli", "Lewis Hamilton", "Isack Hadjar"], "note": "Pierre Gasly (Alpine-Mercedes) originally finished 3rd on track but was hit with two 5s pit-lane speeding penalties; after appeals (first overturned, then reinstated), Isack Hadjar was classified P3." } },
+      { "round": 7,  "name": "Barcelona-Catalunya Grand Prix", "location": "Barcelona, Spain", "circuit": "Circuit de Barcelona-Catalunya", "start": "2026-06-12", "end": "2026-06-14", "sprint": false, "result": { "winner": "Lewis Hamilton", "team": "Ferrari", "podium": ["Lewis Hamilton", "George Russell", "Lando Norris"] } },
+      { "round": 8,  "name": "Austrian Grand Prix", "location": "Spielberg, Austria", "circuit": "Red Bull Ring", "start": "2026-06-26", "end": "2026-06-28", "sprint": false, "result": { "winner": "George Russell", "team": "Mercedes", "podium": ["George Russell", "Max Verstappen", "Kimi Antonelli"] } },
+      { "round": 9,  "name": "British Grand Prix", "location": "Silverstone, UK", "circuit": "Silverstone Circuit", "start": "2026-07-03", "end": "2026-07-05", "sprint": true, "result": { "winner": "Charles Leclerc", "team": "Ferrari", "podium": ["Charles Leclerc", "George Russell", "Lewis Hamilton"], "sprintWinner": "Kimi Antonelli" } },
+      { "round": 10,  "name": "Belgian Grand Prix", "location": "Spa, Belgium", "circuit": "Circuit de Spa-Francorchamps", "start": "2026-07-17", "end": "2026-07-19", "sprint": false, "result": { "winner": "Kimi Antonelli", "team": "Mercedes", "podium": ["Kimi Antonelli", "Charles Leclerc", "Max Verstappen"] } },
+      { "round": 11,  "name": "Hungarian Grand Prix", "location": "Budapest, Hungary", "circuit": "Hungaroring", "start": "2026-07-24", "end": "2026-07-26", "sprint": false, "result": { "winner": "Lando Norris", "team": "McLaren-Mercedes", "podium": ["Lando Norris", "Max Verstappen", "Kimi Antonelli"] } },
+      { "round": 12,  "name": "Dutch Grand Prix", "location": "Zandvoort, Netherlands", "circuit": "Circuit Zandvoort", "start": "2026-08-21", "end": "2026-08-23", "sprint": true, "result": { "winner": "Lando Norris", "team": "McLaren-Mercedes", "podium": ["Lando Norris", "Kimi Antonelli", "George Russell"], "sprintWinner": "George Russell" } },
+      { "round": 13,  "name": "Italian Grand Prix", "location": "Monza, Italy", "circuit": "Autodromo Nazionale Monza", "start": "2026-09-04", "end": "2026-09-06", "sprint": false, "result": { "winner": "Kimi Antonelli", "team": "Mercedes", "podium": ["Kimi Antonelli", "George Russell", "Max Verstappen"] } },
+      { "round": 14,  "name": "Spanish Grand Prix", "location": "Madrid, Spain", "circuit": "Circuito de Madrid (Madring)", "start": "2026-09-11", "end": "2026-09-13", "sprint": false, "result": { "winner": "Kimi Antonelli", "team": "Mercedes", "podium": ["Kimi Antonelli", "Max Verstappen", "Lando Norris"], "note": "First Spanish GP held at the new Madrid street circuit (Madring); separate from round 7's Barcelona-Catalunya race." } },
+      { "round": 15,  "name": "Azerbaijan Grand Prix", "location": "Baku, Azerbaijan", "circuit": "Baku City Circuit", "start": "2026-09-24", "end": "2026-09-26", "sprint": false, "result": { "winner": "George Russell", "team": "Mercedes", "podium": ["George Russell", "Max Verstappen", "Isack Hadjar"] } },
+      { "round": 16,  "name": "Bahrain Grand Prix in Malaysia", "location": "Sepang, Malaysia", "circuit": "Petronas Sepang International Circuit", "start": "2026-10-02", "end": "2026-10-04", "sprint": false, "result": { "winner": "Max Verstappen", "team": "Red Bull Racing-Red Bull Ford", "podium": ["Max Verstappen", "Kimi Antonelli", "Lewis Hamilton"], "note": "Originally the Bahrain GP; relocated to Sepang International Circuit in Malaysia but kept the Bahrain GP name/branding." } },
+      { "round": 17,  "name": "Singapore Grand Prix", "location": "Singapore", "circuit": "Marina Bay Street Circuit", "start": "2026-10-09", "end": "2026-10-11", "sprint": true, "result": { "winner": "Max Verstappen", "team": "Red Bull Racing-Red Bull Ford", "podium": ["Max Verstappen", "Charles Leclerc", "Kimi Antonelli"], "sprintWinner": "Max Verstappen" } },
+      { "round": 18,  "name": "United States Grand Prix", "location": "Austin, USA", "circuit": "Circuit of the Americas", "start": "2026-10-23", "end": "2026-10-25", "sprint": false, "result": { "winner": "Kimi Antonelli", "team": "Mercedes", "podium": ["Kimi Antonelli", "Charles Leclerc", "Max Verstappen"] } },
+      { "round": 19,  "name": "Mexico City Grand Prix", "location": "Mexico City, Mexico", "circuit": "Autódromo Hermanos Rodríguez", "start": "2026-10-30", "end": "2026-11-01", "sprint": false, "result": { "winner": "Max Verstappen", "team": "Red Bull Racing-Red Bull Ford", "podium": ["Max Verstappen", "Lewis Hamilton", "Kimi Antonelli"], "note": "Kimi Antonelli clinched the 2026 F1 Drivers' Championship at this race (title secured via points, not a race win). This is where Kimi Antonelli clinched the 2026 Drivers' Championship." } },
+      { "round": 20,  "name": "São Paulo Grand Prix", "location": "São Paulo, Brazil", "circuit": "Autódromo José Carlos Pace (Interlagos)", "start": "2026-11-06", "end": "2026-11-08", "sprint": false, "result": { "winner": "Lando Norris", "team": "McLaren-Mercedes", "podium": ["Lando Norris", "Max Verstappen", "Isack Hadjar"], "note": "Mercedes clinched the 2026 Constructors' Championship at this race." } },
       { "round": 21, "name": "Las Vegas Grand Prix",  "location": "Las Vegas, USA",   "circuit": "Las Vegas Strip Circuit",         "start": "2026-11-19", "end": "2026-11-21", "sprint": false },
       { "round": 22, "name": "Qatar Grand Prix",        "location": "Lusail, Qatar",    "circuit": "Lusail International Circuit",    "start": "2026-11-27", "end": "2026-11-29", "sprint": false },
       { "round": 23, "name": "Abu Dhabi Grand Prix",    "location": "Abu Dhabi, UAE",   "circuit": "Yas Marina Circuit",              "start": "2026-12-04", "end": "2026-12-06", "sprint": false }
@@ -523,6 +568,26 @@ const DATA = {
   },
   "motogp": {
     "2026": [
+      { "round": 1,  "name": "PT Grand Prix of Thailand", "location": "Buriram, Thailand", "circuit": "Chang International Circuit", "start": "2026-02-27", "end": "2026-03-01", "provisional": false },
+      { "round": 2,  "name": "Estrella Galicia 0,0 Grand Prix of Brazil", "location": "Goiânia, Brazil", "circuit": "Autódromo Internacional Ayrton Senna", "start": "2026-03-20", "end": "2026-03-22", "provisional": false },
+      { "round": 3,  "name": "Red Bull Grand Prix of the United States", "location": "Austin, USA", "circuit": "Circuit of the Americas", "start": "2026-03-27", "end": "2026-03-29", "provisional": false },
+      { "round": 4,  "name": "Estrella Galicia 0,0 Grand Prix of Spain", "location": "Jerez, Spain", "circuit": "Circuito de Jerez-Ángel Nieto", "start": "2026-04-24", "end": "2026-04-26", "provisional": false },
+      { "round": 5,  "name": "Michelin Grand Prix of France", "location": "Le Mans, France", "circuit": "Le Mans (Circuit Bugatti)", "start": "2026-05-08", "end": "2026-05-10", "provisional": false },
+      { "round": 6,  "name": "Monster Energy Grand Prix of Catalunya", "location": "Barcelona, Spain", "circuit": "Circuit de Barcelona-Catalunya", "start": "2026-05-15", "end": "2026-05-17", "provisional": false },
+      { "round": 7,  "name": "Brembo Grand Prix of Italy", "location": "Mugello, Italy", "circuit": "Autodromo Internazionale del Mugello", "start": "2026-05-29", "end": "2026-05-31", "provisional": false },
+      { "round": 8,  "name": "Grand Prix of Hungary", "location": "Balatonfőkajár, Hungary", "circuit": "Balaton Park Circuit", "start": "2026-06-05", "end": "2026-06-07", "provisional": false },
+      { "round": 9,  "name": "Monster Energy Grand Prix of Czechia", "location": "Brno, Czechia", "circuit": "CREDITAS Autodrom Brno", "start": "2026-06-19", "end": "2026-06-21", "provisional": false },
+      { "round": 10,  "name": "Tissot Grand Prix of the Netherlands", "location": "Assen, Netherlands", "circuit": "TT Circuit Assen", "start": "2026-06-26", "end": "2026-06-28", "provisional": false },
+      { "round": 11,  "name": "Liqui Moly Grand Prix of Germany", "location": "Sachsenring, Germany", "circuit": "Sachsenring", "start": "2026-07-10", "end": "2026-07-12", "provisional": false },
+      { "round": 12,  "name": "Qatar Airways Grand Prix of Great Britain", "location": "Silverstone, UK", "circuit": "Silverstone Circuit", "start": "2026-08-07", "end": "2026-08-09", "provisional": false },
+      { "round": 13,  "name": "Michelin Grand Prix of Aragon", "location": "Aragón, Spain", "circuit": "MotorLand Aragón", "start": "2026-08-28", "end": "2026-08-30", "provisional": false },
+      { "round": 14,  "name": "Red Bull Grand Prix of San Marino and the Rimini Riviera", "location": "Misano, Italy", "circuit": "Misano World Circuit Marco Simoncelli", "start": "2026-09-11", "end": "2026-09-13", "provisional": false },
+      { "round": 15,  "name": "Qatar Airways Grand Prix of Austria", "location": "Spielberg, Austria", "circuit": "Red Bull Ring", "start": "2026-09-18", "end": "2026-09-20", "provisional": false },
+      { "round": 16,  "name": "Motul Grand Prix of Japan", "location": "Motegi, Japan", "circuit": "Mobility Resort Motegi", "start": "2026-10-02", "end": "2026-10-04", "provisional": false },
+      { "round": 17,  "name": "Pertamina Grand Prix of Indonesia", "location": "Mandalika, Indonesia", "circuit": "Pertamina Mandalika International Circuit", "start": "2026-10-09", "end": "2026-10-11", "provisional": false },
+      { "round": 18,  "name": "Red Bull Grand Prix of Australia", "location": "Phillip Island, Australia", "circuit": "Phillip Island Grand Prix Circuit", "start": "2026-10-23", "end": "2026-10-25", "provisional": false, "cancelled": true, "cancelNote": "Race cancelled due to inclement weather and low visibility at Phillip Island." },
+      { "round": 19,  "name": "Petronas Grand Prix of Malaysia", "location": "Sepang, Malaysia", "circuit": "Petronas Sepang International Circuit", "start": "2026-10-30", "end": "2026-11-01", "provisional": false },
+      { "round": 20,  "name": "Qatar Airways Grand Prix of Qatar", "location": "Lusail, Qatar", "circuit": "Lusail International Circuit", "start": "2026-11-06", "end": "2026-11-08", "provisional": false },
       { "round": 21, "name": "Portuguese Grand Prix",       "location": "Portimão, Portugal",      "circuit": "Autódromo Internacional do Algarve", "start": "2026-11-20", "end": "2026-11-22", "provisional": false },
       { "round": 22, "name": "Comunitat Valenciana Grand Prix", "location": "Cheste, Spain",       "circuit": "Circuit Ricardo Tormo",              "start": "2026-11-27", "end": "2026-11-29", "provisional": false }
     ],
@@ -553,484 +618,52 @@ const DATA = {
   }
 };
 
-// Completed-race results for the 2026 season, researched from official
-// championship sources (formula1.com / motogp.com season articles) and
-// cross-checked against crash.net and news coverage for full podiums.
-// Keyed by round number as a string. A null winner/team with an empty
-// podium plus a `note` means the race had no classified result (e.g. the
-// 2026 MotoGP Australian GP, cancelled for weather).
-const RESULTS = {
-  "f1": {
-    "1": {
-      "name": "Australian Grand Prix",
-      "date": "2026-03-08",
-      "winner": "George Russell",
-      "team": "Mercedes",
-      "podium": [
-        "George Russell",
-        "Kimi Antonelli",
-        "Charles Leclerc"
-      ],
-      "sprintWinner": null
-    },
-    "2": {
-      "name": "Chinese Grand Prix",
-      "date": "2026-03-15",
-      "winner": "Kimi Antonelli",
-      "team": "Mercedes",
-      "podium": [
-        "Kimi Antonelli",
-        "George Russell",
-        "Lewis Hamilton"
-      ],
-      "sprintWinner": "George Russell"
-    },
-    "3": {
-      "name": "Japanese Grand Prix",
-      "date": "2026-03-29",
-      "winner": "Kimi Antonelli",
-      "team": "Mercedes",
-      "podium": [
-        "Kimi Antonelli",
-        "Oscar Piastri",
-        "Charles Leclerc"
-      ],
-      "sprintWinner": null
-    },
-    "4": {
-      "name": "Miami Grand Prix",
-      "date": "2026-05-03",
-      "winner": "Kimi Antonelli",
-      "team": "Mercedes",
-      "podium": [
-        "Kimi Antonelli",
-        "Lando Norris",
-        "Oscar Piastri"
-      ],
-      "sprintWinner": "Lando Norris"
-    },
-    "5": {
-      "name": "Canadian Grand Prix",
-      "date": "2026-05-24",
-      "winner": "Kimi Antonelli",
-      "team": "Mercedes",
-      "podium": [
-        "Kimi Antonelli",
-        "Lewis Hamilton",
-        "Max Verstappen"
-      ],
-      "sprintWinner": "George Russell"
-    },
-    "6": {
-      "name": "Monaco Grand Prix",
-      "date": "2026-06-07",
-      "winner": "Kimi Antonelli",
-      "team": "Mercedes",
-      "podium": [
-        "Kimi Antonelli",
-        "Lewis Hamilton",
-        "Isack Hadjar"
-      ],
-      "sprintWinner": null,
-      "note": "Pierre Gasly (Alpine-Mercedes) originally finished 3rd on track but was hit with two 5s pit-lane speeding penalties; after appeals (first overturned, then reinstated), Isack Hadjar was classified P3."
-    },
-    "7": {
-      "name": "Barcelona-Catalunya Grand Prix",
-      "date": "2026-06-14",
-      "winner": "Lewis Hamilton",
-      "team": "Ferrari",
-      "podium": [
-        "Lewis Hamilton",
-        "George Russell",
-        "Lando Norris"
-      ],
-      "sprintWinner": null
-    },
-    "8": {
-      "name": "Austrian Grand Prix",
-      "date": "2026-06-28",
-      "winner": "George Russell",
-      "team": "Mercedes",
-      "podium": [
-        "George Russell",
-        "Max Verstappen",
-        "Kimi Antonelli"
-      ],
-      "sprintWinner": null
-    },
-    "9": {
-      "name": "British Grand Prix",
-      "date": "2026-07-05",
-      "winner": "Charles Leclerc",
-      "team": "Ferrari",
-      "podium": [
-        "Charles Leclerc",
-        "George Russell",
-        "Lewis Hamilton"
-      ],
-      "sprintWinner": "Kimi Antonelli"
-    },
-    "10": {
-      "name": "Belgian Grand Prix",
-      "date": "2026-07-19",
-      "winner": "Kimi Antonelli",
-      "team": "Mercedes",
-      "podium": [
-        "Kimi Antonelli",
-        "Charles Leclerc",
-        "Max Verstappen"
-      ],
-      "sprintWinner": null
-    },
-    "11": {
-      "name": "Hungarian Grand Prix",
-      "date": "2026-07-26",
-      "winner": "Lando Norris",
-      "team": "McLaren-Mercedes",
-      "podium": [
-        "Lando Norris",
-        "Max Verstappen",
-        "Kimi Antonelli"
-      ],
-      "sprintWinner": null
-    },
-    "12": {
-      "name": "Dutch Grand Prix",
-      "date": "2026-08-23",
-      "winner": "Lando Norris",
-      "team": "McLaren-Mercedes",
-      "podium": [
-        "Lando Norris",
-        "Kimi Antonelli",
-        "George Russell"
-      ],
-      "sprintWinner": "George Russell"
-    },
-    "13": {
-      "name": "Italian Grand Prix",
-      "date": "2026-09-06",
-      "winner": "Kimi Antonelli",
-      "team": "Mercedes",
-      "podium": [
-        "Kimi Antonelli",
-        "George Russell",
-        "Max Verstappen"
-      ],
-      "sprintWinner": null
-    },
-    "14": {
-      "name": "Spanish Grand Prix",
-      "date": "2026-09-13",
-      "winner": "Kimi Antonelli",
-      "team": "Mercedes",
-      "podium": [
-        "Kimi Antonelli",
-        "Max Verstappen",
-        "Lando Norris"
-      ],
-      "sprintWinner": null,
-      "note": "First Spanish GP held at the new Madrid street circuit (Madring); separate from round 7's Barcelona-Catalunya race."
-    },
-    "15": {
-      "name": "Azerbaijan Grand Prix",
-      "date": "2026-09-26",
-      "winner": "George Russell",
-      "team": "Mercedes",
-      "podium": [
-        "George Russell",
-        "Max Verstappen",
-        "Isack Hadjar"
-      ],
-      "sprintWinner": null
-    },
-    "16": {
-      "name": "Bahrain Grand Prix in Malaysia",
-      "date": "2026-10-04",
-      "winner": "Max Verstappen",
-      "team": "Red Bull Racing-Red Bull Ford",
-      "podium": [
-        "Max Verstappen",
-        "Kimi Antonelli",
-        "Lewis Hamilton"
-      ],
-      "sprintWinner": null,
-      "note": "Originally the Bahrain GP; relocated to Sepang International Circuit in Malaysia but kept the Bahrain GP name/branding."
-    },
-    "17": {
-      "name": "Singapore Grand Prix",
-      "date": "2026-10-11",
-      "winner": "Max Verstappen",
-      "team": "Red Bull Racing-Red Bull Ford",
-      "podium": [
-        "Max Verstappen",
-        "Charles Leclerc",
-        "Kimi Antonelli"
-      ],
-      "sprintWinner": "Max Verstappen"
-    },
-    "18": {
-      "name": "United States Grand Prix",
-      "date": "2026-10-25",
-      "winner": "Kimi Antonelli",
-      "team": "Mercedes",
-      "podium": [
-        "Kimi Antonelli",
-        "Charles Leclerc",
-        "Max Verstappen"
-      ],
-      "sprintWinner": null
-    },
-    "19": {
-      "name": "Mexico City Grand Prix",
-      "date": "2026-11-01",
-      "winner": "Max Verstappen",
-      "team": "Red Bull Racing-Red Bull Ford",
-      "podium": [
-        "Max Verstappen",
-        "Lewis Hamilton",
-        "Kimi Antonelli"
-      ],
-      "sprintWinner": null,
-      "note": "Kimi Antonelli clinched the 2026 F1 Drivers' Championship at this race (title secured via points, not a race win)."
-    },
-    "20": {
-      "name": "São Paulo Grand Prix",
-      "date": "2026-11-08",
-      "winner": "Lando Norris",
-      "team": "McLaren-Mercedes",
-      "podium": [
-        "Lando Norris",
-        "Max Verstappen",
-        "Isack Hadjar"
-      ],
-      "sprintWinner": null
-    }
-  },
-  "motogp": {
-    "1": {
-      "name": "PT Grand Prix of Thailand",
-      "date": "2026-03-01",
-      "winner": "Marco Bezzecchi",
-      "team": "Aprilia",
-      "podium": [
-        "Marco Bezzecchi",
-        "Pedro Acosta",
-        "Raul Fernandez"
-      ]
-    },
-    "2": {
-      "name": "Estrella Galicia 0,0 Grand Prix of Brazil",
-      "date": "2026-03-22",
-      "winner": "Marco Bezzecchi",
-      "team": "Aprilia",
-      "podium": [
-        "Marco Bezzecchi",
-        "Jorge Martin",
-        "Fabio Di Giannantonio"
-      ]
-    },
-    "3": {
-      "name": "Red Bull Grand Prix of the United States",
-      "date": "2026-03-29",
-      "winner": "Marco Bezzecchi",
-      "team": "Aprilia",
-      "podium": [
-        "Marco Bezzecchi",
-        "Jorge Martin",
-        "Pedro Acosta"
-      ]
-    },
-    "4": {
-      "name": "Estrella Galicia 0,0 Grand Prix of Spain",
-      "date": "2026-04-26",
-      "winner": "Alex Marquez",
-      "team": "Ducati",
-      "podium": [
-        "Alex Marquez",
-        "Marco Bezzecchi",
-        "Fabio Di Giannantonio"
-      ]
-    },
-    "5": {
-      "name": "Michelin Grand Prix of France",
-      "date": "2026-05-10",
-      "winner": "Jorge Martin",
-      "team": "Aprilia",
-      "podium": [
-        "Jorge Martin",
-        "Marco Bezzecchi",
-        "Ai Ogura"
-      ]
-    },
-    "6": {
-      "name": "Monster Energy Grand Prix of Catalunya",
-      "date": "2026-05-17",
-      "winner": "Fabio Di Giannantonio",
-      "team": "Ducati",
-      "podium": [
-        "Fabio Di Giannantonio",
-        "Fermin Aldeguer",
-        "Francesco Bagnaia"
-      ],
-      "note": "Joan Mir originally crossed the line 2nd but was demoted to 13th after a post-race tyre-pressure penalty."
-    },
-    "7": {
-      "name": "Brembo Grand Prix of Italy",
-      "date": "2026-05-31",
-      "winner": "Marco Bezzecchi",
-      "team": "Aprilia",
-      "podium": [
-        "Marco Bezzecchi",
-        "Jorge Martin",
-        "Francesco Bagnaia"
-      ]
-    },
-    "8": {
-      "name": "Grand Prix of Hungary",
-      "date": "2026-06-07",
-      "winner": "Marc Marquez",
-      "team": "Ducati",
-      "podium": [
-        "Marc Marquez",
-        "Pedro Acosta",
-        "Francesco Bagnaia"
-      ],
-      "note": "Marquez's 100th premier-class/MotoGP win."
-    },
-    "9": {
-      "name": "Monster Energy Grand Prix of Czechia",
-      "date": "2026-06-21",
-      "winner": "Marc Marquez",
-      "team": "Ducati",
-      "podium": [
-        "Marc Marquez",
-        "Ai Ogura",
-        "Francesco Bagnaia"
-      ]
-    },
-    "10": {
-      "name": "Tissot Grand Prix of the Netherlands",
-      "date": "2026-06-28",
-      "winner": "Ai Ogura",
-      "team": "Aprilia",
-      "podium": [
-        "Ai Ogura",
-        "Raul Fernandez",
-        "Jorge Martin"
-      ],
-      "note": "Ogura's maiden MotoGP victory; all-Aprilia podium."
-    },
-    "11": {
-      "name": "Liqui Moly Grand Prix of Germany",
-      "date": "2026-07-12",
-      "winner": "Marc Marquez",
-      "team": "Ducati",
-      "podium": [
-        "Marc Marquez",
-        "Ai Ogura",
-        "Raul Fernandez"
-      ]
-    },
-    "12": {
-      "name": "Qatar Airways Grand Prix of Great Britain",
-      "date": "2026-08-09",
-      "winner": "Raul Fernandez",
-      "team": "Aprilia",
-      "podium": [
-        "Raul Fernandez",
-        "Jorge Martin",
-        "Marco Bezzecchi"
-      ],
-      "note": "All-Aprilia podium."
-    },
-    "13": {
-      "name": "Michelin Grand Prix of Aragon",
-      "date": "2026-08-30",
-      "winner": "Marc Marquez",
-      "team": "Ducati",
-      "podium": [
-        "Marc Marquez",
-        "Pedro Acosta",
-        "Marco Bezzecchi"
-      ]
-    },
-    "14": {
-      "name": "Red Bull Grand Prix of San Marino and the Rimini Riviera",
-      "date": "2026-09-13",
-      "winner": "Marc Marquez",
-      "team": "Ducati",
-      "podium": [
-        "Marc Marquez",
-        "Alex Marquez",
-        "Pedro Acosta"
-      ]
-    },
-    "15": {
-      "name": "Qatar Airways Grand Prix of Austria",
-      "date": "2026-09-20",
-      "winner": "Pedro Acosta",
-      "team": "KTM",
-      "podium": [
-        "Pedro Acosta",
-        "Jorge Martin",
-        "Marco Bezzecchi"
-      ],
-      "note": "Acosta's maiden MotoGP victory."
-    },
-    "16": {
-      "name": "Motul Grand Prix of Japan",
-      "date": "2026-10-04",
-      "winner": "Marc Marquez",
-      "team": "Ducati",
-      "podium": [
-        "Marc Marquez",
-        "Jorge Martin",
-        "Marco Bezzecchi"
-      ]
-    },
-    "17": {
-      "name": "Pertamina Grand Prix of Indonesia",
-      "date": "2026-10-11",
-      "winner": "Marco Bezzecchi",
-      "team": "Aprilia",
-      "podium": [
-        "Marco Bezzecchi",
-        "Raul Fernandez",
-        "Jorge Martin"
-      ]
-    },
-    "18": {
-      "name": "Red Bull Grand Prix of Australia",
-      "date": "2026-10-25",
-      "winner": null,
-      "team": null,
-      "podium": [],
-      "note": "Race cancelled due to inclement weather/low visibility at Phillip Island. No result."
-    },
-    "19": {
-      "name": "Petronas Grand Prix of Malaysia",
-      "date": "2026-11-01",
-      "winner": "Marc Marquez",
-      "team": "Ducati",
-      "podium": [
-        "Marc Marquez",
-        "Pedro Acosta",
-        "Alex Marquez"
-      ]
-    },
-    "20": {
-      "name": "Qatar Airways Grand Prix of Qatar",
-      "date": "2026-11-08",
-      "winner": "Marco Bezzecchi",
-      "team": "Aprilia",
-      "podium": [
-        "Marco Bezzecchi",
-        "Marc Marquez",
-        "Raul Fernandez"
-      ],
-      "note": "Marquez finished 2nd; his MotoGP title decision was delayed to a later round (not yet clinched as of this race)."
-    }
-  }
+// 2026 F1 championship standings after Round 20 (São Paulo GP, Nov 8).
+// Sourced from RacingNews365 and crash.net, cross-checked against each
+// other. Both titles were already decided before the season finished:
+// Antonelli clinched Drivers' at round 19 (Mexico City), Mercedes clinched
+// Constructors' at round 20 (São Paulo) itself.
+const STANDINGS_2026 = {
+  "drivers": [
+    { "pos": 1, "name": "Kimi Antonelli", "team": "Mercedes", "points": 390, "champion": true },
+    { "pos": 2, "name": "Max Verstappen", "team": "Red Bull", "points": 279 },
+    { "pos": 3, "name": "George Russell", "team": "Mercedes", "points": 262 },
+    { "pos": 4, "name": "Lewis Hamilton", "team": "Ferrari", "points": 261 },
+    { "pos": 5, "name": "Charles Leclerc", "team": "Ferrari", "points": 249 },
+    { "pos": 6, "name": "Lando Norris", "team": "McLaren", "points": 246 },
+    { "pos": 7, "name": "Oscar Piastri", "team": "McLaren", "points": 152 },
+    { "pos": 8, "name": "Isack Hadjar", "team": "Red Bull", "points": 122 },
+    { "pos": 9, "name": "Liam Lawson", "team": "Racing Bulls", "points": 89 },
+    { "pos": 10, "name": "Pierre Gasly", "team": "Alpine", "points": 42 },
+    { "pos": 11, "name": "Arvid Lindblad", "team": "Racing Bulls", "points": 38 },
+    { "pos": 12, "name": "Franco Colapinto", "team": "Alpine", "points": 27 },
+    { "pos": 13, "name": "Oliver Bearman", "team": "Haas", "points": 23 },
+    { "pos": 14, "name": "Gabriel Bortoleto", "team": "Audi", "points": 14 },
+    { "pos": 14, "name": "Nico Hülkenberg", "team": "Audi", "points": 14 },
+    { "pos": 16, "name": "Esteban Ocon", "team": "Haas", "points": 7 },
+    { "pos": 16, "name": "Fernando Alonso", "team": "Aston Martin", "points": 7 },
+    { "pos": 16, "name": "Carlos Sainz", "team": "Williams", "points": 7 },
+    { "pos": 19, "name": "Alexander Albon", "team": "Williams", "points": 5 },
+    { "pos": 20, "name": "Yuki Tsunoda", "team": "Racing Bulls", "points": 1 },
+    { "pos": 20, "name": "Ryo Hirakawa", "team": "Haas", "points": 1 },
+    { "pos": 22, "name": "Lance Stroll", "team": "Aston Martin", "points": 0 },
+    { "pos": 22, "name": "Valtteri Bottas", "team": "Cadillac", "points": 0 },
+    { "pos": 22, "name": "Sergio Pérez", "team": "Cadillac", "points": 0 },
+    { "pos": 22, "name": "Rafael Camara", "team": "Haas", "points": 0 }
+  ],
+  "constructors": [
+    { "pos": 1, "name": "Mercedes", "team": "", "points": 652, "champion": true },
+    { "pos": 2, "name": "Ferrari", "team": "", "points": 510 },
+    { "pos": 3, "name": "Red Bull", "team": "", "points": 415 },
+    { "pos": 4, "name": "McLaren", "team": "", "points": 398 },
+    { "pos": 5, "name": "Racing Bulls", "team": "", "points": 114 },
+    { "pos": 6, "name": "Alpine", "team": "", "points": 69 },
+    { "pos": 7, "name": "Haas", "team": "", "points": 31 },
+    { "pos": 8, "name": "Audi", "team": "", "points": 28 },
+    { "pos": 9, "name": "Williams", "team": "", "points": 12 },
+    { "pos": 10, "name": "Aston Martin", "team": "", "points": 7 },
+    { "pos": 11, "name": "Cadillac", "team": "", "points": 0 }
+  ]
 };
 
 // Official session-by-session timetables, sourced from formula1.com and
@@ -1133,6 +766,12 @@ const CIRCUIT_SPECS = {
   "Mobility Resort Motegi": { "lengthKm": 4.801, "turns": 14, "laps": { "motogp": 24 } },
   "Petronas Sepang International Circuit": { "lengthKm": 5.543, "turns": 15, "laps": { "motogp": 20 } },
   "Pertamina Mandalika International Circuit": { "lengthKm": 4.301, "turns": 17, "laps": { "motogp": 27 } },
+  "Circuit Zandvoort": { "lengthKm": 4.259, "turns": 14, "laps": { "f1": 72 } },
+  "Balaton Park Circuit": {
+    "lengthKm": 4.075, "turns": 17, "laps": null,
+    "note": "First hosted MotoGP in June 2026 — a motorcycle-specific layout (4.075km) is used; no official MotoGP lap count located yet."
+  },
+  "Phillip Island Grand Prix Circuit": { "lengthKm": 4.448, "turns": 12, "laps": { "motogp": 27 } },
   "Adelaide Street Circuit": {
     "lengthKm": null, "turns": null, "laps": null,
     "note": "Provisional 2027 MotoGP addition — organisers have said the published layout isn't final, so nothing here is confirmed yet."
@@ -1157,6 +796,7 @@ function getSpecs(circuitName) {
 // shape, not a stand-in. Circuits without a verified source are left out on
 // purpose rather than filled with a guessed outline.
 const TRACK_SVGS = {
+  "Circuit Zandvoort": { "d": "M 48.7 120.4 L 78.8 47.7 L 90.2 21.1 L 92.8 18.1 L 96.3 16.5 L 100.1 16.0 L 103.6 16.7 L 107.0 19.0 L 109.3 21.9 L 110.5 25.4 L 110.6 29.4 L 107.3 37.1 L 97.8 60.3 L 94.7 71.0 L 93.5 82.3 L 94.1 92.9 L 93.1 97.1 L 90.8 100.0 L 86.1 103.8 L 81.1 105.8 L 67.2 111.3 L 63.6 113.9 L 62.6 117.9 L 62.5 121.5 L 63.9 125.2 L 66.6 127.8 L 70.0 129.2 L 75.2 129.0 L 100.6 120.9 L 112.5 118.7 L 122.7 118.4 L 131.7 119.0 L 140.2 120.5 L 146.3 122.4 L 156.3 124.5 L 165.5 125.3 L 172.0 123.9 L 179.8 121.9 L 189.2 117.1 L 200.3 109.9 L 207.8 106.3 L 214.5 104.4 L 223.3 103.4 L 230.3 103.6 L 259.2 105.3 L 265.9 106.9 L 272.1 110.0 L 276.5 113.7 L 279.3 117.8 L 282.1 122.4 L 283.5 127.7 L 284.0 133.3 L 283.5 138.8 L 281.9 144.3 L 278.4 150.4 L 265.1 168.6 L 260.2 176.6 L 249.1 200.6 L 243.7 202.5 L 237.1 203.3 L 230.8 203.0 L 223.4 201.7 L 215.7 199.1 L 207.4 195.1 L 199.3 189.3 L 194.2 183.7 L 193.3 180.3 L 194.1 176.6 L 197.2 172.1 L 201.7 169.2 L 208.3 166.8 L 219.6 165.0 L 230.5 162.3 L 240.4 158.5 L 245.9 154.6 L 248.0 150.0 L 248.3 144.9 L 246.5 139.9 L 241.9 135.3 L 237.8 133.9 L 216.4 131.3 L 194.8 131.3 L 171.9 134.1 L 152.6 139.0 L 140.6 142.7 L 127.4 147.7 L 114.8 153.0 L 104.5 159.1 L 100.7 160.7 L 98.0 160.2 L 95.5 156.7 L 92.8 151.6 L 89.1 149.3 L 84.3 149.2 L 79.7 151.3 L 77.2 154.7 L 76.1 158.3 L 77.2 165.6 L 87.6 226.1 L 87.8 230.1 L 86.7 234.3 L 84.8 237.8 L 83.0 240.0 L 78.6 243.0 L 73.9 244.1 L 54.0 244.4 L 50.0 244.2 L 44.1 243.3 L 37.9 241.3 L 32.9 239.0 L 26.2 233.7 L 21.8 227.9 L 18.9 222.9 L 16.7 216.1 L 16.0 210.2 L 16.6 200.6 L 18.5 193.7 L 47.2 124.0 L 48.7 120.4 Z", "vbW": 300.0, "vbH": 260.4 },
   "Las Vegas Strip Circuit": { "d": "M 163.3 253.9 L 170.8 245.5 L 172.4 243.7 L 173.5 241.7 L 173.9 239.4 L 172.9 237.4 L 171.4 236.1 L 168.5 235.0 L 165.8 234.5 L 163.2 234.7 L 160.7 235.4 L 155.4 238.6 L 150.4 243.6 L 148.5 244.8 L 144.3 245.7 L 142.1 245.7 L 138.0 244.3 L 135.8 243.1 L 133.7 241.3 L 130.2 236.6 L 128.8 232.6 L 127.8 115.0 L 128.6 113.2 L 130.0 112.3 L 154.3 112.8 L 161.5 112.7 L 165.3 111.8 L 166.9 110.5 L 171.2 106.3 L 173.1 103.6 L 174.6 100.7 L 175.6 98.1 L 176.3 94.7 L 176.7 90.8 L 176.6 88.4 L 175.3 87.6 L 171.7 87.2 L 170.5 86.4 L 169.5 84.8 L 169.0 82.2 L 169.2 80.4 L 172.6 74.5 L 173.2 72.9 L 174.7 70.2 L 174.1 67.4 L 171.4 65.5 L 166.2 65.0 L 127.8 64.0 L 113.6 61.9 L 108.9 59.7 L 103.7 54.3 L 99.2 45.4 L 92.4 29.4 L 88.0 24.8 L 83.5 21.7 L 78.9 20.0 L 71.7 17.6 L 63.5 16.0 L 62.4 16.3 L 61.3 17.1 L 60.5 19.9 L 59.6 21.8 L 51.1 38.4 L 45.8 48.3 L 43.1 53.3 L 40.3 58.1 L 35.4 66.6 L 30.4 78.0 L 27.7 86.6 L 24.8 96.5 L 22.8 103.6 L 21.4 110.7 L 20.2 117.8 L 19.0 128.3 L 18.7 134.4 L 18.3 141.7 L 18.5 161.4 L 18.5 172.7 L 18.6 181.3 L 16.9 226.0 L 16.5 248.9 L 16.4 260.3 L 16.0 274.1 L 16.8 275.2 L 17.8 275.6 L 20.4 275.6 L 22.2 276.3 L 26.4 280.5 L 30.1 282.6 L 35.0 283.5 L 56.3 284.0 L 84.2 283.7 L 107.1 283.8 L 118.3 283.7 L 127.5 282.4 L 137.1 280.5 L 139.6 279.4 L 141.6 278.1 L 143.2 276.6 L 163.3 253.9 Z", "vbW": 192.7, "vbH": 300.0 },
   "Lusail International Circuit": { "d": "M 55.8 178.2 L 27.7 126.8 L 16.7 106.8 L 16.0 103.1 L 16.5 99.2 L 17.9 96.2 L 20.1 94.0 L 23.5 92.0 L 27.3 91.4 L 31.0 92.1 L 59.0 109.1 L 61.7 109.8 L 65.3 110.0 L 69.3 108.8 L 72.6 105.7 L 74.5 102.4 L 74.9 99.0 L 74.3 74.5 L 74.7 71.2 L 75.7 68.3 L 77.0 65.6 L 79.0 63.3 L 119.0 19.0 L 121.2 17.2 L 124.6 16.3 L 127.8 16.0 L 131.2 16.9 L 133.8 18.4 L 145.7 29.7 L 147.0 32.1 L 147.6 35.4 L 147.5 38.3 L 146.7 41.1 L 144.9 43.6 L 119.0 72.2 L 117.8 74.2 L 117.8 76.5 L 118.4 78.5 L 119.6 80.0 L 121.5 81.2 L 124.1 81.5 L 125.9 81.0 L 128.2 79.9 L 173.6 61.7 L 176.6 61.4 L 180.3 62.0 L 183.3 63.3 L 185.7 65.8 L 187.2 68.8 L 187.8 71.9 L 187.7 74.5 L 186.9 77.1 L 185.0 80.0 L 183.5 81.5 L 179.9 84.4 L 176.0 88.9 L 172.7 93.4 L 170.0 98.3 L 167.8 103.9 L 166.5 107.8 L 165.2 114.6 L 164.0 117.5 L 162.1 120.0 L 160.0 121.5 L 157.2 122.8 L 131.5 129.1 L 129.2 130.4 L 127.5 131.9 L 126.5 134.5 L 126.1 136.9 L 126.5 140.6 L 129.3 144.3 L 134.1 149.2 L 141.5 154.8 L 149.3 159.2 L 157.2 162.0 L 165.0 163.7 L 172.7 164.4 L 181.1 163.6 L 219.7 159.3 L 223.2 160.0 L 227.3 162.0 L 230.4 164.4 L 233.3 168.4 L 242.3 185.0 L 243.0 187.9 L 243.0 190.5 L 242.6 193.2 L 240.7 196.7 L 226.9 219.1 L 225.1 220.7 L 222.5 221.9 L 219.9 222.7 L 216.2 222.6 L 171.9 213.6 L 168.8 213.6 L 165.6 214.6 L 163.0 216.4 L 161.1 218.7 L 130.3 278.7 L 127.8 281.6 L 125.0 283.3 L 120.9 284.0 L 117.8 283.7 L 114.8 282.4 L 111.8 279.7 L 55.8 178.2 Z", "vbW": 259.0, "vbH": 300.0 },
   "Yas Marina Circuit": { "d": "M 77.3 166.1 L 114.6 161.1 L 116.6 160.4 L 118.1 158.9 L 119.1 156.8 L 119.3 154.7 L 118.7 152.4 L 112.8 127.1 L 111.7 124.3 L 110.3 122.3 L 108.0 120.3 L 106.0 119.3 L 95.5 116.1 L 92.0 114.3 L 89.4 112.5 L 87.0 110.3 L 85.2 108.2 L 83.9 106.4 L 82.3 102.6 L 81.7 99.7 L 81.7 96.5 L 82.3 92.7 L 83.5 88.7 L 86.1 78.6 L 87.1 71.2 L 87.1 65.9 L 86.7 61.3 L 83.8 37.6 L 81.8 22.7 L 81.4 20.9 L 81.1 19.5 L 80.0 18.1 L 78.1 16.5 L 76.9 16.1 L 75.6 16.0 L 74.3 16.2 L 73.0 16.7 L 72.0 17.8 L 71.4 18.7 L 70.6 20.3 L 68.3 27.2 L 66.1 37.2 L 47.4 92.7 L 40.1 114.3 L 36.1 126.3 L 33.1 135.6 L 29.9 147.1 L 23.3 168.4 L 16.9 187.6 L 16.2 189.5 L 16.0 190.9 L 16.2 191.7 L 16.9 192.5 L 18.5 192.5 L 24.4 191.8 L 25.7 191.8 L 26.8 193.1 L 30.2 205.9 L 30.9 208.3 L 33.0 213.6 L 34.9 217.4 L 39.1 223.5 L 43.9 229.0 L 49.8 234.2 L 75.2 254.2 L 81.0 258.9 L 85.5 262.1 L 91.6 266.1 L 96.8 269.1 L 105.3 273.1 L 113.0 276.6 L 124.4 282.0 L 129.3 284.0 L 132.1 284.0 L 135.0 283.4 L 137.6 281.9 L 139.1 280.5 L 140.0 279.2 L 140.9 277.2 L 141.5 275.2 L 141.8 273.4 L 141.5 270.5 L 140.9 268.3 L 140.1 266.2 L 138.8 264.3 L 137.1 262.6 L 134.9 261.2 L 132.6 260.1 L 129.2 259.7 L 102.5 257.5 L 99.2 257.1 L 97.8 256.8 L 96.3 256.2 L 82.0 247.3 L 80.5 246.2 L 79.5 244.9 L 78.5 242.3 L 75.1 226.6 L 75.4 225.4 L 76.1 224.6 L 77.3 224.3 L 89.2 222.5 L 90.6 221.9 L 91.5 221.4 L 92.5 220.5 L 93.4 218.7 L 93.6 216.5 L 93.7 205.7 L 92.8 203.8 L 91.7 202.7 L 90.1 202.1 L 87.9 201.6 L 85.9 201.3 L 83.4 201.2 L 80.8 201.4 L 56.0 205.3 L 53.8 205.4 L 51.1 205.3 L 48.4 204.8 L 46.6 204.2 L 45.4 203.1 L 44.1 201.8 L 37.3 189.4 L 33.8 183.7 L 33.0 182.0 L 32.5 179.8 L 32.3 177.9 L 32.3 175.6 L 32.7 174.0 L 33.6 172.9 L 34.7 172.4 L 37.3 171.9 L 77.3 166.1 Z", "vbW": 157.8, "vbH": 300.0 },
@@ -1245,6 +885,24 @@ function renderRows(container, list, seriesKey) {
     const laps = specs && specs.laps ? specs.laps[SERIES_SPEC_KEY[seriesKey]] : null;
     const na = '<i>TBD</i>';
     const track = getTrackSvg(r.circuit);
+    let resultHtml = "";
+    if (r.result) {
+      const res = r.result;
+      const pod = res.podium || [];
+      resultHtml =
+        '<div class="detail-result">' +
+          '<div class="result-label">RESULT</div>' +
+          '<ul class="podium">' +
+            '<li><span class="pos">P1</span><b>' + (pod[0] || res.winner) + '</b><span class="team">' + res.team + '</span></li>' +
+            (pod[1] ? '<li><span class="pos">P2</span><b>' + pod[1] + '</b></li>' : '') +
+            (pod[2] ? '<li><span class="pos">P3</span><b>' + pod[2] + '</b></li>' : '') +
+          '</ul>' +
+          (res.sprintWinner ? '<div class="sprint-winner">Sprint winner: <b>' + res.sprintWinner + '</b></div>' : '') +
+          (res.note ? '<div class="cancel-note">' + res.note + '</div>' : '') +
+        '</div>';
+    } else if (r.cancelled) {
+      resultHtml = '<div class="detail-result"><div class="cancel-note">' + (r.cancelNote || "Race cancelled.") + '</div></div>';
+    }
     let trackHtml;
     if (track) {
       const firstPt = track.d.split(" ");
@@ -1284,6 +942,7 @@ function renderRows(container, list, seriesKey) {
             (r.sprint ? '<div class="detail-row"><span>FORMAT</span><b>Sprint weekend</b></div>' : '') +
             (r.provisional ? '<div class="detail-row"><span>STATUS</span><b>Provisional date — not yet homologated</b></div>' : '') +
             (specs && specs.note ? '<div class="detail-note">' + specs.note + '</div>' : '') +
+            resultHtml +
             '<div class="detail-links">' +
               '<a href="https://www.google.com/maps/search/' + mapQuery + '" target="_blank" rel="noopener">Open in Maps ↗</a>' +
               '<button class="ics-btn" type="button" ' +
@@ -1310,46 +969,22 @@ function toggleRace(wrap, forceOpen) {
   row.setAttribute("aria-expanded", String(willOpen));
 }
 
-// Completed-race results archive — same accordion pattern as the upcoming
-// calendar (built once, toggled via the shared wireRowClicks/toggleRace),
-// but each row leads with who won instead of a countdown.
-function renderResults(container, countEl, seasonResults, seriesKey) {
+// Championship standings — a flat, non-expanding list (no accordion; there's
+// nothing to drill into per row). Champion already decided this season gets
+// a small tag rather than guessing at a visual trophy.
+function renderStandings(container, countEl, rows, countLabel) {
   container.innerHTML = "";
-  const rounds = Object.keys(seasonResults).map(Number).sort((a, b) => b - a);
-  rounds.forEach((round) => {
-    const res = seasonResults[round];
-    const wrap = document.createElement("div");
-    wrap.className = "race";
-    wrap.id = "res-" + seriesKey + "-" + round;
-    const hasResult = !!res.winner;
-    const ledClass = hasResult ? "none" : "prov";
-    const podiumHtml = res.podium && res.podium.length
-      ? '<ul class="podium">' + res.podium.map((name, i) =>
-          '<li><span class="pos">P' + (i + 1) + '</span><b>' + name + '</b></li>'
-        ).join("") + '</ul>'
-      : (res.note ? '' : '<div class="detail-note">No classified result for this round.</div>');
-    wrap.innerHTML =
-      '<div class="row" role="button" tabindex="0" aria-expanded="false">' +
-        '<span class="led ' + ledClass + '"></span>' +
-        '<span class="rnd">R' + String(round).padStart(2, "0") + '</span>' +
-        '<span class="date">' + fmtDate(res.date) + '</span>' +
-        '<span class="gp">' + shortName(res.name) + '</span>' +
-        (hasResult
-          ? '<span class="winner">' + res.winner + '<span class="team">' + res.team + '</span></span>'
-          : '<span class="winner dnf">No result</span>') +
-        '<span class="chev">›</span>' +
-      '</div>' +
-      '<div class="detail" hidden>' +
-        '<div class="detail-name">' + res.name + '</div>' +
-        '<div class="detail-row"><span>DATE</span><b>' + fmtDate(res.date) + ', ' + res.date.slice(0, 4) + '</b></div>' +
-        '<div class="detail-row"><span>ROUND</span><b>' + round + ' · 2026 season</b></div>' +
-        podiumHtml +
-        (res.sprintWinner ? '<div class="sprint-winner">SPRINT WINNER: <b>' + res.sprintWinner + '</b></div>' : '') +
-        (res.note ? '<div class="detail-note">' + res.note + '</div>' : '') +
-      '</div>';
-    container.appendChild(wrap);
+  rows.forEach((r) => {
+    const row = document.createElement("div");
+    row.className = "standing-row";
+    row.innerHTML =
+      '<span class="st-pos">' + r.pos + '</span>' +
+      '<span class="st-name">' + r.name + (r.champion ? '<span class="tag champ">CHAMPION</span>' : '') + '</span>' +
+      (r.team ? '<span class="st-team">' + r.team + '</span>' : '') +
+      '<span class="st-pts">' + r.points + '</span>';
+    container.appendChild(row);
   });
-  countEl.textContent = rounds.length + " COMPLETED";
+  countEl.textContent = countLabel;
 }
 
 // Build a downloadable .ics file for a race weekend (all-day event spanning
@@ -1526,26 +1161,24 @@ function playStartLights() {
 
 function init() {
   const now = new Date();
-  const f1Up = upcomingOf(flatten(DATA.f1), now);
-  const motoUp = upcomingOf(flatten(DATA.motogp), now);
+  const f1Season = DATA.f1["2026"].map((r) => ({ ...r, year: 2026 }));
+  const motoSeason = DATA.motogp["2026"].map((r) => ({ ...r, year: 2026 }));
+  const f1Done = f1Season.filter((r) => parseDate(r.end) < now).length;
+  const motoDone = motoSeason.filter((r) => parseDate(r.end) < now).length;
 
   const f1Rows = document.getElementById("f1-rows");
   const motoRows = document.getElementById("moto-rows");
-  renderRows(f1Rows, f1Up, "f1");
-  renderRows(motoRows, motoUp, "moto");
+  renderRows(f1Rows, f1Season, "f1");
+  renderRows(motoRows, motoSeason, "moto");
   wireRowClicks(f1Rows);
   wireRowClicks(motoRows);
 
-  document.getElementById("f1-count").textContent = f1Up.length + " ROUNDS LEFT";
-  document.getElementById("moto-count").textContent = motoUp.length + " ROUNDS LEFT";
+  document.getElementById("f1-count").textContent = f1Done + " OF " + f1Season.length + " RACED";
+  document.getElementById("moto-count").textContent = motoDone + " OF " + motoSeason.length + " RACED";
   document.getElementById("updated").textContent = "DATA UPDATED " + DATA.meta.lastUpdated.toUpperCase();
 
-  const f1ResRows = document.getElementById("f1-res-rows");
-  const motoResRows = document.getElementById("moto-res-rows");
-  renderResults(f1ResRows, document.getElementById("f1-res-count"), RESULTS.f1, "f1");
-  renderResults(motoResRows, document.getElementById("moto-res-count"), RESULTS.motogp, "moto");
-  wireRowClicks(f1ResRows);
-  wireRowClicks(motoResRows);
+  renderStandings(document.getElementById("drivers-standings"), document.getElementById("drivers-count"), STANDINGS_2026.drivers, "2026 SEASON");
+  renderStandings(document.getElementById("constructors-standings"), document.getElementById("constructors-count"), STANDINGS_2026.constructors, "2026 SEASON");
 
   tick();
   setInterval(tick, 1000);
