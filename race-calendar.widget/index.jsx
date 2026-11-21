@@ -62,7 +62,10 @@ const buildUpcoming = (data) => {
   const all = [...flatten('f1', data.f1), ...flatten('moto', data.motogp)];
 
   const upcoming = all
-    .filter((race) => parseDate(race.end) >= now)
+    .filter((race) => {
+      const e = parseDate(race.end);
+      return new Date(e.getFullYear(), e.getMonth(), e.getDate(), 23, 59, 59) >= now;
+    })
     .sort((a, b) => parseDate(a.start) - parseDate(b.start));
 
   return { upcoming, now };

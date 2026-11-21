@@ -1107,8 +1107,26 @@ function flatten(seriesData) {
   return out.sort((a, b) => parseDate(a.start) - parseDate(b.start));
 }
 
-function upcomingOf(list, now) {
-  return list.filter((r) => parseDate(r.end) >= now);
+// A weekend is over only after the END of its final day, not at 00:00 of it.
+function endOfRaceDay(iso) {
+  const d = parseDate(iso);
+  return new Date(d.getFullYear(), d.getMonth(), d.getDate(), 23, 59, 59);
+}
+
+// When a published session timetable exists, the weekend ends 3h after its last
+// session (the date strings are venue-local, so comparing them to the viewer's
+// clock alone can end a race early or late). Otherwise: end of the final day,
+// plus a 12h cushion for time zones.
+function raceEndTime(seriesKey, r) {
+  const sessions = SESSION_SCHEDULES[raceId(seriesKey, r)];
+  if (sessions && sessions.length) {
+    return new Date(new Date(sessions[sessions.length - 1].utc).getTime() + 3 * 60 * 60 * 1000);
+  }
+  return new Date(endOfRaceDay(r.end).getTime() + 12 * 60 * 60 * 1000);
+}
+
+function upcomingOf(list, now, seriesKey) {
+  return list.filter((r) => raceEndTime(seriesKey, r) >= now);
 }
 
 function countdownParts(race, now) {
@@ -1415,8 +1433,8 @@ function renderWidget() {
   if (!root) return;
   const now = new Date();
   const pref = getSeriesPref();
-  const f1Up = upcomingOf(flatten(DATA.f1), now)[0];
-  const motoUp = upcomingOf(flatten(DATA.motogp), now)[0];
+  const f1Up = upcomingOf(flatten(DATA.f1), now, "f1")[0];
+  const motoUp = upcomingOf(flatten(DATA.motogp), now, "moto")[0];
   let html = "";
   if (pref !== "moto") html += widgetCardHtml(f1Up, now, "FORMULA 1", "#ff1a1a");
   if (pref !== "f1") html += widgetCardHtml(motoUp, now, "MOTOGP", "#ff7a1a");
@@ -1469,8 +1487,8 @@ function initWidgetMode() {
 
 function tick() {
   const now = new Date();
-  const f1Up = upcomingOf(flatten(DATA.f1), now);
-  const motoUp = upcomingOf(flatten(DATA.motogp), now);
+  const f1Up = upcomingOf(flatten(DATA.f1), now, "f1");
+  const motoUp = upcomingOf(flatten(DATA.motogp), now, "moto");
 
   renderHero("hud-f1", f1Up[0], now, "Formula 1", "f1");
   renderHero("hud-moto", motoUp[0], now, "MotoGP", "moto");
@@ -1510,8 +1528,8 @@ function init() {
   const now = new Date();
   const f1Season = DATA.f1["2026"].map((r) => ({ ...r, year: 2026 }));
   const motoSeason = DATA.motogp["2026"].map((r) => ({ ...r, year: 2026 }));
-  const f1Done = f1Season.filter((r) => parseDate(r.end) < now).length;
-  const motoDone = motoSeason.filter((r) => parseDate(r.end) < now).length;
+  const f1Done = f1Season.filter((r) => raceEndTime("f1", r) < now).length;
+  const motoDone = motoSeason.filter((r) => raceEndTime("moto", r) < now).length;
 
   const f1Rows = document.getElementById("f1-rows");
   const motoRows = document.getElementById("moto-rows");
