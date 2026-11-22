@@ -2,7 +2,7 @@
 import { useMemo } from "react";
 import type { Race, Series } from "@/lib/types";
 import standings from "@/data/standings.json";
-import { RACES, phaseOf, sessionsOf, nextSession } from "@/lib/races";
+import { RACES, isWrapUp, phaseOf, sessionsOf, nextSession } from "@/lib/races";
 import { daysBetween, dayParts, formatDay, formatInstant, formatRange, localDate, zoneLabel } from "@/lib/time";
 import { downloadIcs } from "@/lib/ics";
 import TrackMap from "./TrackMap";
@@ -18,7 +18,7 @@ for (const r of [...standings.f1.drivers, ...standings.motogp.riders]) if ("team
 function stateText(r: Race, now: number, viewerTz: string): React.ReactNode {
   const phase = phaseOf(r, now);
   if (phase === "done") return r.result ? <>Won by <em>{r.result.winner}</em></> : "Completed";
-  if (phase === "live") return <em>Weekend under way</em>;
+  if (phase === "live") return <em>{isWrapUp(r, now) ? "Race finished" : "Weekend under way"}</em>;
   const diff = daysBetween(localDate(now, r.tz), r.raceDate);
   void viewerTz;
   return <>{diff <= 0 ? "Race day today" : diff === 1 ? "Race tomorrow" : `Race in ${diff} days`}</>;

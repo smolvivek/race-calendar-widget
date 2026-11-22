@@ -8,6 +8,7 @@ import Hero, { nextPanelLabel, type ZoneMode } from "./Hero";
 import SeasonStrip from "./SeasonStrip";
 import Agenda, { type Tab } from "./Agenda";
 import Standings from "./Standings";
+import AppActions from "./AppActions";
 import standings from "@/data/standings.json";
 
 type Filter = Series | "all";
@@ -80,6 +81,7 @@ export default function RaceDeck() {
             <button aria-pressed={mode === "mine"} onClick={() => pickMode("mine")}>My time</button>
             <button aria-pressed={mode === "venue"} onClick={() => pickMode("venue")}>Venue time</button>
           </div>
+          <AppActions />
         </div>
       </header>
 

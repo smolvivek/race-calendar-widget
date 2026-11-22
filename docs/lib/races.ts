@@ -62,3 +62,9 @@ export function nextRace(series: Series, now: number): Race | undefined {
 export function overlaps(a: Race, b: Race): boolean {
   return a.start <= b.raceDate && b.start <= a.raceDate;
 }
+
+/** Every published session is over but the weekend window is still open (podium, delays). */
+export function isWrapUp(r: Race, now: number): boolean {
+  const ss = sessionsOf(r);
+  return ss.length > 0 && phaseOf(r, now) === "live" && now >= ss[ss.length - 1].endsAt;
+}

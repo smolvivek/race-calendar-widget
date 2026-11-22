@@ -86,7 +86,7 @@ export default function SeasonStrip({ series, season, now, viewerTz, selectedId,
       </div>
       <div className="strip-cap" aria-live="polite">
         <span>
-          {shown ? <><strong>{shown.name}</strong>, race day {formatDay(shown.raceDate)}, {shown.city}</> : "Hover or tap a weekend to see it. Tap again to open it in the list."}
+          {shown ? <><strong>{shown.name}</strong>, race day {formatDay(shown.raceDate)}, {shown.city}</> : "Hover a weekend to preview it. Click one to open it in the calendar below."}
         </span>
         {series === "all" && <span className="key"><i />Both series race the same weekend</span>}
       </div>
