@@ -21,14 +21,14 @@ One calendar for Formula 1 and MotoGP. See the next race of each series, every s
 
 Every date and time is handled as a UTC instant, and nothing compares a date string to your clock.
 
-- `data/races.json` holds venue-local dates (`start`, `raceDate`) and the venue's IANA time zone (`tz`).
+- `docs/data/races.json` holds venue-local dates (`start`, `raceDate`) and the venue's IANA time zone (`tz`).
 - A weekend begins at its first published session, or at venue-local midnight of day one when no timetable exists yet. It ends one hour after the last session, or at venue-local midnight after race day.
-- `lib/time.ts` converts venue-local wall-clock times to UTC with `Intl`, including daylight-saving edges. Tests in `tests/time.test.ts` cover Las Vegas, Melbourne, Adelaide, Kolkata and the DST switch.
+- `docs/lib/time.ts` converts venue-local wall-clock times to UTC with `Intl`, including daylight-saving edges. Tests in `docs/tests/time.test.ts` cover Las Vegas, Melbourne, Adelaide, Kolkata and the DST switch.
 - A race stays "live" through its sessions even after the calendar date has rolled over where you are.
 
 ## Updating the data
 
-Everything lives in `data/`:
+Everything lives in `docs/data/`:
 
 | File | What |
 | --- | --- |
@@ -41,20 +41,21 @@ After editing, run `npm test`. It checks that race days fall on weekends, that s
 ## Develop
 
 ```bash
+cd docs
 npm install
 npm run dev        # http://localhost:3000
 npm test           # date and data checks
 npm run build
 ```
 
-Deployed on Vercel as a Next.js app (`vercel.json`).
+The app lives in `docs/` because the Vercel project's Root Directory is set to `docs`. Deployed on Vercel as a Next.js app (`docs/vercel.json`).
 
 ## macOS desktop widget
 
 `race-calendar.widget/` is an Übersicht widget. Its `calendar-data.json` is generated from the same data:
 
 ```bash
-npm run widget
+cd docs && npm run widget
 ```
 
 ## License

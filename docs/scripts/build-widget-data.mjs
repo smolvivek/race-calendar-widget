@@ -21,5 +21,5 @@ for (const r of races) {
   else row.provisional = !!r.provisional;
   bucket.push(row);
 }
-writeFileSync(new URL("../race-calendar.widget/calendar-data.json", import.meta.url), JSON.stringify(out, null, 2) + "\n");
-console.log("wrote race-calendar.widget/calendar-data.json");
+writeFileSync(new URL("../../race-calendar.widget/calendar-data.json", import.meta.url), JSON.stringify(out, null, 2) + "\n");
+console.log("wrote ../race-calendar.widget/calendar-data.json");
