@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import type { Series } from "@/lib/types";
-import { nextRace, nextSession, phaseOf, startMs } from "@/lib/races";
+import { isWrapUp, nextRace, nextSession, phaseOf, startMs } from "@/lib/races";
 import { countdown, formatDay, formatInstant, viewerZone, zoneLabel } from "@/lib/time";
 import { readStored, useNow } from "@/lib/hooks";
 
@@ -15,12 +15,13 @@ function Block({ series, now, tz }: { series: Series; now: number; tz: string })
   const phase = phaseOf(race, now);
   const target = ns && !ns.live ? ns.session.t : !ns && phase === "upcoming" ? startMs(race) : null;
   const c = target ? countdown(target, now) : null;
-  const lead = ns?.live ? `Live now: ${ns.session.name}` : ns ? `${ns.session.name} in` : phase === "live" ? "Race weekend under way" : "Weekend starts in";
+  const lead = isWrapUp(race, now) ? "Chequered flag" : ns?.live ? `Live now: ${ns.session.name}` : ns ? `${ns.session.name} in` : phase === "live" ? "Race weekend under way" : "Weekend starts in";
   return (
     <section className="mini-block" data-series={series}>
       <div className="mini-top"><b>{NAME[series]}</b><span>Round {race.round}</span></div>
       <h2>{race.short}</h2>
       <p className="mini-lead">{ns?.live && <i className="dot live-dot" />}{lead}</p>
+      {isWrapUp(race, now) && <p className="mini-digits">Race finished</p>}
       {c && (
         <p className="mini-digits">
           {c.days > 0 && <>{c.days}<small>d</small></>}{pad(c.hours)}<small>h</small>{pad(c.minutes)}<small>m</small>{pad(c.seconds)}<small>s</small>

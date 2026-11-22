@@ -1,6 +1,6 @@
 "use client";
 import type { Race, Series } from "@/lib/types";
-import { RACES, nextRace, nextSession, phaseOf, sessionsOf, startMs } from "@/lib/races";
+import { RACES, isWrapUp, nextRace, nextSession, phaseOf, sessionsOf, startMs } from "@/lib/races";
 import { countdown, formatDay, formatInstant, zoneLabel } from "@/lib/time";
 import { useNow } from "@/lib/hooks";
 
@@ -27,6 +27,7 @@ export function nextPanelLabel(series: Series, now: number): string | null {
   const phase = phaseOf(r, now);
   const ns = nextSession(r, now);
   if (ns?.live) return `${series === "f1" ? "F1" : "MotoGP"} ${r.short}: ${ns.session.name} live`;
+  if (isWrapUp(r, now)) return `${series === "f1" ? "F1" : "MotoGP"} ${r.short}: race finished`;
   const target = ns ? ns.session.t : startMs(r);
   const c = countdown(target, now);
   const text = c.days > 0 ? `${c.days}d ${c.hours}h` : `${pad(c.hours)}:${pad(c.minutes)}`;
@@ -59,6 +60,9 @@ export default function Hero({ series, now, mode, viewerTz }: { series: Series; 
   } else if (ns) {
     lead = <>{ns.session.name} starts in</>;
     body = <Digits ms={ns.session.t} />;
+  } else if (isWrapUp(race, now)) {
+    lead = <>Chequered flag</>;
+    body = <span className="digits">Race finished</span>;
   } else if (phase === "live") {
     lead = <span className="live" style={{ display: "contents" }}><i className="dot" />Race weekend under way</span>;
     body = <span className="digits">Race day {formatDay(race.raceDate).split(" ")[0]}</span>;

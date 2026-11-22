@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { zonedToUtc, addDays, localDate, dayParts, formatDay, formatRange, countdown } from "@/lib/time";
-import { RACES, phaseOf, startMs, endMs, nextRace, nextSession, overlaps } from "@/lib/races";
+import { RACES, phaseOf, startMs, endMs, nextRace, nextSession, overlaps, isWrapUp } from "@/lib/races";
 
 const iso = (ms: number) => new Date(ms).toISOString();
 
@@ -110,5 +110,11 @@ describe("race phases", () => {
     const a = RACES.find((r) => r.id === "f1-2026-20")!;       // Sao Paulo 6-8 Nov
     const b = RACES.find((r) => r.id === "motogp-2026-20")!;   // Qatar 6-8 Nov
     expect(overlaps(a, b)).toBe(true);
+  });
+  it("says the race is finished, not 'under way', once the last session has ended", () => {
+    const vegasRace = RACES.find((r) => r.id === "f1-2026-21")!;
+    expect(isWrapUp(vegasRace, Date.parse("2026-11-22T05:00:00Z"))).toBe(false); // race in progress
+    expect(isWrapUp(vegasRace, Date.parse("2026-11-22T06:45:00Z"))).toBe(true);  // chequered flag, window still open
+    expect(isWrapUp(vegasRace, Date.parse("2026-11-22T09:30:00Z"))).toBe(false); // phase is done
   });
 });
