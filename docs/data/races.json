@@ -1,0 +1,2360 @@
+[
+ {
+  "id": "f1-2026-1",
+  "series": "f1",
+  "season": 2026,
+  "round": 1,
+  "name": "Australian Grand Prix",
+  "short": "Australia",
+  "circuit": "Albert Park Circuit",
+  "trackKey": "Albert Park Circuit",
+  "city": "Melbourne",
+  "country": "Australia",
+  "tz": "Australia/Melbourne",
+  "start": "2026-03-06",
+  "raceDate": "2026-03-08",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 5.278,
+   "turns": 14,
+   "laps": 58
+  },
+  "result": {
+   "winner": "George Russell",
+   "team": "Mercedes",
+   "podium": [
+    "George Russell",
+    "Kimi Antonelli",
+    "Charles Leclerc"
+   ]
+  }
+ },
+ {
+  "id": "f1-2026-2",
+  "series": "f1",
+  "season": 2026,
+  "round": 2,
+  "name": "Chinese Grand Prix",
+  "short": "China",
+  "circuit": "Shanghai International Circuit",
+  "trackKey": "Shanghai International Circuit",
+  "city": "Shanghai",
+  "country": "China",
+  "tz": "Asia/Shanghai",
+  "start": "2026-03-13",
+  "raceDate": "2026-03-15",
+  "sprint": true,
+  "specs": {
+   "lengthKm": 5.451,
+   "turns": 16,
+   "laps": 56
+  },
+  "result": {
+   "winner": "Kimi Antonelli",
+   "team": "Mercedes",
+   "podium": [
+    "Kimi Antonelli",
+    "George Russell",
+    "Lewis Hamilton"
+   ],
+   "sprintWinner": "George Russell"
+  }
+ },
+ {
+  "id": "f1-2026-3",
+  "series": "f1",
+  "season": 2026,
+  "round": 3,
+  "name": "Japanese Grand Prix",
+  "short": "Japan",
+  "circuit": "Suzuka International Racing Course",
+  "trackKey": "Suzuka International Racing Course",
+  "city": "Suzuka",
+  "country": "Japan",
+  "tz": "Asia/Tokyo",
+  "start": "2026-03-27",
+  "raceDate": "2026-03-29",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 5.807,
+   "turns": 18,
+   "laps": 53
+  },
+  "result": {
+   "winner": "Kimi Antonelli",
+   "team": "Mercedes",
+   "podium": [
+    "Kimi Antonelli",
+    "Oscar Piastri",
+    "Charles Leclerc"
+   ]
+  }
+ },
+ {
+  "id": "f1-2026-4",
+  "series": "f1",
+  "season": 2026,
+  "round": 4,
+  "name": "Miami Grand Prix",
+  "short": "Miami",
+  "circuit": "Miami International Autodrome",
+  "trackKey": "Miami International Autodrome",
+  "city": "Miami",
+  "country": "USA",
+  "tz": "America/New_York",
+  "start": "2026-05-01",
+  "raceDate": "2026-05-03",
+  "sprint": true,
+  "specs": {
+   "lengthKm": 5.412,
+   "turns": 19,
+   "laps": 57
+  },
+  "result": {
+   "winner": "Kimi Antonelli",
+   "team": "Mercedes",
+   "podium": [
+    "Kimi Antonelli",
+    "Lando Norris",
+    "Oscar Piastri"
+   ],
+   "sprintWinner": "Lando Norris"
+  }
+ },
+ {
+  "id": "f1-2026-5",
+  "series": "f1",
+  "season": 2026,
+  "round": 5,
+  "name": "Canadian Grand Prix",
+  "short": "Canada",
+  "circuit": "Circuit Gilles Villeneuve",
+  "trackKey": "Circuit Gilles Villeneuve",
+  "city": "Montreal",
+  "country": "Canada",
+  "tz": "America/Toronto",
+  "start": "2026-05-22",
+  "raceDate": "2026-05-24",
+  "sprint": true,
+  "specs": {
+   "lengthKm": 4.361,
+   "turns": 14,
+   "laps": 70
+  },
+  "result": {
+   "winner": "Kimi Antonelli",
+   "team": "Mercedes",
+   "podium": [
+    "Kimi Antonelli",
+    "Lewis Hamilton",
+    "Max Verstappen"
+   ],
+   "sprintWinner": "George Russell"
+  }
+ },
+ {
+  "id": "f1-2026-6",
+  "series": "f1",
+  "season": 2026,
+  "round": 6,
+  "name": "Monaco Grand Prix",
+  "short": "Monaco",
+  "circuit": "Circuit de Monaco",
+  "trackKey": "Circuit de Monaco",
+  "city": "Monte Carlo",
+  "country": "Monaco",
+  "tz": "Europe/Monaco",
+  "start": "2026-06-05",
+  "raceDate": "2026-06-07",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 3.337,
+   "turns": 19,
+   "laps": 78
+  },
+  "result": {
+   "winner": "Kimi Antonelli",
+   "team": "Mercedes",
+   "podium": [
+    "Kimi Antonelli",
+    "Lewis Hamilton",
+    "Isack Hadjar"
+   ],
+   "note": "Pierre Gasly (Alpine-Mercedes) originally finished 3rd on track but was hit with two 5s pit-lane speeding penalties; after appeals (first overturned, then reinstated), Isack Hadjar was classified P3."
+  }
+ },
+ {
+  "id": "f1-2026-7",
+  "series": "f1",
+  "season": 2026,
+  "round": 7,
+  "name": "Barcelona-Catalunya Grand Prix",
+  "short": "Barcelona-Catalunya",
+  "circuit": "Circuit de Barcelona-Catalunya",
+  "trackKey": "Circuit de Barcelona-Catalunya",
+  "city": "Barcelona",
+  "country": "Spain",
+  "tz": "Europe/Madrid",
+  "start": "2026-06-12",
+  "raceDate": "2026-06-14",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 4.657,
+   "turns": 14,
+   "laps": null
+  },
+  "result": {
+   "winner": "Lewis Hamilton",
+   "team": "Ferrari",
+   "podium": [
+    "Lewis Hamilton",
+    "George Russell",
+    "Lando Norris"
+   ]
+  }
+ },
+ {
+  "id": "f1-2026-8",
+  "series": "f1",
+  "season": 2026,
+  "round": 8,
+  "name": "Austrian Grand Prix",
+  "short": "Austria",
+  "circuit": "Red Bull Ring",
+  "trackKey": "Red Bull Ring",
+  "city": "Spielberg",
+  "country": "Austria",
+  "tz": "Europe/Vienna",
+  "start": "2026-06-26",
+  "raceDate": "2026-06-28",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 4.318,
+   "turns": 10,
+   "laps": 71
+  },
+  "result": {
+   "winner": "George Russell",
+   "team": "Mercedes",
+   "podium": [
+    "George Russell",
+    "Max Verstappen",
+    "Kimi Antonelli"
+   ]
+  }
+ },
+ {
+  "id": "f1-2026-9",
+  "series": "f1",
+  "season": 2026,
+  "round": 9,
+  "name": "British Grand Prix",
+  "short": "Great Britain",
+  "circuit": "Silverstone Circuit",
+  "trackKey": "Silverstone Circuit",
+  "city": "Silverstone",
+  "country": "United Kingdom",
+  "tz": "Europe/London",
+  "start": "2026-07-03",
+  "raceDate": "2026-07-05",
+  "sprint": true,
+  "specs": {
+   "lengthKm": 5.891,
+   "turns": 18,
+   "laps": 52
+  },
+  "result": {
+   "winner": "Charles Leclerc",
+   "team": "Ferrari",
+   "podium": [
+    "Charles Leclerc",
+    "George Russell",
+    "Lewis Hamilton"
+   ],
+   "sprintWinner": "Kimi Antonelli"
+  }
+ },
+ {
+  "id": "f1-2026-10",
+  "series": "f1",
+  "season": 2026,
+  "round": 10,
+  "name": "Belgian Grand Prix",
+  "short": "Belgium",
+  "circuit": "Circuit de Spa-Francorchamps",
+  "trackKey": "Circuit de Spa-Francorchamps",
+  "city": "Spa",
+  "country": "Belgium",
+  "tz": "Europe/Brussels",
+  "start": "2026-07-17",
+  "raceDate": "2026-07-19",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 7.004,
+   "turns": 19,
+   "laps": 44
+  },
+  "result": {
+   "winner": "Kimi Antonelli",
+   "team": "Mercedes",
+   "podium": [
+    "Kimi Antonelli",
+    "Charles Leclerc",
+    "Max Verstappen"
+   ]
+  }
+ },
+ {
+  "id": "f1-2026-11",
+  "series": "f1",
+  "season": 2026,
+  "round": 11,
+  "name": "Hungarian Grand Prix",
+  "short": "Hungary",
+  "circuit": "Hungaroring",
+  "trackKey": "Hungaroring",
+  "city": "Budapest",
+  "country": "Hungary",
+  "tz": "Europe/Budapest",
+  "start": "2026-07-24",
+  "raceDate": "2026-07-26",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 4.381,
+   "turns": 14,
+   "laps": 70
+  },
+  "result": {
+   "winner": "Lando Norris",
+   "team": "McLaren-Mercedes",
+   "podium": [
+    "Lando Norris",
+    "Max Verstappen",
+    "Kimi Antonelli"
+   ]
+  }
+ },
+ {
+  "id": "f1-2026-12",
+  "series": "f1",
+  "season": 2026,
+  "round": 12,
+  "name": "Dutch Grand Prix",
+  "short": "Netherlands",
+  "circuit": "Circuit Zandvoort",
+  "trackKey": "Circuit Zandvoort",
+  "city": "Zandvoort",
+  "country": "Netherlands",
+  "tz": "Europe/Amsterdam",
+  "start": "2026-08-21",
+  "raceDate": "2026-08-23",
+  "sprint": true,
+  "specs": {
+   "lengthKm": 4.259,
+   "turns": 14,
+   "laps": 72
+  },
+  "result": {
+   "winner": "Lando Norris",
+   "team": "McLaren-Mercedes",
+   "podium": [
+    "Lando Norris",
+    "Kimi Antonelli",
+    "George Russell"
+   ],
+   "sprintWinner": "George Russell"
+  }
+ },
+ {
+  "id": "f1-2026-13",
+  "series": "f1",
+  "season": 2026,
+  "round": 13,
+  "name": "Italian Grand Prix",
+  "short": "Italy",
+  "circuit": "Autodromo Nazionale Monza",
+  "trackKey": "Autodromo Nazionale Monza",
+  "city": "Monza",
+  "country": "Italy",
+  "tz": "Europe/Rome",
+  "start": "2026-09-04",
+  "raceDate": "2026-09-06",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 5.793,
+   "turns": 11,
+   "laps": 53
+  },
+  "result": {
+   "winner": "Kimi Antonelli",
+   "team": "Mercedes",
+   "podium": [
+    "Kimi Antonelli",
+    "George Russell",
+    "Max Verstappen"
+   ]
+  }
+ },
+ {
+  "id": "f1-2026-14",
+  "series": "f1",
+  "season": 2026,
+  "round": 14,
+  "name": "Spanish Grand Prix",
+  "short": "Spain",
+  "circuit": "Circuito de Madrid (Madring)",
+  "trackKey": "Circuito de Madrid (Madring)",
+  "city": "Madrid",
+  "country": "Spain",
+  "tz": "Europe/Madrid",
+  "start": "2026-09-11",
+  "raceDate": "2026-09-13",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 5.414,
+   "turns": 22,
+   "laps": 57
+  },
+  "result": {
+   "winner": "Kimi Antonelli",
+   "team": "Mercedes",
+   "podium": [
+    "Kimi Antonelli",
+    "Max Verstappen",
+    "Lando Norris"
+   ],
+   "note": "First Spanish GP held at the new Madrid street circuit (Madring); separate from round 7's Barcelona-Catalunya race."
+  }
+ },
+ {
+  "id": "f1-2026-15",
+  "series": "f1",
+  "season": 2026,
+  "round": 15,
+  "name": "Azerbaijan Grand Prix",
+  "short": "Azerbaijan",
+  "circuit": "Baku City Circuit",
+  "trackKey": "Baku City Circuit",
+  "city": "Baku",
+  "country": "Azerbaijan",
+  "tz": "Asia/Baku",
+  "start": "2026-09-24",
+  "raceDate": "2026-09-26",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 6.003,
+   "turns": 20,
+   "laps": 51
+  },
+  "result": {
+   "winner": "George Russell",
+   "team": "Mercedes",
+   "podium": [
+    "George Russell",
+    "Max Verstappen",
+    "Isack Hadjar"
+   ]
+  }
+ },
+ {
+  "id": "f1-2026-16",
+  "series": "f1",
+  "season": 2026,
+  "round": 16,
+  "name": "Bahrain Grand Prix in Malaysia",
+  "short": "Bahrain",
+  "circuit": "Petronas Sepang International Circuit",
+  "trackKey": "Petronas Sepang International Circuit",
+  "city": "Sepang",
+  "country": "Malaysia",
+  "tz": "Asia/Kuala_Lumpur",
+  "start": "2026-10-02",
+  "raceDate": "2026-10-04",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 5.543,
+   "turns": 15,
+   "laps": null
+  },
+  "result": {
+   "winner": "Max Verstappen",
+   "team": "Red Bull Racing-Red Bull Ford",
+   "podium": [
+    "Max Verstappen",
+    "Kimi Antonelli",
+    "Lewis Hamilton"
+   ],
+   "note": "Originally the Bahrain GP; relocated to Sepang International Circuit in Malaysia but kept the Bahrain GP name/branding."
+  }
+ },
+ {
+  "id": "f1-2026-17",
+  "series": "f1",
+  "season": 2026,
+  "round": 17,
+  "name": "Singapore Grand Prix",
+  "short": "Singapore",
+  "circuit": "Marina Bay Street Circuit",
+  "trackKey": "Marina Bay Street Circuit",
+  "city": "Singapore",
+  "country": "Singapore",
+  "tz": "Asia/Singapore",
+  "start": "2026-10-09",
+  "raceDate": "2026-10-11",
+  "sprint": true,
+  "specs": {
+   "lengthKm": 4.927,
+   "turns": 19,
+   "laps": 62
+  },
+  "result": {
+   "winner": "Max Verstappen",
+   "team": "Red Bull Racing-Red Bull Ford",
+   "podium": [
+    "Max Verstappen",
+    "Charles Leclerc",
+    "Kimi Antonelli"
+   ],
+   "sprintWinner": "Max Verstappen"
+  }
+ },
+ {
+  "id": "f1-2026-18",
+  "series": "f1",
+  "season": 2026,
+  "round": 18,
+  "name": "United States Grand Prix",
+  "short": "United States",
+  "circuit": "Circuit of the Americas",
+  "trackKey": "Circuit of the Americas",
+  "city": "Austin",
+  "country": "USA",
+  "tz": "America/Chicago",
+  "start": "2026-10-23",
+  "raceDate": "2026-10-25",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 5.513,
+   "turns": 20,
+   "laps": 56
+  },
+  "result": {
+   "winner": "Kimi Antonelli",
+   "team": "Mercedes",
+   "podium": [
+    "Kimi Antonelli",
+    "Charles Leclerc",
+    "Max Verstappen"
+   ]
+  }
+ },
+ {
+  "id": "f1-2026-19",
+  "series": "f1",
+  "season": 2026,
+  "round": 19,
+  "name": "Mexico City Grand Prix",
+  "short": "Mexico City",
+  "circuit": "Autódromo Hermanos Rodríguez",
+  "trackKey": "Autódromo Hermanos Rodríguez",
+  "city": "Mexico City",
+  "country": "Mexico",
+  "tz": "America/Mexico_City",
+  "start": "2026-10-30",
+  "raceDate": "2026-11-01",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 4.304,
+   "turns": 17,
+   "laps": 71
+  },
+  "result": {
+   "winner": "Max Verstappen",
+   "team": "Red Bull Racing-Red Bull Ford",
+   "podium": [
+    "Max Verstappen",
+    "Lewis Hamilton",
+    "Kimi Antonelli"
+   ],
+   "note": "Kimi Antonelli clinched the 2026 F1 Drivers' Championship at this race (title secured via points, not a race win). This is where Kimi Antonelli clinched the 2026 Drivers' Championship."
+  }
+ },
+ {
+  "id": "f1-2026-20",
+  "series": "f1",
+  "season": 2026,
+  "round": 20,
+  "name": "São Paulo Grand Prix",
+  "short": "São Paulo",
+  "circuit": "Autódromo José Carlos Pace (Interlagos)",
+  "trackKey": "Autódromo José Carlos Pace (Interlagos)",
+  "city": "São Paulo",
+  "country": "Brazil",
+  "tz": "America/Sao_Paulo",
+  "start": "2026-11-06",
+  "raceDate": "2026-11-08",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 4.309,
+   "turns": 15,
+   "laps": 71
+  },
+  "result": {
+   "winner": "Lando Norris",
+   "team": "McLaren-Mercedes",
+   "podium": [
+    "Lando Norris",
+    "Max Verstappen",
+    "Isack Hadjar"
+   ],
+   "note": "Mercedes clinched the 2026 Constructors' Championship at this race."
+  }
+ },
+ {
+  "id": "f1-2026-21",
+  "series": "f1",
+  "season": 2026,
+  "round": 21,
+  "name": "Las Vegas Grand Prix",
+  "short": "Las Vegas",
+  "circuit": "Las Vegas Strip Circuit",
+  "trackKey": "Las Vegas Strip Circuit",
+  "city": "Las Vegas",
+  "country": "USA",
+  "tz": "America/Los_Angeles",
+  "start": "2026-11-19",
+  "raceDate": "2026-11-21",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 6.201,
+   "turns": 17,
+   "laps": 50
+  },
+  "sessions": [
+   {
+    "name": "Practice 1",
+    "utc": "2026-11-20T00:30:00Z"
+   },
+   {
+    "name": "Practice 2",
+    "utc": "2026-11-20T04:00:00Z"
+   },
+   {
+    "name": "Practice 3",
+    "utc": "2026-11-21T00:30:00Z"
+   },
+   {
+    "name": "Qualifying",
+    "utc": "2026-11-21T04:00:00Z"
+   },
+   {
+    "name": "Race",
+    "utc": "2026-11-22T04:00:00Z"
+   }
+  ]
+ },
+ {
+  "id": "f1-2026-22",
+  "series": "f1",
+  "season": 2026,
+  "round": 22,
+  "name": "Qatar Grand Prix",
+  "short": "Qatar",
+  "circuit": "Lusail International Circuit",
+  "trackKey": "Lusail International Circuit",
+  "city": "Lusail",
+  "country": "Qatar",
+  "tz": "Asia/Qatar",
+  "start": "2026-11-27",
+  "raceDate": "2026-11-29",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 5.419,
+   "turns": 16,
+   "laps": 57
+  },
+  "sessions": [
+   {
+    "name": "Practice 1",
+    "utc": "2026-11-27T13:30:00Z"
+   },
+   {
+    "name": "Practice 2",
+    "utc": "2026-11-27T17:00:00Z"
+   },
+   {
+    "name": "Practice 3",
+    "utc": "2026-11-28T14:30:00Z"
+   },
+   {
+    "name": "Qualifying",
+    "utc": "2026-11-28T18:00:00Z"
+   },
+   {
+    "name": "Race",
+    "utc": "2026-11-29T16:00:00Z"
+   }
+  ]
+ },
+ {
+  "id": "f1-2026-23",
+  "series": "f1",
+  "season": 2026,
+  "round": 23,
+  "name": "Abu Dhabi Grand Prix",
+  "short": "Abu Dhabi",
+  "circuit": "Yas Marina Circuit",
+  "trackKey": "Yas Marina Circuit",
+  "city": "Abu Dhabi",
+  "country": "UAE",
+  "tz": "Asia/Dubai",
+  "start": "2026-12-04",
+  "raceDate": "2026-12-06",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 5.281,
+   "turns": 16,
+   "laps": 58
+  }
+ },
+ {
+  "id": "f1-2027-1",
+  "series": "f1",
+  "season": 2027,
+  "round": 1,
+  "name": "Bahrain Grand Prix",
+  "short": "Bahrain",
+  "circuit": "Bahrain International Circuit",
+  "trackKey": "Bahrain International Circuit",
+  "city": "Sakhir",
+  "country": "Bahrain",
+  "tz": "Asia/Bahrain",
+  "start": "2027-03-12",
+  "raceDate": "2027-03-14",
+  "sprint": true,
+  "specs": {
+   "lengthKm": 5.412,
+   "turns": 15,
+   "laps": 57
+  }
+ },
+ {
+  "id": "f1-2027-2",
+  "series": "f1",
+  "season": 2027,
+  "round": 2,
+  "name": "Saudi Arabian Grand Prix",
+  "short": "Saudi Arabia",
+  "circuit": "Jeddah Corniche Circuit",
+  "trackKey": "Jeddah Corniche Circuit",
+  "city": "Jeddah",
+  "country": "Saudi Arabia",
+  "tz": "Asia/Riyadh",
+  "start": "2027-03-19",
+  "raceDate": "2027-03-21",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 6.174,
+   "turns": 27,
+   "laps": 50
+  }
+ },
+ {
+  "id": "f1-2027-3",
+  "series": "f1",
+  "season": 2027,
+  "round": 3,
+  "name": "Australian Grand Prix",
+  "short": "Australia",
+  "circuit": "Albert Park Circuit",
+  "trackKey": "Albert Park Circuit",
+  "city": "Melbourne",
+  "country": "Australia",
+  "tz": "Australia/Melbourne",
+  "start": "2027-04-02",
+  "raceDate": "2027-04-04",
+  "sprint": true,
+  "specs": {
+   "lengthKm": 5.278,
+   "turns": 14,
+   "laps": 58
+  }
+ },
+ {
+  "id": "f1-2027-4",
+  "series": "f1",
+  "season": 2027,
+  "round": 4,
+  "name": "Japanese Grand Prix",
+  "short": "Japan",
+  "circuit": "Suzuka International Racing Course",
+  "trackKey": "Suzuka International Racing Course",
+  "city": "Suzuka",
+  "country": "Japan",
+  "tz": "Asia/Tokyo",
+  "start": "2027-04-09",
+  "raceDate": "2027-04-11",
+  "sprint": true,
+  "specs": {
+   "lengthKm": 5.807,
+   "turns": 18,
+   "laps": 53
+  }
+ },
+ {
+  "id": "f1-2027-5",
+  "series": "f1",
+  "season": 2027,
+  "round": 5,
+  "name": "Chinese Grand Prix",
+  "short": "China",
+  "circuit": "Shanghai International Circuit",
+  "trackKey": "Shanghai International Circuit",
+  "city": "Shanghai",
+  "country": "China",
+  "tz": "Asia/Shanghai",
+  "start": "2027-04-16",
+  "raceDate": "2027-04-18",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 5.451,
+   "turns": 16,
+   "laps": 56
+  }
+ },
+ {
+  "id": "f1-2027-6",
+  "series": "f1",
+  "season": 2027,
+  "round": 6,
+  "name": "Miami Grand Prix",
+  "short": "Miami",
+  "circuit": "Miami International Autodrome",
+  "trackKey": "Miami International Autodrome",
+  "city": "Miami",
+  "country": "USA",
+  "tz": "America/New_York",
+  "start": "2027-04-30",
+  "raceDate": "2027-05-02",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 5.412,
+   "turns": 19,
+   "laps": 57
+  }
+ },
+ {
+  "id": "f1-2027-7",
+  "series": "f1",
+  "season": 2027,
+  "round": 7,
+  "name": "Canadian Grand Prix",
+  "short": "Canada",
+  "circuit": "Circuit Gilles Villeneuve",
+  "trackKey": "Circuit Gilles Villeneuve",
+  "city": "Montreal",
+  "country": "Canada",
+  "tz": "America/Toronto",
+  "start": "2027-05-21",
+  "raceDate": "2027-05-23",
+  "sprint": true,
+  "specs": {
+   "lengthKm": 4.361,
+   "turns": 14,
+   "laps": 70
+  }
+ },
+ {
+  "id": "f1-2027-8",
+  "series": "f1",
+  "season": 2027,
+  "round": 8,
+  "name": "Monaco Grand Prix",
+  "short": "Monaco",
+  "circuit": "Circuit de Monaco",
+  "trackKey": "Circuit de Monaco",
+  "city": "Monte Carlo",
+  "country": "Monaco",
+  "tz": "Europe/Monaco",
+  "start": "2027-06-04",
+  "raceDate": "2027-06-06",
+  "sprint": true,
+  "specs": {
+   "lengthKm": 3.337,
+   "turns": 19,
+   "laps": 78
+  }
+ },
+ {
+  "id": "f1-2027-9",
+  "series": "f1",
+  "season": 2027,
+  "round": 9,
+  "name": "Portuguese Grand Prix",
+  "short": "Portugal",
+  "circuit": "Algarve International Circuit",
+  "trackKey": "Algarve International Circuit",
+  "city": "Portimão",
+  "country": "Portugal",
+  "tz": "Europe/Lisbon",
+  "start": "2027-06-18",
+  "raceDate": "2027-06-20",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 4.653,
+   "turns": 15,
+   "laps": 66
+  }
+ },
+ {
+  "id": "f1-2027-10",
+  "series": "f1",
+  "season": 2027,
+  "round": 10,
+  "name": "British Grand Prix",
+  "short": "Great Britain",
+  "circuit": "Silverstone Circuit",
+  "trackKey": "Silverstone Circuit",
+  "city": "Silverstone",
+  "country": "United Kingdom",
+  "tz": "Europe/London",
+  "start": "2027-07-02",
+  "raceDate": "2027-07-04",
+  "sprint": true,
+  "specs": {
+   "lengthKm": 5.891,
+   "turns": 18,
+   "laps": 52
+  }
+ },
+ {
+  "id": "f1-2027-11",
+  "series": "f1",
+  "season": 2027,
+  "round": 11,
+  "name": "Austrian Grand Prix",
+  "short": "Austria",
+  "circuit": "Red Bull Ring",
+  "trackKey": "Red Bull Ring",
+  "city": "Spielberg",
+  "country": "Austria",
+  "tz": "Europe/Vienna",
+  "start": "2027-07-09",
+  "raceDate": "2027-07-11",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 4.318,
+   "turns": 10,
+   "laps": 71
+  }
+ },
+ {
+  "id": "f1-2027-12",
+  "series": "f1",
+  "season": 2027,
+  "round": 12,
+  "name": "Belgian Grand Prix",
+  "short": "Belgium",
+  "circuit": "Circuit de Spa-Francorchamps",
+  "trackKey": "Circuit de Spa-Francorchamps",
+  "city": "Spa",
+  "country": "Belgium",
+  "tz": "Europe/Brussels",
+  "start": "2027-07-23",
+  "raceDate": "2027-07-25",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 7.004,
+   "turns": 19,
+   "laps": 44
+  }
+ },
+ {
+  "id": "f1-2027-13",
+  "series": "f1",
+  "season": 2027,
+  "round": 13,
+  "name": "Hungarian Grand Prix",
+  "short": "Hungary",
+  "circuit": "Hungaroring",
+  "trackKey": "Hungaroring",
+  "city": "Budapest",
+  "country": "Hungary",
+  "tz": "Europe/Budapest",
+  "start": "2027-07-30",
+  "raceDate": "2027-08-01",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 4.381,
+   "turns": 14,
+   "laps": 70
+  }
+ },
+ {
+  "id": "f1-2027-14",
+  "series": "f1",
+  "season": 2027,
+  "round": 14,
+  "name": "Italian Grand Prix",
+  "short": "Italy",
+  "circuit": "Autodromo Nazionale Monza",
+  "trackKey": "Autodromo Nazionale Monza",
+  "city": "Monza",
+  "country": "Italy",
+  "tz": "Europe/Rome",
+  "start": "2027-09-03",
+  "raceDate": "2027-09-05",
+  "sprint": true,
+  "specs": {
+   "lengthKm": 5.793,
+   "turns": 11,
+   "laps": 53
+  }
+ },
+ {
+  "id": "f1-2027-15",
+  "series": "f1",
+  "season": 2027,
+  "round": 15,
+  "name": "Spanish Grand Prix",
+  "short": "Spain",
+  "circuit": "Circuito de Madrid (Madring)",
+  "trackKey": "Circuito de Madrid (Madring)",
+  "city": "Madrid",
+  "country": "Spain",
+  "tz": "Europe/Madrid",
+  "start": "2027-09-10",
+  "raceDate": "2027-09-12",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 5.414,
+   "turns": 22,
+   "laps": 57
+  }
+ },
+ {
+  "id": "f1-2027-16",
+  "series": "f1",
+  "season": 2027,
+  "round": 16,
+  "name": "Azerbaijan Grand Prix",
+  "short": "Azerbaijan",
+  "circuit": "Baku City Circuit",
+  "trackKey": "Baku City Circuit",
+  "city": "Baku",
+  "country": "Azerbaijan",
+  "tz": "Asia/Baku",
+  "start": "2027-09-24",
+  "raceDate": "2027-09-26",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 6.003,
+   "turns": 20,
+   "laps": 51
+  }
+ },
+ {
+  "id": "f1-2027-17",
+  "series": "f1",
+  "season": 2027,
+  "round": 17,
+  "name": "Turkish Grand Prix",
+  "short": "Türkiye",
+  "circuit": "Istanbul Park",
+  "trackKey": "Istanbul Park",
+  "city": "Istanbul",
+  "country": "Türkiye",
+  "tz": "Europe/Istanbul",
+  "start": "2027-10-01",
+  "raceDate": "2027-10-03",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 5.338,
+   "turns": 14,
+   "laps": 58
+  },
+  "provisional": true
+ },
+ {
+  "id": "f1-2027-18",
+  "series": "f1",
+  "season": 2027,
+  "round": 18,
+  "name": "Singapore Grand Prix",
+  "short": "Singapore",
+  "circuit": "Marina Bay Street Circuit",
+  "trackKey": "Marina Bay Street Circuit",
+  "city": "Singapore",
+  "country": "Singapore",
+  "tz": "Asia/Singapore",
+  "start": "2027-10-08",
+  "raceDate": "2027-10-10",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 4.927,
+   "turns": 19,
+   "laps": 62
+  }
+ },
+ {
+  "id": "f1-2027-19",
+  "series": "f1",
+  "season": 2027,
+  "round": 19,
+  "name": "United States Grand Prix",
+  "short": "United States",
+  "circuit": "Circuit of the Americas",
+  "trackKey": "Circuit of the Americas",
+  "city": "Austin",
+  "country": "USA",
+  "tz": "America/Chicago",
+  "start": "2027-10-22",
+  "raceDate": "2027-10-24",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 5.513,
+   "turns": 20,
+   "laps": 56
+  }
+ },
+ {
+  "id": "f1-2027-20",
+  "series": "f1",
+  "season": 2027,
+  "round": 20,
+  "name": "Mexico City Grand Prix",
+  "short": "Mexico City",
+  "circuit": "Autódromo Hermanos Rodríguez",
+  "trackKey": "Autódromo Hermanos Rodríguez",
+  "city": "Mexico City",
+  "country": "Mexico",
+  "tz": "America/Mexico_City",
+  "start": "2027-10-29",
+  "raceDate": "2027-10-31",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 4.304,
+   "turns": 17,
+   "laps": 71
+  }
+ },
+ {
+  "id": "f1-2027-21",
+  "series": "f1",
+  "season": 2027,
+  "round": 21,
+  "name": "Brazilian Grand Prix",
+  "short": "Brazil",
+  "circuit": "Autódromo José Carlos Pace (Interlagos)",
+  "trackKey": "Autódromo José Carlos Pace (Interlagos)",
+  "city": "São Paulo",
+  "country": "Brazil",
+  "tz": "America/Sao_Paulo",
+  "start": "2027-11-05",
+  "raceDate": "2027-11-07",
+  "sprint": true,
+  "specs": {
+   "lengthKm": 4.309,
+   "turns": 15,
+   "laps": 71
+  }
+ },
+ {
+  "id": "f1-2027-22",
+  "series": "f1",
+  "season": 2027,
+  "round": 22,
+  "name": "Las Vegas Grand Prix",
+  "short": "Las Vegas",
+  "circuit": "Las Vegas Strip Circuit",
+  "trackKey": "Las Vegas Strip Circuit",
+  "city": "Las Vegas",
+  "country": "USA",
+  "tz": "America/Los_Angeles",
+  "start": "2027-11-18",
+  "raceDate": "2027-11-20",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 6.201,
+   "turns": 17,
+   "laps": 50
+  }
+ },
+ {
+  "id": "f1-2027-23",
+  "series": "f1",
+  "season": 2027,
+  "round": 23,
+  "name": "Qatar Grand Prix",
+  "short": "Qatar",
+  "circuit": "Lusail International Circuit",
+  "trackKey": "Lusail International Circuit",
+  "city": "Lusail",
+  "country": "Qatar",
+  "tz": "Asia/Qatar",
+  "start": "2027-12-03",
+  "raceDate": "2027-12-05",
+  "sprint": true,
+  "specs": {
+   "lengthKm": 5.419,
+   "turns": 16,
+   "laps": 57
+  }
+ },
+ {
+  "id": "f1-2027-24",
+  "series": "f1",
+  "season": 2027,
+  "round": 24,
+  "name": "Abu Dhabi Grand Prix",
+  "short": "Abu Dhabi",
+  "circuit": "Yas Marina Circuit",
+  "trackKey": "Yas Marina Circuit",
+  "city": "Abu Dhabi",
+  "country": "UAE",
+  "tz": "Asia/Dubai",
+  "start": "2027-12-10",
+  "raceDate": "2027-12-12",
+  "sprint": true,
+  "specs": {
+   "lengthKm": 5.281,
+   "turns": 16,
+   "laps": 58
+  }
+ },
+ {
+  "id": "motogp-2026-1",
+  "series": "motogp",
+  "season": 2026,
+  "round": 1,
+  "name": "Thailand Grand Prix",
+  "short": "Thailand",
+  "circuit": "Chang International Circuit",
+  "trackKey": null,
+  "city": "Buriram",
+  "country": "Thailand",
+  "tz": "Asia/Bangkok",
+  "start": "2026-02-27",
+  "raceDate": "2026-03-01",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 4.554,
+   "turns": 12,
+   "laps": 26
+  },
+  "result": {
+   "winner": "Marco Bezzecchi",
+   "team": "Aprilia",
+   "podium": [
+    "Marco Bezzecchi",
+    "Pedro Acosta",
+    "Raul Fernandez"
+   ]
+  }
+ },
+ {
+  "id": "motogp-2026-2",
+  "series": "motogp",
+  "season": 2026,
+  "round": 2,
+  "name": "Brazil Grand Prix",
+  "short": "Brazil",
+  "circuit": "Autódromo Internacional Ayrton Senna",
+  "trackKey": null,
+  "city": "Goiânia",
+  "country": "Brazil",
+  "tz": "America/Sao_Paulo",
+  "start": "2026-03-20",
+  "raceDate": "2026-03-22",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 3.835,
+   "turns": 14,
+   "laps": 23
+  },
+  "result": {
+   "winner": "Marco Bezzecchi",
+   "team": "Aprilia",
+   "podium": [
+    "Marco Bezzecchi",
+    "Jorge Martin",
+    "Fabio Di Giannantonio"
+   ]
+  }
+ },
+ {
+  "id": "motogp-2026-3",
+  "series": "motogp",
+  "season": 2026,
+  "round": 3,
+  "name": "United States Grand Prix",
+  "short": "United States",
+  "circuit": "Circuit of the Americas",
+  "trackKey": "Circuit of the Americas",
+  "city": "Austin",
+  "country": "USA",
+  "tz": "America/Chicago",
+  "start": "2026-03-27",
+  "raceDate": "2026-03-29",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 5.513,
+   "turns": 20,
+   "laps": 19
+  },
+  "result": {
+   "winner": "Marco Bezzecchi",
+   "team": "Aprilia",
+   "podium": [
+    "Marco Bezzecchi",
+    "Jorge Martin",
+    "Pedro Acosta"
+   ]
+  }
+ },
+ {
+  "id": "motogp-2026-4",
+  "series": "motogp",
+  "season": 2026,
+  "round": 4,
+  "name": "Spain Grand Prix",
+  "short": "Spain",
+  "circuit": "Circuito de Jerez-Ángel Nieto",
+  "trackKey": null,
+  "city": "Jerez",
+  "country": "Spain",
+  "tz": "Europe/Madrid",
+  "start": "2026-04-24",
+  "raceDate": "2026-04-26",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 4.423,
+   "turns": 13,
+   "laps": 25
+  },
+  "result": {
+   "winner": "Alex Marquez",
+   "team": "Ducati",
+   "podium": [
+    "Alex Marquez",
+    "Marco Bezzecchi",
+    "Fabio Di Giannantonio"
+   ]
+  }
+ },
+ {
+  "id": "motogp-2026-5",
+  "series": "motogp",
+  "season": 2026,
+  "round": 5,
+  "name": "France Grand Prix",
+  "short": "France",
+  "circuit": "Le Mans (Circuit Bugatti)",
+  "trackKey": null,
+  "city": "Le Mans",
+  "country": "France",
+  "tz": "Europe/Paris",
+  "start": "2026-05-08",
+  "raceDate": "2026-05-10",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 4.185,
+   "turns": 14,
+   "laps": 27
+  },
+  "result": {
+   "winner": "Jorge Martin",
+   "team": "Aprilia",
+   "podium": [
+    "Jorge Martin",
+    "Marco Bezzecchi",
+    "Ai Ogura"
+   ]
+  }
+ },
+ {
+  "id": "motogp-2026-6",
+  "series": "motogp",
+  "season": 2026,
+  "round": 6,
+  "name": "Catalonia Grand Prix",
+  "short": "Catalonia",
+  "circuit": "Circuit de Barcelona-Catalunya",
+  "trackKey": "Circuit de Barcelona-Catalunya",
+  "city": "Barcelona",
+  "country": "Spain",
+  "tz": "Europe/Madrid",
+  "start": "2026-05-15",
+  "raceDate": "2026-05-17",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 4.657,
+   "turns": 14,
+   "laps": 24
+  },
+  "result": {
+   "winner": "Fabio Di Giannantonio",
+   "team": "Ducati",
+   "podium": [
+    "Fabio Di Giannantonio",
+    "Fermin Aldeguer",
+    "Francesco Bagnaia"
+   ],
+   "note": "Joan Mir originally crossed the line 2nd but was demoted to 13th after a post-race tyre-pressure penalty."
+  }
+ },
+ {
+  "id": "motogp-2026-7",
+  "series": "motogp",
+  "season": 2026,
+  "round": 7,
+  "name": "Italy Grand Prix",
+  "short": "Italy",
+  "circuit": "Autodromo Internazionale del Mugello",
+  "trackKey": "Autodromo Internazionale del Mugello",
+  "city": "Mugello",
+  "country": "Italy",
+  "tz": "Europe/Rome",
+  "start": "2026-05-29",
+  "raceDate": "2026-05-31",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 5.245,
+   "turns": 15,
+   "laps": 23
+  },
+  "result": {
+   "winner": "Marco Bezzecchi",
+   "team": "Aprilia",
+   "podium": [
+    "Marco Bezzecchi",
+    "Jorge Martin",
+    "Francesco Bagnaia"
+   ]
+  }
+ },
+ {
+  "id": "motogp-2026-8",
+  "series": "motogp",
+  "season": 2026,
+  "round": 8,
+  "name": "Hungary Grand Prix",
+  "short": "Hungary",
+  "circuit": "Balaton Park Circuit",
+  "trackKey": null,
+  "city": "Balatonfőkajár",
+  "country": "Hungary",
+  "tz": "Europe/Budapest",
+  "start": "2026-06-05",
+  "raceDate": "2026-06-07",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 4.075,
+   "turns": 17,
+   "laps": null
+  },
+  "result": {
+   "winner": "Marc Marquez",
+   "team": "Ducati",
+   "podium": [
+    "Marc Marquez",
+    "Pedro Acosta",
+    "Francesco Bagnaia"
+   ],
+   "note": "Marquez's 100th premier-class/MotoGP win."
+  }
+ },
+ {
+  "id": "motogp-2026-9",
+  "series": "motogp",
+  "season": 2026,
+  "round": 9,
+  "name": "Czechia Grand Prix",
+  "short": "Czechia",
+  "circuit": "CREDITAS Autodrom Brno",
+  "trackKey": null,
+  "city": "Brno",
+  "country": "Czechia",
+  "tz": "Europe/Prague",
+  "start": "2026-06-19",
+  "raceDate": "2026-06-21",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 5.403,
+   "turns": 14,
+   "laps": 21
+  },
+  "result": {
+   "winner": "Marc Marquez",
+   "team": "Ducati",
+   "podium": [
+    "Marc Marquez",
+    "Ai Ogura",
+    "Francesco Bagnaia"
+   ]
+  }
+ },
+ {
+  "id": "motogp-2026-10",
+  "series": "motogp",
+  "season": 2026,
+  "round": 10,
+  "name": "Netherlands Grand Prix",
+  "short": "Netherlands",
+  "circuit": "TT Circuit Assen",
+  "trackKey": null,
+  "city": "Assen",
+  "country": "Netherlands",
+  "tz": "Europe/Amsterdam",
+  "start": "2026-06-26",
+  "raceDate": "2026-06-28",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 4.542,
+   "turns": 18,
+   "laps": 26
+  },
+  "result": {
+   "winner": "Ai Ogura",
+   "team": "Aprilia",
+   "podium": [
+    "Ai Ogura",
+    "Raul Fernandez",
+    "Jorge Martin"
+   ],
+   "note": "Ogura's maiden MotoGP victory; all-Aprilia podium."
+  }
+ },
+ {
+  "id": "motogp-2026-11",
+  "series": "motogp",
+  "season": 2026,
+  "round": 11,
+  "name": "Germany Grand Prix",
+  "short": "Germany",
+  "circuit": "Sachsenring",
+  "trackKey": null,
+  "city": "Hohenstein-Ernstthal",
+  "country": "Germany",
+  "tz": "Europe/Berlin",
+  "start": "2026-07-10",
+  "raceDate": "2026-07-12",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 3.671,
+   "turns": 13,
+   "laps": 30
+  },
+  "result": {
+   "winner": "Marc Marquez",
+   "team": "Ducati",
+   "podium": [
+    "Marc Marquez",
+    "Ai Ogura",
+    "Raul Fernandez"
+   ]
+  }
+ },
+ {
+  "id": "motogp-2026-12",
+  "series": "motogp",
+  "season": 2026,
+  "round": 12,
+  "name": "Great Britain Grand Prix",
+  "short": "Great Britain",
+  "circuit": "Silverstone Circuit",
+  "trackKey": "Silverstone Circuit",
+  "city": "Silverstone",
+  "country": "United Kingdom",
+  "tz": "Europe/London",
+  "start": "2026-08-07",
+  "raceDate": "2026-08-09",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 5.891,
+   "turns": 18,
+   "laps": 20
+  },
+  "result": {
+   "winner": "Raul Fernandez",
+   "team": "Aprilia",
+   "podium": [
+    "Raul Fernandez",
+    "Jorge Martin",
+    "Marco Bezzecchi"
+   ],
+   "note": "All-Aprilia podium."
+  }
+ },
+ {
+  "id": "motogp-2026-13",
+  "series": "motogp",
+  "season": 2026,
+  "round": 13,
+  "name": "Aragon Grand Prix",
+  "short": "Aragon",
+  "circuit": "MotorLand Aragón",
+  "trackKey": null,
+  "city": "Alcañiz",
+  "country": "Spain",
+  "tz": "Europe/Madrid",
+  "start": "2026-08-28",
+  "raceDate": "2026-08-30",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 5.077,
+   "turns": 17,
+   "laps": 23
+  },
+  "result": {
+   "winner": "Marc Marquez",
+   "team": "Ducati",
+   "podium": [
+    "Marc Marquez",
+    "Pedro Acosta",
+    "Marco Bezzecchi"
+   ]
+  }
+ },
+ {
+  "id": "motogp-2026-14",
+  "series": "motogp",
+  "season": 2026,
+  "round": 14,
+  "name": "San Marino Grand Prix",
+  "short": "San Marino",
+  "circuit": "Misano World Circuit Marco Simoncelli",
+  "trackKey": null,
+  "city": "Misano",
+  "country": "Italy",
+  "tz": "Europe/Rome",
+  "start": "2026-09-11",
+  "raceDate": "2026-09-13",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 4.226,
+   "turns": 16,
+   "laps": 27
+  },
+  "result": {
+   "winner": "Marc Marquez",
+   "team": "Ducati",
+   "podium": [
+    "Marc Marquez",
+    "Alex Marquez",
+    "Pedro Acosta"
+   ]
+  }
+ },
+ {
+  "id": "motogp-2026-15",
+  "series": "motogp",
+  "season": 2026,
+  "round": 15,
+  "name": "Austria Grand Prix",
+  "short": "Austria",
+  "circuit": "Red Bull Ring",
+  "trackKey": "Red Bull Ring",
+  "city": "Spielberg",
+  "country": "Austria",
+  "tz": "Europe/Vienna",
+  "start": "2026-09-18",
+  "raceDate": "2026-09-20",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 4.318,
+   "turns": 10,
+   "laps": 28
+  },
+  "result": {
+   "winner": "Pedro Acosta",
+   "team": "KTM",
+   "podium": [
+    "Pedro Acosta",
+    "Jorge Martin",
+    "Marco Bezzecchi"
+   ],
+   "note": "Acosta's maiden MotoGP victory."
+  }
+ },
+ {
+  "id": "motogp-2026-16",
+  "series": "motogp",
+  "season": 2026,
+  "round": 16,
+  "name": "Japan Grand Prix",
+  "short": "Japan",
+  "circuit": "Mobility Resort Motegi",
+  "trackKey": null,
+  "city": "Motegi",
+  "country": "Japan",
+  "tz": "Asia/Tokyo",
+  "start": "2026-10-02",
+  "raceDate": "2026-10-04",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 4.801,
+   "turns": 14,
+   "laps": 24
+  },
+  "result": {
+   "winner": "Marc Marquez",
+   "team": "Ducati",
+   "podium": [
+    "Marc Marquez",
+    "Jorge Martin",
+    "Marco Bezzecchi"
+   ]
+  }
+ },
+ {
+  "id": "motogp-2026-17",
+  "series": "motogp",
+  "season": 2026,
+  "round": 17,
+  "name": "Indonesia Grand Prix",
+  "short": "Indonesia",
+  "circuit": "Pertamina Mandalika International Circuit",
+  "trackKey": null,
+  "city": "Mandalika",
+  "country": "Indonesia",
+  "tz": "Asia/Makassar",
+  "start": "2026-10-09",
+  "raceDate": "2026-10-11",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 4.301,
+   "turns": 17,
+   "laps": 27
+  },
+  "result": {
+   "winner": "Marco Bezzecchi",
+   "team": "Aprilia",
+   "podium": [
+    "Marco Bezzecchi",
+    "Raul Fernandez",
+    "Jorge Martin"
+   ]
+  }
+ },
+ {
+  "id": "motogp-2026-18",
+  "series": "motogp",
+  "season": 2026,
+  "round": 18,
+  "name": "Australia Grand Prix",
+  "short": "Australia",
+  "circuit": "Phillip Island Grand Prix Circuit",
+  "trackKey": null,
+  "city": "Phillip Island",
+  "country": "Australia",
+  "tz": "Australia/Melbourne",
+  "start": "2026-10-23",
+  "raceDate": "2026-10-25",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 4.448,
+   "turns": 12,
+   "laps": 27
+  }
+ },
+ {
+  "id": "motogp-2026-19",
+  "series": "motogp",
+  "season": 2026,
+  "round": 19,
+  "name": "Malaysia Grand Prix",
+  "short": "Malaysia",
+  "circuit": "Petronas Sepang International Circuit",
+  "trackKey": "Petronas Sepang International Circuit",
+  "city": "Sepang",
+  "country": "Malaysia",
+  "tz": "Asia/Kuala_Lumpur",
+  "start": "2026-10-30",
+  "raceDate": "2026-11-01",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 5.543,
+   "turns": 15,
+   "laps": 20
+  },
+  "result": {
+   "winner": "Marc Marquez",
+   "team": "Ducati",
+   "podium": [
+    "Marc Marquez",
+    "Pedro Acosta",
+    "Alex Marquez"
+   ]
+  }
+ },
+ {
+  "id": "motogp-2026-20",
+  "series": "motogp",
+  "season": 2026,
+  "round": 20,
+  "name": "Qatar Grand Prix",
+  "short": "Qatar",
+  "circuit": "Lusail International Circuit",
+  "trackKey": "Lusail International Circuit",
+  "city": "Lusail",
+  "country": "Qatar",
+  "tz": "Asia/Qatar",
+  "start": "2026-11-06",
+  "raceDate": "2026-11-08",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 5.419,
+   "turns": 16,
+   "laps": 22
+  },
+  "result": {
+   "winner": "Marco Bezzecchi",
+   "team": "Aprilia",
+   "podium": [
+    "Marco Bezzecchi",
+    "Marc Marquez",
+    "Raul Fernandez"
+   ],
+   "note": "Marquez finished 2nd; his MotoGP title decision was delayed to a later round (not yet clinched as of this race)."
+  }
+ },
+ {
+  "id": "motogp-2026-21",
+  "series": "motogp",
+  "season": 2026,
+  "round": 21,
+  "name": "Portugal Grand Prix",
+  "short": "Portugal",
+  "circuit": "Autódromo Internacional do Algarve",
+  "trackKey": "Algarve International Circuit",
+  "city": "Portimão",
+  "country": "Portugal",
+  "tz": "Europe/Lisbon",
+  "start": "2026-11-20",
+  "raceDate": "2026-11-22",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 4.653,
+   "turns": 15,
+   "laps": 25
+  },
+  "sessions": [
+   {
+    "name": "Practice 1",
+    "utc": "2026-11-20T10:45:00Z"
+   },
+   {
+    "name": "Practice",
+    "utc": "2026-11-20T15:00:00Z"
+   },
+   {
+    "name": "Practice 2",
+    "utc": "2026-11-21T10:10:00Z"
+   },
+   {
+    "name": "Qualifying 1",
+    "utc": "2026-11-21T10:50:00Z"
+   },
+   {
+    "name": "Qualifying 2",
+    "utc": "2026-11-21T11:15:00Z"
+   },
+   {
+    "name": "Sprint",
+    "utc": "2026-11-21T15:00:00Z"
+   },
+   {
+    "name": "Warm Up",
+    "utc": "2026-11-22T09:00:00Z"
+   },
+   {
+    "name": "Race",
+    "utc": "2026-11-22T13:00:00Z"
+   }
+  ]
+ },
+ {
+  "id": "motogp-2026-22",
+  "series": "motogp",
+  "season": 2026,
+  "round": 22,
+  "name": "Valencia Grand Prix",
+  "short": "Valencia",
+  "circuit": "Circuit Ricardo Tormo",
+  "trackKey": null,
+  "city": "Cheste",
+  "country": "Spain",
+  "tz": "Europe/Madrid",
+  "start": "2026-11-27",
+  "raceDate": "2026-11-29",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 4.005,
+   "turns": 14,
+   "laps": 27
+  }
+ },
+ {
+  "id": "motogp-2027-1",
+  "series": "motogp",
+  "season": 2027,
+  "round": 1,
+  "name": "Thailand Grand Prix",
+  "short": "Thailand",
+  "circuit": "Chang International Circuit",
+  "trackKey": null,
+  "city": "Buriram",
+  "country": "Thailand",
+  "tz": "Asia/Bangkok",
+  "start": "2027-03-05",
+  "raceDate": "2027-03-07",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 4.554,
+   "turns": 12,
+   "laps": 26
+  }
+ },
+ {
+  "id": "motogp-2027-2",
+  "series": "motogp",
+  "season": 2027,
+  "round": 2,
+  "name": "Qatar Grand Prix",
+  "short": "Qatar",
+  "circuit": "Lusail International Circuit",
+  "trackKey": "Lusail International Circuit",
+  "city": "Lusail",
+  "country": "Qatar",
+  "tz": "Asia/Qatar",
+  "start": "2027-03-12",
+  "raceDate": "2027-03-14",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 5.419,
+   "turns": 16,
+   "laps": 22
+  }
+ },
+ {
+  "id": "motogp-2027-3",
+  "series": "motogp",
+  "season": 2027,
+  "round": 3,
+  "name": "Brazil Grand Prix",
+  "short": "Brazil",
+  "circuit": "Autódromo Internacional Ayrton Senna",
+  "trackKey": null,
+  "city": "Goiânia",
+  "country": "Brazil",
+  "tz": "America/Sao_Paulo",
+  "start": "2027-04-02",
+  "raceDate": "2027-04-04",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 3.835,
+   "turns": 14,
+   "laps": 23
+  }
+ },
+ {
+  "id": "motogp-2027-4",
+  "series": "motogp",
+  "season": 2027,
+  "round": 4,
+  "name": "Argentina Grand Prix",
+  "short": "Argentina",
+  "circuit": "Autódromo Oscar y Juan Gálvez",
+  "trackKey": null,
+  "city": "Buenos Aires",
+  "country": "Argentina",
+  "tz": "America/Argentina/Buenos_Aires",
+  "start": "2027-04-09",
+  "raceDate": "2027-04-11",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 4.3,
+   "turns": 14,
+   "laps": null
+  }
+ },
+ {
+  "id": "motogp-2027-5",
+  "series": "motogp",
+  "season": 2027,
+  "round": 5,
+  "name": "United States Grand Prix",
+  "short": "United States",
+  "circuit": "Circuit of the Americas",
+  "trackKey": "Circuit of the Americas",
+  "city": "Austin",
+  "country": "USA",
+  "tz": "America/Chicago",
+  "start": "2027-04-23",
+  "raceDate": "2027-04-25",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 5.513,
+   "turns": 20,
+   "laps": 19
+  }
+ },
+ {
+  "id": "motogp-2027-6",
+  "series": "motogp",
+  "season": 2027,
+  "round": 6,
+  "name": "Spain Grand Prix",
+  "short": "Spain",
+  "circuit": "Circuito de Jerez-Ángel Nieto",
+  "trackKey": null,
+  "city": "Jerez",
+  "country": "Spain",
+  "tz": "Europe/Madrid",
+  "start": "2027-05-07",
+  "raceDate": "2027-05-09",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 4.423,
+   "turns": 13,
+   "laps": 25
+  }
+ },
+ {
+  "id": "motogp-2027-7",
+  "series": "motogp",
+  "season": 2027,
+  "round": 7,
+  "name": "France Grand Prix",
+  "short": "France",
+  "circuit": "Le Mans",
+  "trackKey": null,
+  "city": "Le Mans",
+  "country": "France",
+  "tz": "Europe/Paris",
+  "start": "2027-05-14",
+  "raceDate": "2027-05-16",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 4.185,
+   "turns": 14,
+   "laps": 27
+  }
+ },
+ {
+  "id": "motogp-2027-8",
+  "series": "motogp",
+  "season": 2027,
+  "round": 8,
+  "name": "Italy Grand Prix",
+  "short": "Italy",
+  "circuit": "Autodromo Internazionale del Mugello",
+  "trackKey": "Autodromo Internazionale del Mugello",
+  "city": "Mugello",
+  "country": "Italy",
+  "tz": "Europe/Rome",
+  "start": "2027-05-28",
+  "raceDate": "2027-05-30",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 5.245,
+   "turns": 15,
+   "laps": 23
+  }
+ },
+ {
+  "id": "motogp-2027-9",
+  "series": "motogp",
+  "season": 2027,
+  "round": 9,
+  "name": "Catalonia Grand Prix",
+  "short": "Catalonia",
+  "circuit": "Circuit de Barcelona-Catalunya",
+  "trackKey": "Circuit de Barcelona-Catalunya",
+  "city": "Barcelona",
+  "country": "Spain",
+  "tz": "Europe/Madrid",
+  "start": "2027-06-11",
+  "raceDate": "2027-06-13",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 4.657,
+   "turns": 14,
+   "laps": 24
+  }
+ },
+ {
+  "id": "motogp-2027-10",
+  "series": "motogp",
+  "season": 2027,
+  "round": 10,
+  "name": "Netherlands Grand Prix",
+  "short": "Netherlands",
+  "circuit": "TT Circuit Assen",
+  "trackKey": null,
+  "city": "Assen",
+  "country": "Netherlands",
+  "tz": "Europe/Amsterdam",
+  "start": "2027-06-25",
+  "raceDate": "2027-06-27",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 4.542,
+   "turns": 18,
+   "laps": 26
+  }
+ },
+ {
+  "id": "motogp-2027-11",
+  "series": "motogp",
+  "season": 2027,
+  "round": 11,
+  "name": "Germany Grand Prix",
+  "short": "Germany",
+  "circuit": "Sachsenring",
+  "trackKey": null,
+  "city": "Hohenstein-Ernstthal",
+  "country": "Germany",
+  "tz": "Europe/Berlin",
+  "start": "2027-07-09",
+  "raceDate": "2027-07-11",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 3.671,
+   "turns": 13,
+   "laps": 30
+  }
+ },
+ {
+  "id": "motogp-2027-12",
+  "series": "motogp",
+  "season": 2027,
+  "round": 12,
+  "name": "Czechia Grand Prix",
+  "short": "Czechia",
+  "circuit": "CREDITAS Autodrom Brno",
+  "trackKey": null,
+  "city": "Brno",
+  "country": "Czechia",
+  "tz": "Europe/Prague",
+  "start": "2027-07-16",
+  "raceDate": "2027-07-18",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 5.403,
+   "turns": 14,
+   "laps": 21
+  }
+ },
+ {
+  "id": "motogp-2027-13",
+  "series": "motogp",
+  "season": 2027,
+  "round": 13,
+  "name": "Great Britain Grand Prix",
+  "short": "Great Britain",
+  "circuit": "Silverstone Circuit",
+  "trackKey": "Silverstone Circuit",
+  "city": "Silverstone",
+  "country": "United Kingdom",
+  "tz": "Europe/London",
+  "start": "2027-08-13",
+  "raceDate": "2027-08-15",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 5.891,
+   "turns": 18,
+   "laps": 20
+  }
+ },
+ {
+  "id": "motogp-2027-14",
+  "series": "motogp",
+  "season": 2027,
+  "round": 14,
+  "name": "Austria Grand Prix",
+  "short": "Austria",
+  "circuit": "Red Bull Ring",
+  "trackKey": "Red Bull Ring",
+  "city": "Spielberg",
+  "country": "Austria",
+  "tz": "Europe/Vienna",
+  "start": "2027-08-27",
+  "raceDate": "2027-08-29",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 4.318,
+   "turns": 10,
+   "laps": 28
+  }
+ },
+ {
+  "id": "motogp-2027-15",
+  "series": "motogp",
+  "season": 2027,
+  "round": 15,
+  "name": "San Marino Grand Prix",
+  "short": "San Marino",
+  "circuit": "Misano World Circuit Marco Simoncelli",
+  "trackKey": null,
+  "city": "Misano",
+  "country": "Italy",
+  "tz": "Europe/Rome",
+  "start": "2027-09-10",
+  "raceDate": "2027-09-12",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 4.226,
+   "turns": 16,
+   "laps": 27
+  }
+ },
+ {
+  "id": "motogp-2027-16",
+  "series": "motogp",
+  "season": 2027,
+  "round": 16,
+  "name": "Aragon Grand Prix",
+  "short": "Aragon",
+  "circuit": "MotorLand Aragón",
+  "trackKey": null,
+  "city": "Alcañiz",
+  "country": "Spain",
+  "tz": "Europe/Madrid",
+  "start": "2027-09-17",
+  "raceDate": "2027-09-19",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 5.077,
+   "turns": 17,
+   "laps": 23
+  }
+ },
+ {
+  "id": "motogp-2027-17",
+  "series": "motogp",
+  "season": 2027,
+  "round": 17,
+  "name": "Portugal Grand Prix",
+  "short": "Portugal",
+  "circuit": "Autódromo Internacional do Algarve",
+  "trackKey": "Algarve International Circuit",
+  "city": "Portimão",
+  "country": "Portugal",
+  "tz": "Europe/Lisbon",
+  "start": "2027-10-01",
+  "raceDate": "2027-10-03",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 4.653,
+   "turns": 15,
+   "laps": 25
+  }
+ },
+ {
+  "id": "motogp-2027-18",
+  "series": "motogp",
+  "season": 2027,
+  "round": 18,
+  "name": "Japan Grand Prix",
+  "short": "Japan",
+  "circuit": "Mobility Resort Motegi",
+  "trackKey": null,
+  "city": "Motegi",
+  "country": "Japan",
+  "tz": "Asia/Tokyo",
+  "start": "2027-10-15",
+  "raceDate": "2027-10-17",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 4.801,
+   "turns": 14,
+   "laps": 24
+  }
+ },
+ {
+  "id": "motogp-2027-19",
+  "series": "motogp",
+  "season": 2027,
+  "round": 19,
+  "name": "Malaysia Grand Prix",
+  "short": "Malaysia",
+  "circuit": "Petronas Sepang International Circuit",
+  "trackKey": "Petronas Sepang International Circuit",
+  "city": "Sepang",
+  "country": "Malaysia",
+  "tz": "Asia/Kuala_Lumpur",
+  "start": "2027-10-22",
+  "raceDate": "2027-10-24",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 5.543,
+   "turns": 15,
+   "laps": 20
+  }
+ },
+ {
+  "id": "motogp-2027-20",
+  "series": "motogp",
+  "season": 2027,
+  "round": 20,
+  "name": "Indonesia Grand Prix",
+  "short": "Indonesia",
+  "circuit": "Pertamina Mandalika International Circuit",
+  "trackKey": null,
+  "city": "Mandalika",
+  "country": "Indonesia",
+  "tz": "Asia/Makassar",
+  "start": "2027-10-29",
+  "raceDate": "2027-10-31",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 4.301,
+   "turns": 17,
+   "laps": 27
+  }
+ },
+ {
+  "id": "motogp-2027-21",
+  "series": "motogp",
+  "season": 2027,
+  "round": 21,
+  "name": "Australia Grand Prix",
+  "short": "Australia",
+  "circuit": "Adelaide Street Circuit",
+  "trackKey": null,
+  "city": "Adelaide",
+  "country": "Australia",
+  "tz": "Australia/Adelaide",
+  "start": "2027-11-12",
+  "raceDate": "2027-11-14",
+  "sprint": false,
+  "specs": {
+   "lengthKm": null,
+   "turns": null,
+   "laps": null
+  }
+ },
+ {
+  "id": "motogp-2027-22",
+  "series": "motogp",
+  "season": 2027,
+  "round": 22,
+  "name": "Valencia Grand Prix",
+  "short": "Valencia",
+  "circuit": "Circuit Ricardo Tormo",
+  "trackKey": null,
+  "city": "Cheste",
+  "country": "Spain",
+  "tz": "Europe/Madrid",
+  "start": "2027-11-26",
+  "raceDate": "2027-11-28",
+  "sprint": false,
+  "specs": {
+   "lengthKm": 4.005,
+   "turns": 14,
+   "laps": 27
+  }
+ }
+]

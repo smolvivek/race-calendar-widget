@@ -3,73 +3,839 @@
     "lastUpdated": "2026-11-15",
     "sources": [
       "https://www.formula1.com",
-      "https://www.motogp.com",
-      "https://www.formulaonehistory.com",
-      "https://www.fia.com"
+      "https://www.motogp.com"
     ],
-    "notes": "Dates reflect official calendars as published. 2027 rounds for venues pending FIA/FIM homologation (MotoGP Argentina, MotoGP Australia/Adelaide) are flagged provisional. Always double-check close to race week — calendars shift."
+    "notes": "Generated from data/races.json by scripts/build-widget-data.mjs. Dates are venue-local; 'end' is race day."
   },
   "f1": {
     "2026": [
-      { "round": 21, "name": "Las Vegas Grand Prix",  "location": "Las Vegas, USA",   "circuit": "Las Vegas Strip Circuit",         "start": "2026-11-19", "end": "2026-11-21", "sprint": false },
-      { "round": 22, "name": "Qatar Grand Prix",        "location": "Lusail, Qatar",    "circuit": "Lusail International Circuit",    "start": "2026-11-27", "end": "2026-11-29", "sprint": false },
-      { "round": 23, "name": "Abu Dhabi Grand Prix",    "location": "Abu Dhabi, UAE",   "circuit": "Yas Marina Circuit",              "start": "2026-12-04", "end": "2026-12-06", "sprint": false }
+      {
+        "round": 1,
+        "name": "Australian Grand Prix",
+        "location": "Melbourne, Australia",
+        "circuit": "Albert Park Circuit",
+        "start": "2026-03-06",
+        "end": "2026-03-08",
+        "sprint": false
+      },
+      {
+        "round": 2,
+        "name": "Chinese Grand Prix",
+        "location": "Shanghai, China",
+        "circuit": "Shanghai International Circuit",
+        "start": "2026-03-13",
+        "end": "2026-03-15",
+        "sprint": true
+      },
+      {
+        "round": 3,
+        "name": "Japanese Grand Prix",
+        "location": "Suzuka, Japan",
+        "circuit": "Suzuka International Racing Course",
+        "start": "2026-03-27",
+        "end": "2026-03-29",
+        "sprint": false
+      },
+      {
+        "round": 4,
+        "name": "Miami Grand Prix",
+        "location": "Miami, USA",
+        "circuit": "Miami International Autodrome",
+        "start": "2026-05-01",
+        "end": "2026-05-03",
+        "sprint": true
+      },
+      {
+        "round": 5,
+        "name": "Canadian Grand Prix",
+        "location": "Montreal, Canada",
+        "circuit": "Circuit Gilles Villeneuve",
+        "start": "2026-05-22",
+        "end": "2026-05-24",
+        "sprint": true
+      },
+      {
+        "round": 6,
+        "name": "Monaco Grand Prix",
+        "location": "Monte Carlo, Monaco",
+        "circuit": "Circuit de Monaco",
+        "start": "2026-06-05",
+        "end": "2026-06-07",
+        "sprint": false
+      },
+      {
+        "round": 7,
+        "name": "Barcelona-Catalunya Grand Prix",
+        "location": "Barcelona, Spain",
+        "circuit": "Circuit de Barcelona-Catalunya",
+        "start": "2026-06-12",
+        "end": "2026-06-14",
+        "sprint": false
+      },
+      {
+        "round": 8,
+        "name": "Austrian Grand Prix",
+        "location": "Spielberg, Austria",
+        "circuit": "Red Bull Ring",
+        "start": "2026-06-26",
+        "end": "2026-06-28",
+        "sprint": false
+      },
+      {
+        "round": 9,
+        "name": "British Grand Prix",
+        "location": "Silverstone, United Kingdom",
+        "circuit": "Silverstone Circuit",
+        "start": "2026-07-03",
+        "end": "2026-07-05",
+        "sprint": true
+      },
+      {
+        "round": 10,
+        "name": "Belgian Grand Prix",
+        "location": "Spa, Belgium",
+        "circuit": "Circuit de Spa-Francorchamps",
+        "start": "2026-07-17",
+        "end": "2026-07-19",
+        "sprint": false
+      },
+      {
+        "round": 11,
+        "name": "Hungarian Grand Prix",
+        "location": "Budapest, Hungary",
+        "circuit": "Hungaroring",
+        "start": "2026-07-24",
+        "end": "2026-07-26",
+        "sprint": false
+      },
+      {
+        "round": 12,
+        "name": "Dutch Grand Prix",
+        "location": "Zandvoort, Netherlands",
+        "circuit": "Circuit Zandvoort",
+        "start": "2026-08-21",
+        "end": "2026-08-23",
+        "sprint": true
+      },
+      {
+        "round": 13,
+        "name": "Italian Grand Prix",
+        "location": "Monza, Italy",
+        "circuit": "Autodromo Nazionale Monza",
+        "start": "2026-09-04",
+        "end": "2026-09-06",
+        "sprint": false
+      },
+      {
+        "round": 14,
+        "name": "Spanish Grand Prix",
+        "location": "Madrid, Spain",
+        "circuit": "Circuito de Madrid (Madring)",
+        "start": "2026-09-11",
+        "end": "2026-09-13",
+        "sprint": false
+      },
+      {
+        "round": 15,
+        "name": "Azerbaijan Grand Prix",
+        "location": "Baku, Azerbaijan",
+        "circuit": "Baku City Circuit",
+        "start": "2026-09-24",
+        "end": "2026-09-26",
+        "sprint": false
+      },
+      {
+        "round": 16,
+        "name": "Bahrain Grand Prix in Malaysia",
+        "location": "Sepang, Malaysia",
+        "circuit": "Petronas Sepang International Circuit",
+        "start": "2026-10-02",
+        "end": "2026-10-04",
+        "sprint": false
+      },
+      {
+        "round": 17,
+        "name": "Singapore Grand Prix",
+        "location": "Singapore, Singapore",
+        "circuit": "Marina Bay Street Circuit",
+        "start": "2026-10-09",
+        "end": "2026-10-11",
+        "sprint": true
+      },
+      {
+        "round": 18,
+        "name": "United States Grand Prix",
+        "location": "Austin, USA",
+        "circuit": "Circuit of the Americas",
+        "start": "2026-10-23",
+        "end": "2026-10-25",
+        "sprint": false
+      },
+      {
+        "round": 19,
+        "name": "Mexico City Grand Prix",
+        "location": "Mexico City, Mexico",
+        "circuit": "Autódromo Hermanos Rodríguez",
+        "start": "2026-10-30",
+        "end": "2026-11-01",
+        "sprint": false
+      },
+      {
+        "round": 20,
+        "name": "São Paulo Grand Prix",
+        "location": "São Paulo, Brazil",
+        "circuit": "Autódromo José Carlos Pace (Interlagos)",
+        "start": "2026-11-06",
+        "end": "2026-11-08",
+        "sprint": false
+      },
+      {
+        "round": 21,
+        "name": "Las Vegas Grand Prix",
+        "location": "Las Vegas, USA",
+        "circuit": "Las Vegas Strip Circuit",
+        "start": "2026-11-19",
+        "end": "2026-11-21",
+        "sprint": false
+      },
+      {
+        "round": 22,
+        "name": "Qatar Grand Prix",
+        "location": "Lusail, Qatar",
+        "circuit": "Lusail International Circuit",
+        "start": "2026-11-27",
+        "end": "2026-11-29",
+        "sprint": false
+      },
+      {
+        "round": 23,
+        "name": "Abu Dhabi Grand Prix",
+        "location": "Abu Dhabi, UAE",
+        "circuit": "Yas Marina Circuit",
+        "start": "2026-12-04",
+        "end": "2026-12-06",
+        "sprint": false
+      }
     ],
     "2027": [
-      { "round": 1,  "name": "Bahrain Grand Prix",         "location": "Sakhir, Bahrain",          "circuit": "Bahrain International Circuit",         "start": "2027-03-12", "end": "2027-03-14", "sprint": true  },
-      { "round": 2,  "name": "Saudi Arabian Grand Prix",   "location": "Jeddah, Saudi Arabia",     "circuit": "Jeddah Corniche Circuit",               "start": "2027-03-19", "end": "2027-03-21", "sprint": false },
-      { "round": 3,  "name": "Australian Grand Prix",      "location": "Melbourne, Australia",     "circuit": "Albert Park Circuit",                   "start": "2027-04-02", "end": "2027-04-04", "sprint": true  },
-      { "round": 4,  "name": "Japanese Grand Prix",        "location": "Suzuka, Japan",             "circuit": "Suzuka International Racing Course",    "start": "2027-04-09", "end": "2027-04-11", "sprint": true  },
-      { "round": 5,  "name": "Chinese Grand Prix",         "location": "Shanghai, China",           "circuit": "Shanghai International Circuit",         "start": "2027-04-16", "end": "2027-04-18", "sprint": false },
-      { "round": 6,  "name": "Miami Grand Prix",           "location": "Miami, USA",                "circuit": "Miami International Autodrome",          "start": "2027-04-30", "end": "2027-05-02", "sprint": false },
-      { "round": 7,  "name": "Canadian Grand Prix",        "location": "Montreal, Canada",          "circuit": "Circuit Gilles Villeneuve",              "start": "2027-05-21", "end": "2027-05-23", "sprint": true  },
-      { "round": 8,  "name": "Monaco Grand Prix",          "location": "Monte Carlo, Monaco",       "circuit": "Circuit de Monaco",                      "start": "2027-06-04", "end": "2027-06-06", "sprint": true  },
-      { "round": 9,  "name": "Portuguese Grand Prix",      "location": "Portimão, Portugal",        "circuit": "Algarve International Circuit",          "start": "2027-06-18", "end": "2027-06-20", "sprint": false },
-      { "round": 10, "name": "British Grand Prix",         "location": "Silverstone, UK",           "circuit": "Silverstone Circuit",                    "start": "2027-07-02", "end": "2027-07-04", "sprint": true  },
-      { "round": 11, "name": "Austrian Grand Prix",        "location": "Spielberg, Austria",        "circuit": "Red Bull Ring",                          "start": "2027-07-09", "end": "2027-07-11", "sprint": false },
-      { "round": 12, "name": "Belgian Grand Prix",         "location": "Spa, Belgium",              "circuit": "Circuit de Spa-Francorchamps",           "start": "2027-07-23", "end": "2027-07-25", "sprint": false },
-      { "round": 13, "name": "Hungarian Grand Prix",       "location": "Budapest, Hungary",         "circuit": "Hungaroring",                            "start": "2027-07-30", "end": "2027-08-01", "sprint": false },
-      { "round": 14, "name": "Italian Grand Prix",         "location": "Monza, Italy",              "circuit": "Autodromo Nazionale Monza",              "start": "2027-09-03", "end": "2027-09-05", "sprint": true  },
-      { "round": 15, "name": "Spanish Grand Prix",         "location": "Madrid, Spain",             "circuit": "Circuito de Madrid (Madring)",           "start": "2027-09-10", "end": "2027-09-12", "sprint": false },
-      { "round": 16, "name": "Azerbaijan Grand Prix",      "location": "Baku, Azerbaijan",          "circuit": "Baku City Circuit",                      "start": "2027-09-24", "end": "2027-09-26", "sprint": false },
-      { "round": 17, "name": "Turkish Grand Prix",         "location": "Istanbul, Turkey",          "circuit": "Istanbul Park",                          "start": "2027-10-01", "end": "2027-10-03", "sprint": false },
-      { "round": 18, "name": "Singapore Grand Prix",       "location": "Singapore",                 "circuit": "Marina Bay Street Circuit",              "start": "2027-10-08", "end": "2027-10-10", "sprint": false },
-      { "round": 19, "name": "United States Grand Prix",   "location": "Austin, USA",               "circuit": "Circuit of the Americas",                "start": "2027-10-22", "end": "2027-10-24", "sprint": false },
-      { "round": 20, "name": "Mexico City Grand Prix",     "location": "Mexico City, Mexico",       "circuit": "Autódromo Hermanos Rodríguez",           "start": "2027-10-29", "end": "2027-10-31", "sprint": false },
-      { "round": 21, "name": "Brazilian Grand Prix",       "location": "São Paulo, Brazil",         "circuit": "Autódromo José Carlos Pace (Interlagos)","start": "2027-11-05", "end": "2027-11-07", "sprint": true  },
-      { "round": 22, "name": "Las Vegas Grand Prix",       "location": "Las Vegas, USA",            "circuit": "Las Vegas Strip Circuit",                "start": "2027-11-19", "end": "2027-11-21", "sprint": false },
-      { "round": 23, "name": "Qatar Grand Prix",           "location": "Lusail, Qatar",             "circuit": "Lusail International Circuit",           "start": "2027-12-03", "end": "2027-12-05", "sprint": true  },
-      { "round": 24, "name": "Abu Dhabi Grand Prix",       "location": "Abu Dhabi, UAE",            "circuit": "Yas Marina Circuit",                     "start": "2027-12-10", "end": "2027-12-12", "sprint": true  }
+      {
+        "round": 1,
+        "name": "Bahrain Grand Prix",
+        "location": "Sakhir, Bahrain",
+        "circuit": "Bahrain International Circuit",
+        "start": "2027-03-12",
+        "end": "2027-03-14",
+        "sprint": true
+      },
+      {
+        "round": 2,
+        "name": "Saudi Arabian Grand Prix",
+        "location": "Jeddah, Saudi Arabia",
+        "circuit": "Jeddah Corniche Circuit",
+        "start": "2027-03-19",
+        "end": "2027-03-21",
+        "sprint": false
+      },
+      {
+        "round": 3,
+        "name": "Australian Grand Prix",
+        "location": "Melbourne, Australia",
+        "circuit": "Albert Park Circuit",
+        "start": "2027-04-02",
+        "end": "2027-04-04",
+        "sprint": true
+      },
+      {
+        "round": 4,
+        "name": "Japanese Grand Prix",
+        "location": "Suzuka, Japan",
+        "circuit": "Suzuka International Racing Course",
+        "start": "2027-04-09",
+        "end": "2027-04-11",
+        "sprint": true
+      },
+      {
+        "round": 5,
+        "name": "Chinese Grand Prix",
+        "location": "Shanghai, China",
+        "circuit": "Shanghai International Circuit",
+        "start": "2027-04-16",
+        "end": "2027-04-18",
+        "sprint": false
+      },
+      {
+        "round": 6,
+        "name": "Miami Grand Prix",
+        "location": "Miami, USA",
+        "circuit": "Miami International Autodrome",
+        "start": "2027-04-30",
+        "end": "2027-05-02",
+        "sprint": false
+      },
+      {
+        "round": 7,
+        "name": "Canadian Grand Prix",
+        "location": "Montreal, Canada",
+        "circuit": "Circuit Gilles Villeneuve",
+        "start": "2027-05-21",
+        "end": "2027-05-23",
+        "sprint": true
+      },
+      {
+        "round": 8,
+        "name": "Monaco Grand Prix",
+        "location": "Monte Carlo, Monaco",
+        "circuit": "Circuit de Monaco",
+        "start": "2027-06-04",
+        "end": "2027-06-06",
+        "sprint": true
+      },
+      {
+        "round": 9,
+        "name": "Portuguese Grand Prix",
+        "location": "Portimão, Portugal",
+        "circuit": "Algarve International Circuit",
+        "start": "2027-06-18",
+        "end": "2027-06-20",
+        "sprint": false
+      },
+      {
+        "round": 10,
+        "name": "British Grand Prix",
+        "location": "Silverstone, United Kingdom",
+        "circuit": "Silverstone Circuit",
+        "start": "2027-07-02",
+        "end": "2027-07-04",
+        "sprint": true
+      },
+      {
+        "round": 11,
+        "name": "Austrian Grand Prix",
+        "location": "Spielberg, Austria",
+        "circuit": "Red Bull Ring",
+        "start": "2027-07-09",
+        "end": "2027-07-11",
+        "sprint": false
+      },
+      {
+        "round": 12,
+        "name": "Belgian Grand Prix",
+        "location": "Spa, Belgium",
+        "circuit": "Circuit de Spa-Francorchamps",
+        "start": "2027-07-23",
+        "end": "2027-07-25",
+        "sprint": false
+      },
+      {
+        "round": 13,
+        "name": "Hungarian Grand Prix",
+        "location": "Budapest, Hungary",
+        "circuit": "Hungaroring",
+        "start": "2027-07-30",
+        "end": "2027-08-01",
+        "sprint": false
+      },
+      {
+        "round": 14,
+        "name": "Italian Grand Prix",
+        "location": "Monza, Italy",
+        "circuit": "Autodromo Nazionale Monza",
+        "start": "2027-09-03",
+        "end": "2027-09-05",
+        "sprint": true
+      },
+      {
+        "round": 15,
+        "name": "Spanish Grand Prix",
+        "location": "Madrid, Spain",
+        "circuit": "Circuito de Madrid (Madring)",
+        "start": "2027-09-10",
+        "end": "2027-09-12",
+        "sprint": false
+      },
+      {
+        "round": 16,
+        "name": "Azerbaijan Grand Prix",
+        "location": "Baku, Azerbaijan",
+        "circuit": "Baku City Circuit",
+        "start": "2027-09-24",
+        "end": "2027-09-26",
+        "sprint": false
+      },
+      {
+        "round": 17,
+        "name": "Turkish Grand Prix",
+        "location": "Istanbul, Türkiye",
+        "circuit": "Istanbul Park",
+        "start": "2027-10-01",
+        "end": "2027-10-03",
+        "sprint": false
+      },
+      {
+        "round": 18,
+        "name": "Singapore Grand Prix",
+        "location": "Singapore, Singapore",
+        "circuit": "Marina Bay Street Circuit",
+        "start": "2027-10-08",
+        "end": "2027-10-10",
+        "sprint": false
+      },
+      {
+        "round": 19,
+        "name": "United States Grand Prix",
+        "location": "Austin, USA",
+        "circuit": "Circuit of the Americas",
+        "start": "2027-10-22",
+        "end": "2027-10-24",
+        "sprint": false
+      },
+      {
+        "round": 20,
+        "name": "Mexico City Grand Prix",
+        "location": "Mexico City, Mexico",
+        "circuit": "Autódromo Hermanos Rodríguez",
+        "start": "2027-10-29",
+        "end": "2027-10-31",
+        "sprint": false
+      },
+      {
+        "round": 21,
+        "name": "Brazilian Grand Prix",
+        "location": "São Paulo, Brazil",
+        "circuit": "Autódromo José Carlos Pace (Interlagos)",
+        "start": "2027-11-05",
+        "end": "2027-11-07",
+        "sprint": true
+      },
+      {
+        "round": 22,
+        "name": "Las Vegas Grand Prix",
+        "location": "Las Vegas, USA",
+        "circuit": "Las Vegas Strip Circuit",
+        "start": "2027-11-18",
+        "end": "2027-11-20",
+        "sprint": false
+      },
+      {
+        "round": 23,
+        "name": "Qatar Grand Prix",
+        "location": "Lusail, Qatar",
+        "circuit": "Lusail International Circuit",
+        "start": "2027-12-03",
+        "end": "2027-12-05",
+        "sprint": true
+      },
+      {
+        "round": 24,
+        "name": "Abu Dhabi Grand Prix",
+        "location": "Abu Dhabi, UAE",
+        "circuit": "Yas Marina Circuit",
+        "start": "2027-12-10",
+        "end": "2027-12-12",
+        "sprint": true
+      }
     ]
   },
   "motogp": {
     "2026": [
-      { "round": 21, "name": "Portuguese Grand Prix",       "location": "Portimão, Portugal",      "circuit": "Autódromo Internacional do Algarve", "start": "2026-11-20", "end": "2026-11-22", "provisional": false },
-      { "round": 22, "name": "Comunitat Valenciana Grand Prix", "location": "Cheste, Spain",       "circuit": "Circuit Ricardo Tormo",              "start": "2026-11-27", "end": "2026-11-29", "provisional": false }
+      {
+        "round": 1,
+        "name": "Thailand Grand Prix",
+        "location": "Buriram, Thailand",
+        "circuit": "Chang International Circuit",
+        "start": "2026-02-27",
+        "end": "2026-03-01",
+        "provisional": false
+      },
+      {
+        "round": 2,
+        "name": "Brazil Grand Prix",
+        "location": "Goiânia, Brazil",
+        "circuit": "Autódromo Internacional Ayrton Senna",
+        "start": "2026-03-20",
+        "end": "2026-03-22",
+        "provisional": false
+      },
+      {
+        "round": 3,
+        "name": "United States Grand Prix",
+        "location": "Austin, USA",
+        "circuit": "Circuit of the Americas",
+        "start": "2026-03-27",
+        "end": "2026-03-29",
+        "provisional": false
+      },
+      {
+        "round": 4,
+        "name": "Spain Grand Prix",
+        "location": "Jerez, Spain",
+        "circuit": "Circuito de Jerez-Ángel Nieto",
+        "start": "2026-04-24",
+        "end": "2026-04-26",
+        "provisional": false
+      },
+      {
+        "round": 5,
+        "name": "France Grand Prix",
+        "location": "Le Mans, France",
+        "circuit": "Le Mans (Circuit Bugatti)",
+        "start": "2026-05-08",
+        "end": "2026-05-10",
+        "provisional": false
+      },
+      {
+        "round": 6,
+        "name": "Catalonia Grand Prix",
+        "location": "Barcelona, Spain",
+        "circuit": "Circuit de Barcelona-Catalunya",
+        "start": "2026-05-15",
+        "end": "2026-05-17",
+        "provisional": false
+      },
+      {
+        "round": 7,
+        "name": "Italy Grand Prix",
+        "location": "Mugello, Italy",
+        "circuit": "Autodromo Internazionale del Mugello",
+        "start": "2026-05-29",
+        "end": "2026-05-31",
+        "provisional": false
+      },
+      {
+        "round": 8,
+        "name": "Hungary Grand Prix",
+        "location": "Balatonfőkajár, Hungary",
+        "circuit": "Balaton Park Circuit",
+        "start": "2026-06-05",
+        "end": "2026-06-07",
+        "provisional": false
+      },
+      {
+        "round": 9,
+        "name": "Czechia Grand Prix",
+        "location": "Brno, Czechia",
+        "circuit": "CREDITAS Autodrom Brno",
+        "start": "2026-06-19",
+        "end": "2026-06-21",
+        "provisional": false
+      },
+      {
+        "round": 10,
+        "name": "Netherlands Grand Prix",
+        "location": "Assen, Netherlands",
+        "circuit": "TT Circuit Assen",
+        "start": "2026-06-26",
+        "end": "2026-06-28",
+        "provisional": false
+      },
+      {
+        "round": 11,
+        "name": "Germany Grand Prix",
+        "location": "Hohenstein-Ernstthal, Germany",
+        "circuit": "Sachsenring",
+        "start": "2026-07-10",
+        "end": "2026-07-12",
+        "provisional": false
+      },
+      {
+        "round": 12,
+        "name": "Great Britain Grand Prix",
+        "location": "Silverstone, United Kingdom",
+        "circuit": "Silverstone Circuit",
+        "start": "2026-08-07",
+        "end": "2026-08-09",
+        "provisional": false
+      },
+      {
+        "round": 13,
+        "name": "Aragon Grand Prix",
+        "location": "Alcañiz, Spain",
+        "circuit": "MotorLand Aragón",
+        "start": "2026-08-28",
+        "end": "2026-08-30",
+        "provisional": false
+      },
+      {
+        "round": 14,
+        "name": "San Marino Grand Prix",
+        "location": "Misano, Italy",
+        "circuit": "Misano World Circuit Marco Simoncelli",
+        "start": "2026-09-11",
+        "end": "2026-09-13",
+        "provisional": false
+      },
+      {
+        "round": 15,
+        "name": "Austria Grand Prix",
+        "location": "Spielberg, Austria",
+        "circuit": "Red Bull Ring",
+        "start": "2026-09-18",
+        "end": "2026-09-20",
+        "provisional": false
+      },
+      {
+        "round": 16,
+        "name": "Japan Grand Prix",
+        "location": "Motegi, Japan",
+        "circuit": "Mobility Resort Motegi",
+        "start": "2026-10-02",
+        "end": "2026-10-04",
+        "provisional": false
+      },
+      {
+        "round": 17,
+        "name": "Indonesia Grand Prix",
+        "location": "Mandalika, Indonesia",
+        "circuit": "Pertamina Mandalika International Circuit",
+        "start": "2026-10-09",
+        "end": "2026-10-11",
+        "provisional": false
+      },
+      {
+        "round": 18,
+        "name": "Australia Grand Prix",
+        "location": "Phillip Island, Australia",
+        "circuit": "Phillip Island Grand Prix Circuit",
+        "start": "2026-10-23",
+        "end": "2026-10-25",
+        "provisional": false
+      },
+      {
+        "round": 19,
+        "name": "Malaysia Grand Prix",
+        "location": "Sepang, Malaysia",
+        "circuit": "Petronas Sepang International Circuit",
+        "start": "2026-10-30",
+        "end": "2026-11-01",
+        "provisional": false
+      },
+      {
+        "round": 20,
+        "name": "Qatar Grand Prix",
+        "location": "Lusail, Qatar",
+        "circuit": "Lusail International Circuit",
+        "start": "2026-11-06",
+        "end": "2026-11-08",
+        "provisional": false
+      },
+      {
+        "round": 21,
+        "name": "Portugal Grand Prix",
+        "location": "Portimão, Portugal",
+        "circuit": "Autódromo Internacional do Algarve",
+        "start": "2026-11-20",
+        "end": "2026-11-22",
+        "provisional": false
+      },
+      {
+        "round": 22,
+        "name": "Valencia Grand Prix",
+        "location": "Cheste, Spain",
+        "circuit": "Circuit Ricardo Tormo",
+        "start": "2026-11-27",
+        "end": "2026-11-29",
+        "provisional": false
+      }
     ],
     "2027": [
-      { "round": 1,  "name": "Thailand Grand Prix",            "location": "Buriram, Thailand",         "circuit": "Chang International Circuit",                  "start": "2027-03-05", "end": "2027-03-07", "provisional": false },
-      { "round": 2,  "name": "Qatar Grand Prix",                "location": "Lusail, Qatar",             "circuit": "Lusail International Circuit",                 "start": "2027-03-12", "end": "2027-03-14", "provisional": false },
-      { "round": 3,  "name": "Grande Prêmio do Brasil",          "location": "Goiânia, Brazil",           "circuit": "Autódromo Internacional Ayrton Senna",         "start": "2027-04-02", "end": "2027-04-04", "provisional": false },
-      { "round": 4,  "name": "Gran Premio de la República Argentina", "location": "Buenos Aires, Argentina", "circuit": "Autódromo Oscar y Juan Gálvez",         "start": "2027-04-09", "end": "2027-04-11", "provisional": true  },
-      { "round": 5,  "name": "Grand Prix of the Americas",      "location": "Austin, USA",               "circuit": "Circuit of the Americas",                      "start": "2027-04-23", "end": "2027-04-25", "provisional": false },
-      { "round": 6,  "name": "Gran Premio de España",           "location": "Jerez, Spain",              "circuit": "Circuito de Jerez-Ángel Nieto",                "start": "2027-05-07", "end": "2027-05-09", "provisional": false },
-      { "round": 7,  "name": "Grand Prix de France",            "location": "Le Mans, France",           "circuit": "Le Mans",                                      "start": "2027-05-14", "end": "2027-05-16", "provisional": false },
-      { "round": 8,  "name": "Gran Premio d'Italia",            "location": "Mugello, Italy",            "circuit": "Autodromo Internazionale del Mugello",         "start": "2027-05-28", "end": "2027-05-30", "provisional": false },
-      { "round": 9,  "name": "Gran Premi de Catalunya",         "location": "Barcelona, Spain",          "circuit": "Circuit de Barcelona-Catalunya",               "start": "2027-06-11", "end": "2027-06-13", "provisional": false },
-      { "round": 10, "name": "TT Assen",                        "location": "Assen, Netherlands",        "circuit": "TT Circuit Assen",                             "start": "2027-06-25", "end": "2027-06-27", "provisional": false },
-      { "round": 11, "name": "Grosser Preis von Deutschland",   "location": "Sachsenring, Germany",      "circuit": "Sachsenring",                                  "start": "2027-07-09", "end": "2027-07-11", "provisional": false },
-      { "round": 12, "name": "Grand Prix České republiky",      "location": "Brno, Czechia",             "circuit": "CREDITAS Autodrom Brno",                       "start": "2027-07-16", "end": "2027-07-18", "provisional": false },
-      { "round": 13, "name": "British Grand Prix",              "location": "Silverstone, UK",           "circuit": "Silverstone Circuit",                          "start": "2027-08-13", "end": "2027-08-15", "provisional": false },
-      { "round": 14, "name": "Austrian Grand Prix",              "location": "Spielberg, Austria",        "circuit": "Red Bull Ring",                                "start": "2027-08-27", "end": "2027-08-29", "provisional": false },
-      { "round": 15, "name": "Gran Premio di San Marino",       "location": "Misano, Italy",             "circuit": "Misano World Circuit Marco Simoncelli",        "start": "2027-09-10", "end": "2027-09-12", "provisional": false },
-      { "round": 16, "name": "Gran Premio de Aragón",           "location": "Alcañiz, Spain",            "circuit": "MotorLand Aragón",                             "start": "2027-09-17", "end": "2027-09-19", "provisional": false },
-      { "round": 17, "name": "Grande Prémio de Portugal",       "location": "Portimão, Portugal",        "circuit": "Autódromo Internacional do Algarve",           "start": "2027-10-01", "end": "2027-10-03", "provisional": false },
-      { "round": 18, "name": "Japanese Grand Prix",              "location": "Motegi, Japan",             "circuit": "Mobility Resort Motegi",                       "start": "2027-10-15", "end": "2027-10-17", "provisional": false },
-      { "round": 19, "name": "Malaysian Grand Prix",             "location": "Sepang, Malaysia",          "circuit": "Petronas Sepang International Circuit",       "start": "2027-10-22", "end": "2027-10-24", "provisional": false },
-      { "round": 20, "name": "Pertamina Grand Prix of Indonesia", "location": "Mandalika, Indonesia",     "circuit": "Pertamina Mandalika International Circuit",   "start": "2027-10-29", "end": "2027-10-31", "provisional": false },
-      { "round": 21, "name": "Australian Grand Prix",            "location": "Adelaide, Australia",      "circuit": "Adelaide Street Circuit",                      "start": "2027-11-12", "end": "2027-11-14", "provisional": true  },
-      { "round": 22, "name": "Comunitat Valenciana Grand Prix",  "location": "Cheste, Spain",             "circuit": "Circuit Ricardo Tormo",                        "start": "2027-11-26", "end": "2027-11-28", "provisional": false }
+      {
+        "round": 1,
+        "name": "Thailand Grand Prix",
+        "location": "Buriram, Thailand",
+        "circuit": "Chang International Circuit",
+        "start": "2027-03-05",
+        "end": "2027-03-07",
+        "provisional": false
+      },
+      {
+        "round": 2,
+        "name": "Qatar Grand Prix",
+        "location": "Lusail, Qatar",
+        "circuit": "Lusail International Circuit",
+        "start": "2027-03-12",
+        "end": "2027-03-14",
+        "provisional": false
+      },
+      {
+        "round": 3,
+        "name": "Brazil Grand Prix",
+        "location": "Goiânia, Brazil",
+        "circuit": "Autódromo Internacional Ayrton Senna",
+        "start": "2027-04-02",
+        "end": "2027-04-04",
+        "provisional": false
+      },
+      {
+        "round": 4,
+        "name": "Argentina Grand Prix",
+        "location": "Buenos Aires, Argentina",
+        "circuit": "Autódromo Oscar y Juan Gálvez",
+        "start": "2027-04-09",
+        "end": "2027-04-11",
+        "provisional": false
+      },
+      {
+        "round": 5,
+        "name": "United States Grand Prix",
+        "location": "Austin, USA",
+        "circuit": "Circuit of the Americas",
+        "start": "2027-04-23",
+        "end": "2027-04-25",
+        "provisional": false
+      },
+      {
+        "round": 6,
+        "name": "Spain Grand Prix",
+        "location": "Jerez, Spain",
+        "circuit": "Circuito de Jerez-Ángel Nieto",
+        "start": "2027-05-07",
+        "end": "2027-05-09",
+        "provisional": false
+      },
+      {
+        "round": 7,
+        "name": "France Grand Prix",
+        "location": "Le Mans, France",
+        "circuit": "Le Mans",
+        "start": "2027-05-14",
+        "end": "2027-05-16",
+        "provisional": false
+      },
+      {
+        "round": 8,
+        "name": "Italy Grand Prix",
+        "location": "Mugello, Italy",
+        "circuit": "Autodromo Internazionale del Mugello",
+        "start": "2027-05-28",
+        "end": "2027-05-30",
+        "provisional": false
+      },
+      {
+        "round": 9,
+        "name": "Catalonia Grand Prix",
+        "location": "Barcelona, Spain",
+        "circuit": "Circuit de Barcelona-Catalunya",
+        "start": "2027-06-11",
+        "end": "2027-06-13",
+        "provisional": false
+      },
+      {
+        "round": 10,
+        "name": "Netherlands Grand Prix",
+        "location": "Assen, Netherlands",
+        "circuit": "TT Circuit Assen",
+        "start": "2027-06-25",
+        "end": "2027-06-27",
+        "provisional": false
+      },
+      {
+        "round": 11,
+        "name": "Germany Grand Prix",
+        "location": "Hohenstein-Ernstthal, Germany",
+        "circuit": "Sachsenring",
+        "start": "2027-07-09",
+        "end": "2027-07-11",
+        "provisional": false
+      },
+      {
+        "round": 12,
+        "name": "Czechia Grand Prix",
+        "location": "Brno, Czechia",
+        "circuit": "CREDITAS Autodrom Brno",
+        "start": "2027-07-16",
+        "end": "2027-07-18",
+        "provisional": false
+      },
+      {
+        "round": 13,
+        "name": "Great Britain Grand Prix",
+        "location": "Silverstone, United Kingdom",
+        "circuit": "Silverstone Circuit",
+        "start": "2027-08-13",
+        "end": "2027-08-15",
+        "provisional": false
+      },
+      {
+        "round": 14,
+        "name": "Austria Grand Prix",
+        "location": "Spielberg, Austria",
+        "circuit": "Red Bull Ring",
+        "start": "2027-08-27",
+        "end": "2027-08-29",
+        "provisional": false
+      },
+      {
+        "round": 15,
+        "name": "San Marino Grand Prix",
+        "location": "Misano, Italy",
+        "circuit": "Misano World Circuit Marco Simoncelli",
+        "start": "2027-09-10",
+        "end": "2027-09-12",
+        "provisional": false
+      },
+      {
+        "round": 16,
+        "name": "Aragon Grand Prix",
+        "location": "Alcañiz, Spain",
+        "circuit": "MotorLand Aragón",
+        "start": "2027-09-17",
+        "end": "2027-09-19",
+        "provisional": false
+      },
+      {
+        "round": 17,
+        "name": "Portugal Grand Prix",
+        "location": "Portimão, Portugal",
+        "circuit": "Autódromo Internacional do Algarve",
+        "start": "2027-10-01",
+        "end": "2027-10-03",
+        "provisional": false
+      },
+      {
+        "round": 18,
+        "name": "Japan Grand Prix",
+        "location": "Motegi, Japan",
+        "circuit": "Mobility Resort Motegi",
+        "start": "2027-10-15",
+        "end": "2027-10-17",
+        "provisional": false
+      },
+      {
+        "round": 19,
+        "name": "Malaysia Grand Prix",
+        "location": "Sepang, Malaysia",
+        "circuit": "Petronas Sepang International Circuit",
+        "start": "2027-10-22",
+        "end": "2027-10-24",
+        "provisional": false
+      },
+      {
+        "round": 20,
+        "name": "Indonesia Grand Prix",
+        "location": "Mandalika, Indonesia",
+        "circuit": "Pertamina Mandalika International Circuit",
+        "start": "2027-10-29",
+        "end": "2027-10-31",
+        "provisional": false
+      },
+      {
+        "round": 21,
+        "name": "Australia Grand Prix",
+        "location": "Adelaide, Australia",
+        "circuit": "Adelaide Street Circuit",
+        "start": "2027-11-12",
+        "end": "2027-11-14",
+        "provisional": false
+      },
+      {
+        "round": 22,
+        "name": "Valencia Grand Prix",
+        "location": "Cheste, Spain",
+        "circuit": "Circuit Ricardo Tormo",
+        "start": "2027-11-26",
+        "end": "2027-11-28",
+        "provisional": false
+      }
     ]
   }
 }
