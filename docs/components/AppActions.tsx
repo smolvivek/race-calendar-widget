@@ -18,15 +18,16 @@ export default function AppActions() {
   useEffect(() => {
     setStandalone(window.matchMedia("(display-mode: standalone)").matches);
     setEmbedded(window.self !== window.top);
-    const onPrompt = (e: Event) => { e.preventDefault(); deferred.current = e as InstallEvent; setCanInstall(true); };
+    // The head script in layout.tsx captures the browser's install offer as soon as it fires, possibly before this mounts.
+    const take = () => {
+      const early = (window as unknown as { __bip?: InstallEvent | null }).__bip;
+      if (early) { deferred.current = early; setCanInstall(true); }
+    };
     const onInstalled = () => { deferred.current = null; setCanInstall(false); setStandalone(true); setTip(null); };
-    window.addEventListener("beforeinstallprompt", onPrompt);
+    take();
+    window.addEventListener("bip-captured", take);
     window.addEventListener("appinstalled", onInstalled);
-    // The worker is what lets every Chromium browser offer installation, and keeps the last page available offline.
-    if (process.env.NODE_ENV === "production" && "serviceWorker" in navigator) {
-      navigator.serviceWorker.register("/sw.js").catch(() => { /* private mode or blocked: install still works via the browser menu */ });
-    }
-    return () => { window.removeEventListener("beforeinstallprompt", onPrompt); window.removeEventListener("appinstalled", onInstalled); };
+    return () => { window.removeEventListener("bip-captured", take); window.removeEventListener("appinstalled", onInstalled); };
   }, []);
 
   const install = async () => {
@@ -40,7 +41,9 @@ export default function AppActions() {
     await e.prompt();
     const choice = await e.userChoice;
     if (choice.outcome === "accepted") return;
+    // A dismissed prompt cannot be reused; the browser fires a fresh offer later, or the tip explains the menu route.
     deferred.current = null;
+    (window as unknown as { __bip?: null }).__bip = null;
     setCanInstall(false);
   };
 

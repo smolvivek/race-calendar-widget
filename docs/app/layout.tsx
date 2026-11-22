@@ -18,9 +18,20 @@ export const viewport: Viewport = {
   ],
 };
 
+// Chrome can fire beforeinstallprompt before React has hydrated, so the event is captured here, early,
+// and handed to the install button once it mounts. The worker is registered here for the same reason.
+const EARLY = `
+window.addEventListener("beforeinstallprompt", function (e) { e.preventDefault(); window.__bip = e; window.dispatchEvent(new Event("bip-captured")); });
+window.addEventListener("appinstalled", function () { window.__bip = null; });
+${process.env.NODE_ENV === "production" ? `if ("serviceWorker" in navigator) { window.addEventListener("load", function () { navigator.serviceWorker.register("/sw.js").catch(function () {}); }); }` : ""}
+`;
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: EARLY }} />
+      </head>
       <body>{children}</body>
     </html>
   );
