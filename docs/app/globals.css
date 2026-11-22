@@ -201,3 +201,26 @@ h1, h2, h3, h4, p { margin: 0; }
   .live .dot, .track path { animation: none; }
   .chev { transition: none; }
 }
+
+/* ---------- app actions ---------- */
+.acts { display: inline-flex; gap: 8px; }
+.act { min-height: 36px; padding: 0 12px; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); font-size: 0.9rem; font-weight: 600; }
+.act:hover { border-color: var(--ink); }
+.tip { flex-basis: 100%; max-width: 70ch; color: var(--muted); font-size: 0.9rem; padding: 10px 12px; border: 1px solid var(--line); background: var(--surface); border-radius: 6px; }
+
+/* ---------- mini widget (own route and the pop-out window) ---------- */
+body.pip { margin: 0; }
+.mini { display: grid; gap: 8px; padding: 10px; min-height: 100vh; background: var(--bg); }
+.mini-block { --c: var(--ink); background: var(--surface); border: 1px solid var(--line); border-top: 5px solid var(--c); padding: 10px 12px 12px; }
+.mini-block[data-series="f1"] { --c: var(--f1); }
+.mini-block[data-series="motogp"] { --c: var(--moto); }
+.mini-top { display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--muted); }
+.mini-top b { color: var(--c); font-weight: 650; }
+.mini-block h2 { font-family: var(--display); font-weight: 800; font-size: 2.2rem; line-height: 1; color: var(--c); margin: 6px 0 8px; overflow-wrap: anywhere; }
+.mini-lead { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; color: var(--muted); }
+.live-dot { animation: pulse 1.4s ease-in-out infinite; }
+.mini-digits { font-family: var(--display); font-weight: 700; font-size: 2.2rem; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.mini-digits small { font-size: 0.5em; font-weight: 600; color: var(--muted); margin: 0 0.3em 0 0.1em; }
+.mini-sub { font-size: 0.85rem; color: var(--muted); }
+.mini-open { font-size: 0.85rem; color: var(--muted); justify-self: start; }
+@media (prefers-reduced-motion: reduce) { .live-dot { animation: none; } }
